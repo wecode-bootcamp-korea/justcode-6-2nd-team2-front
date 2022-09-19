@@ -6,11 +6,13 @@ import theme from '../styles/Theme';
 import GlobalStyle from '../styles/GlobalStyle';
 
 import Main from './Main/Main';
+import Header from '../components/Header/Header';
 
 function Router() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main />} />

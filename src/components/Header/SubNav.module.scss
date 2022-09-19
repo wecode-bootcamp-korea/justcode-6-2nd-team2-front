@@ -1,0 +1,15 @@
+.subNavContainer {
+  width: 1100px;
+  margin: 0 auto;
+  .sitemap {
+    width: 100%;
+    color: #fff;
+    padding: 50px 0 30px 0;
+    font-size: 1.4666em;
+    line-height: 1.1;
+    .subNavTitle {
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+    }
+  }
+}
