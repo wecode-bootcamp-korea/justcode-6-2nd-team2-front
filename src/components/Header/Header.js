@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import Logo from '../../assets/starbox.png';
-import { AiOutlineMenu, AiOutlineSearch, AiOutlineUser, AiTwotoneHome } from 'react-icons/ai';
+import mainLogo from '../../assets/starbox-wh.png';
+import {
+  AiOutlineMenu,
+  AiOutlineSearch,
+  AiOutlineUser,
+  AiTwotoneHome,
+  AiFillCloseCircle,
+} from 'react-icons/ai';
 import { BsCalendar4Week } from 'react-icons/bs';
 import SubNav from './SubNav';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
+  const location = useLocation();
+  console.log(location.pathname);
   const [tabIndex, setTabIndex] = useState(0);
+  const [subNavMenu, setSubNavMenu] = useState(false);
+
+  const tabClick = () => {
+    setSubNavMenu(prev => !prev);
+  };
 
   const tabHandler = index => setTabIndex(index);
 
@@ -15,43 +29,103 @@ function Header() {
     {
       title: (
         <li className={styles.mainMenuList} onClick={() => tabHandler(0)}>
-          영화
+          <Link
+            to='/movie'
+            style={
+              location.pathname !== '/'
+                ? { textDecoration: 'none', color: '#333' }
+                : { textDecoration: 'none', color: '#fff' }
+            }
+          >
+            영화
+          </Link>
         </li>
       ),
       content: <AiTwotoneHome color='#999' />,
-      mainMenu: '> 영화',
-      subMenu: '> 전체영화',
+      mainMenu: (
+        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+          > 영화
+        </Link>
+      ),
+      subMenu: (
+        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+          > 전체영화
+        </Link>
+      ),
     },
     {
       title: (
         <li className={styles.mainMenuList} onClick={() => tabHandler(1)}>
-          예매
+          <Link
+            to='/ticket'
+            style={
+              location.pathname !== '/'
+                ? { textDecoration: 'none', color: '#333' }
+                : { textDecoration: 'none', color: '#fff' }
+            }
+          >
+            예매
+          </Link>
         </li>
       ),
       content: <AiTwotoneHome color='#999' />,
-      mainMenu: '> 예매',
-      subMenu: '> 전체예매',
+      mainMenu: (
+        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+          > 예매
+        </Link>
+      ),
+      subMenu: (
+        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+          > 전체예매
+        </Link>
+      ),
     },
     {
       title: (
         <li className={styles.mainMenuList} onClick={() => tabHandler(2)}>
-          극장
+          <Link
+            to='/cinema'
+            style={
+              location.pathname !== '/'
+                ? { textDecoration: 'none', color: '#333' }
+                : { textDecoration: 'none', color: '#fff' }
+            }
+          >
+            극장
+          </Link>
         </li>
       ),
       content: <AiTwotoneHome color='#999' />,
-      mainMenu: '> 극장',
-      subMenu: '> 전체극장',
+      mainMenu: (
+        <Link to='/cinema' style={{ textDecoration: 'none', color: '#333' }}>
+          > 극장
+        </Link>
+      ),
+      subMenu: (
+        <Link to='/cinema' style={{ textDecoration: 'none', color: '#333' }}>
+          > 전체극장
+        </Link>
+      ),
     },
   ];
   return (
-    <div className={styles.headerContainer}>
+    // <div className={styles.headerContainer}>
+    <div
+      className={
+        location.pathname === '/' ? `${styles.mainHeaderContainer}` : `${styles.headerContainer}`
+      }
+    >
       <div className={styles.navContainer}>
         <ul className={styles.navBox}>
           <li className={styles.left}>
             <ul className={styles.leftBottom}>
               <li className={styles.leftIcon}>
-                <div>
-                  <AiOutlineMenu className={styles.iconSize} size='26' />
+                <div onClick={tabClick}>
+                  {subNavMenu ? (
+                    <AiFillCloseCircle className={styles.iconSize} size='26' />
+                  ) : (
+                    <AiOutlineMenu className={styles.iconSize} size='26' />
+                  )}
                 </div>
                 <div>
                   <AiOutlineSearch className={styles.iconSize} size='26' />
@@ -68,7 +142,12 @@ function Header() {
           </li>
 
           <li>
-            <img src={Logo} className={styles.navLogo} />
+            <Link to='/'>
+              <img
+                src={location.pathname === '/' ? `${mainLogo}` : `${Logo}`}
+                className={styles.navLogo}
+              />
+            </Link>
           </li>
           <li className={styles.right}>
             <ul className={styles.rightTop}>
@@ -100,9 +179,8 @@ function Header() {
           <li className={styles.tabLocation}>{tabArr[tabIndex].subMenu}</li>
         </ul>
       </div>
-
       <div className={styles.subNav}>
-        <SubNav />
+        {subNavMenu ? <SubNav location={location.pathname} setSubNavMenu={setSubNavMenu} /> : ''}
       </div>
     </div>
   );

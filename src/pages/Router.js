@@ -6,16 +6,22 @@ import theme from '../styles/Theme';
 import GlobalStyle from '../styles/GlobalStyle';
 
 import Main from './Main/Main';
+import Movie from './Movie';
+import Ticket from './Ticket';
+import Cinema from './Cinema';
 import Header from '../components/Header/Header';
 
 function Router() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/movie' element={<Movie />} />
+          <Route path='/ticket' element={<Ticket />} />
+          <Route path='/cinema' element={<Cinema />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

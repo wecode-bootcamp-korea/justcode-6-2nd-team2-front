@@ -1,17 +1,36 @@
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SubNav.module.scss';
+import TabNav from './TabNav';
 
-function SubNav() {
+function SubNav({ setSubNavMenu }) {
+  const [subArr, setSubArr] = useState([]);
+  const remove = () => {
+    setSubNavMenu(false);
+  };
+  useEffect(() => {
+    fetch('data/subNavData.json')
+      .then(res => res.json())
+      .then(data => {
+        setSubArr(data.subNavData);
+      });
+  }, []);
+
   return (
     <div className={styles.subNavContainer}>
-      <dl className={styles.sitemap}>
-        SITEMAP
-        <dt className={styles.subNavTitle}>영화</dt>
-        <dd>전체영화</dd>
-        <dd>큐레이션</dd>
-        <dd>영화제</dd>
-        <dd>무비포스트</dd>
-      </dl>
+      <div className={styles.sitemap}>SITEMAP</div>
+      {subArr.map(data => {
+        return (
+          <div key={data.id} className={styles.subNavBox}>
+            <div className={styles.subNavTitle}>{data.title}</div>
+            <Link to={'/' + data.url} style={{ textDecoration: 'none' }} onClick={remove}>
+              <TabNav list={data.content} />
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }
+
 export default SubNav;
