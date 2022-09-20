@@ -6,6 +6,7 @@ import theme from '../styles/Theme';
 import GlobalStyle from '../styles/GlobalStyle';
 
 import Main from './Main/Main';
+import Booking from './Booking/Booking';
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/Booking' element={<Booking />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
