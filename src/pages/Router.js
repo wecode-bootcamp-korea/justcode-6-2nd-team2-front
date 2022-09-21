@@ -10,6 +10,9 @@ import Movie from './Movie';
 import Ticket from './Ticket';
 import Cinema from './Cinema';
 import Header from '../components/Header/Header';
+import UserFind from './Find/UserFind';
+import PassFind from './Find/PassFind';
+import SignUp from './SignUp/SignUp';
 
 function Router() {
   return (
@@ -19,9 +22,13 @@ function Router() {
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
+
           <Route path='/movie' element={<Movie />} />
           <Route path='/ticket' element={<Ticket />} />
           <Route path='/cinema' element={<Cinema />} />
+          <Route path='/user-find' element={<UserFind />} />
+          <Route path='/pass-find' element={<PassFind />} />
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

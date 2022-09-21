@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './SubNav.module.scss';
 import TabNav from './TabNav';
 
-function SubNav({ setSubNavMenu }) {
+function SubNav({ setSubNavMenu, location, tabArr }) {
   const [subArr, setSubArr] = useState([]);
   const remove = () => {
     setSubNavMenu(false);

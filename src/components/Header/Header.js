@@ -13,18 +13,24 @@ import { BsCalendar4Week } from 'react-icons/bs';
 import SubNav from './SubNav';
 import { Link, useLocation } from 'react-router-dom';
 
+import Login from '../Login/Login';
+
 function Header() {
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
   const [tabIndex, setTabIndex] = useState(0);
   const [subNavMenu, setSubNavMenu] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+
+  const openModal = () => {
+    setLoginModal(true);
+    setSubNavMenu(false);
+  };
 
   const tabClick = () => {
     setSubNavMenu(prev => !prev);
   };
-
   const tabHandler = index => setTabIndex(index);
-
   const tabArr = [
     {
       title: <li onClick={() => tabHandler(0)}></li>,
@@ -155,8 +161,19 @@ function Header() {
           </li>
           <li className={styles.right}>
             <ul className={styles.rightTop}>
-              <li>로그인</li>
-              <li>회원가입</li>
+              <li onClick={openModal}>로그인</li>
+              <li>
+                <Link
+                  to='/signup'
+                  style={
+                    location.pathname === '/'
+                      ? { textDecoration: 'none', color: '#fff' }
+                      : { textDecoration: 'none', color: '#222' }
+                  }
+                >
+                  회원가입
+                </Link>
+              </li>
               <li>빠른예매</li>
             </ul>
             <ul className={styles.rightBottom}>
@@ -185,6 +202,9 @@ function Header() {
       </div>
       <div className={styles.subNav}>
         {subNavMenu ? <SubNav location={location.pathname} setSubNavMenu={setSubNavMenu} /> : ''}
+      </div>
+      <div className={loginModal === true && `${styles.openModal}`}>
+        {openModal && <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />}
       </div>
     </div>
   );

@@ -1,0 +1,94 @@
+.loginContainer {
+  color: #444;
+  position: fixed;
+  overflow: hidden;
+  top: 20%;
+  padding-left: 400px;
+  padding-right: 400px;
+  .loginBox {
+    width: 850px;
+    height: 484px;
+    background-color: #fff;
+    .loginHeader {
+      width: 100%;
+      padding: 15px 20px 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2em;
+      color: #fff;
+      line-height: 1.1;
+      background-color: #036635;
+    }
+    .loginContents {
+      width: 100%;
+      display: flex;
+      .loginInput {
+        width: 50%;
+        padding: 12px;
+        .inputBox {
+          width: 100%;
+          height: 46px;
+          display: block;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #d8d9db;
+          color: #555;
+          &::placeholder {
+            font-size: 1.1em;
+          }
+        }
+        .checkbox {
+          width: 100%;
+          padding: 15px 0 35px 0;
+          display: flex;
+          justify-content: space-between;
+          font-size: 15px;
+          .chkSave {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+          }
+        }
+        .loginBtn {
+          width: 100%;
+          line-height: 46px;
+          border: none;
+          font-size: 1em;
+          color: #777;
+        }
+        .link > li:nth-child(1) {
+          padding: 20px 0 30px 0;
+          text-align: center;
+          span {
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 0.9333em;
+            color: #666;
+          }
+          .centerLine {
+            border-left: 1px solid #d8d9db;
+            border-right: 1px solid #d8d9db;
+          }
+        }
+        .link > li > .snsLogin {
+          width: 100%;
+          margin: 0 auto;
+          text-align: center;
+          img {
+            margin: 0 23px;
+          }
+        }
+      }
+      .loginImg {
+        width: 50%;
+        margin: 0 auto;
+        padding: 12px;
+        img {
+          width: 400px;
+          height: 400px;
+        }
+      }
+    }
+  }
+}
