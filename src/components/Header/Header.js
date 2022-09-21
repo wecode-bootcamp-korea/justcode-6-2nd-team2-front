@@ -27,8 +27,11 @@ function Header() {
 
   const tabArr = [
     {
+      title: <li onClick={() => tabHandler(0)}></li>,
+    },
+    {
       title: (
-        <li className={styles.mainMenuList} onClick={() => tabHandler(0)}>
+        <li className={styles.mainMenuList} onClick={() => tabHandler(1)}>
           <Link
             to='/movie'
             style={
@@ -55,7 +58,7 @@ function Header() {
     },
     {
       title: (
-        <li className={styles.mainMenuList} onClick={() => tabHandler(1)}>
+        <li className={styles.mainMenuList} onClick={() => tabHandler(2)}>
           <Link
             to='/ticket'
             style={
@@ -82,7 +85,7 @@ function Header() {
     },
     {
       title: (
-        <li className={styles.mainMenuList} onClick={() => tabHandler(2)}>
+        <li className={styles.mainMenuList} onClick={() => tabHandler(3)}>
           <Link
             to='/cinema'
             style={
@@ -146,6 +149,7 @@ function Header() {
               <img
                 src={location.pathname === '/' ? `${mainLogo}` : `${Logo}`}
                 className={styles.navLogo}
+                onClick={tabIndex}
               />
             </Link>
           </li>
