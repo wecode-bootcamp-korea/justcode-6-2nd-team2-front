@@ -7,10 +7,6 @@ function MoviePoster() {
         <Rank>1</Rank>
         <Poster alt='포스터 이미지' src={require('../../assets/poster.png')} />
       </Div>
-      {/* <Div>
-        <Rank>2</Rank>
-        <Poster alt='포스터 이미지' src={require('../../assets/poster2.png')} />
-      </Div> */}
     </>
   );
 }
