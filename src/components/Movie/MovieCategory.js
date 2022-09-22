@@ -47,13 +47,15 @@ const CategoryLink = styled(NavLink)`
   padding: 0;
 
   border: 1px solid lightgray;
-  border-bottom: none;
+  border-bottom: 1px solid #006633;
+
   text-align: center;
   color: #222;
   font-size: 1.0667em;
   text-decoration: none;
 
   &.active {
+    border-bottom: none;
     border-color: #006633;
     color: #006633;
   }
