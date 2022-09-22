@@ -1,20 +1,19 @@
 .swiper {
-  overflow: scroll;
   z-index: 100;
 }
 .swiper-button-prev {
   left: -41px;
-  top: 52%;
+  top: 54%;
   background-color: white;
-  border-bottom: 1px solid #d8d9db;
-  height: 40px;
+
+  height: 39px;
 }
 .swiper-button-next {
   right: -23px;
-  top: 52%;
+  top: 54%;
   background-color: white;
-  border-bottom: 1px solid #d8d9db;
-  height: 40px;
+
+  height: 39px;
 }
 
 .swiper-button-next:after,
@@ -31,9 +30,9 @@
   visibility: hidden;
 }
 
-.react-calendar {
-  z-index: 500;
-  border-radius: 5px;
+.react-datepicker {
+  margin-top: 1px;
+  z-index: 900;
 }
 
 .swiper-slide {
@@ -66,7 +65,33 @@
   background-color: #01738b;
 }
 
+.set-all {
+  border-bottom: 1px solid #d8d9db;
+}
+
 .set-active {
   background-color: #f7f8f9;
   border-bottom: 3px solid #503396;
+}
+.set-theater-active {
+  color: #444;
+  background-color: #ebebeb;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    z-index: 2;
+    width: 6px;
+    height: 11px;
+    margin: -6px 0 0 0;
+    background: url(https://img.megabox.co.kr/static/pc/images/reserve/bg-arr-theater-choice.png)
+      no-repeat 0 0;
+  }
+}
+
+.all {
+  color: #444;
+  background-color: white;
 }

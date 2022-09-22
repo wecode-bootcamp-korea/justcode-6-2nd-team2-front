@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TitleWrapper = styled.div`
+  position: relative;
+  z-index: 1;
   padding-bottom: 55px;
 `;
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import NavTitle from './NavTitle';
-import Schedule from './Schedule';
+import NavTitle from './Nav/NavTitle';
+import Schedule from './Nav/Schedule';
+import ReserveArea from './ReserveArea';
 
 const ContainerWrapper = styled.div`
   width: 1100px;
@@ -17,6 +18,7 @@ function MovieSelect() {
         <NavTitle />
         <ContainerWrapper>
           <Schedule />
+          <ReserveArea />
         </ContainerWrapper>
       </div>
     </>
