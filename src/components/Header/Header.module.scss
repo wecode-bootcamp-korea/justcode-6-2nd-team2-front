@@ -101,6 +101,7 @@
     position: absolute;
     top: 130px;
     left: 0;
+    z-index: 99999;
   }
   .openModal {
     width: 100%;
@@ -114,7 +115,7 @@
 .mainHeaderContainer {
   position: relative;
   width: 100%;
-  background-color: #000000;
+  background-color: #001a27;
   color: #fff;
   .navContainer {
     width: 1100px;
@@ -196,7 +197,7 @@
     width: 100%;
     // position: absolute;
     padding: 10px;
-    background-color: #f8f8fa;
+    background-color: #002533;
     .locationBox {
       width: 1100px;
       margin: 0 auto;
@@ -216,6 +217,7 @@
     position: absolute;
     top: 130px;
     left: 0;
+    z-index: 99999;
   }
   .openModal {
     width: 100%;
