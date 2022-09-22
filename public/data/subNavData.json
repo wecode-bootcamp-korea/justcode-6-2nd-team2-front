@@ -14,7 +14,7 @@
     {
       "id": 2,
       "title": "예매",
-      "url": "ticket",
+      "url": "Booking",
       "content": [
         { "contentId": 1, "list": "빠른예매" },
         { "contentId": 2, "list": "상영시간표" },
@@ -24,7 +24,7 @@
     {
       "id": 3,
       "title": "극장",
-      "url": "cinema",
+      "url": "",
       "content": [
         { "contentId": 1, "list": "전체극장" },
         { "contentId": 2, "list": "특별관" }

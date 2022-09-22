@@ -1,0 +1,30 @@
+.authContainer {
+  width: 100%;
+  .content {
+    padding-top: 40px;
+    .title {
+      font-size: 1.333em;
+      text-align: start;
+      margin-bottom: 10px;
+    }
+    .titleText {
+      text-align: start;
+      margin-bottom: 12px;
+    }
+    .boxContent {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      button {
+        width: 260px;
+        height: 200px;
+        border: 1px solid lightgray;
+        background-color: #fff;
+        border-radius: 10px;
+      }
+      .naver {
+        padding-top: 16px;
+      }
+    }
+  }
+}
