@@ -8,6 +8,10 @@ import GlobalStyle from '../styles/GlobalStyle';
 import Main from './Main/Main';
 import Movie from './Movie/Movie';
 import MovieContent from '../components/Movie/MovieContent';
+import Header from '../components/Header/Header';
+import UserFind from './Find/UserFind';
+import PassFind from './Find/PassFind';
+import SignUp from './SignUp/SignUp';
 import MovieDetail from './MovieDetail';
 import MovieInfo from './MovieDetail/MovieInfo';
 import MovieComment from './MovieDetail/MovieComment';
@@ -19,6 +23,7 @@ function Router() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/movie' element={<Movie />}>
@@ -34,6 +39,10 @@ function Router() {
             <Route path='moviepost' element={<MoviePost />} />
             <Route path='trailer' element={<MovieTrailer />} />
           </Route>
+
+          <Route path='/user-find' element={<UserFind />} />
+          <Route path='/pass-find' element={<PassFind />} />
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
