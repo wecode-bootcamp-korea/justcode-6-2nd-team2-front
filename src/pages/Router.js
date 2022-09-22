@@ -29,7 +29,7 @@ function Router() {
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
             {/* <Route index element={<MovieInfo />} /> */}
-            <Route index path='movieinfo' element={<MovieInfo />} />
+            <Route path='movieinfo' element={<MovieInfo />} />
             <Route path='comment' element={<MovieComment />} />
             <Route path='moviepost' element={<MoviePost />} />
             <Route path='trailer' element={<MovieTrailer />} />
