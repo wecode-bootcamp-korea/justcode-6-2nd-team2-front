@@ -9,8 +9,6 @@ function MovieCard() {
     <>
       <Card>
         <MoviePoster />
-        {/* <Rank>1</Rank>
-        <Poster alt='포스터 이미지' src={require('../../assets/poster.png')} /> */}
         <Div>
           <Grade alt='등급' src={require('../../assets/age_19.png')} />
           <Title>늑댓안양</Title>

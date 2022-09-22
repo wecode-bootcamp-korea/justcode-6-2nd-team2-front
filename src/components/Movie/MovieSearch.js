@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { CgSearch } from 'react-icons/cg';
 
-function MovieSearch() {
+function MovieSearch({ search, setSearch }) {
   return (
     <Search>
-      <Input type='search' placeholder='영화명 검색' />
+      <Input
+        type='search'
+        placeholder='영화명 검색'
+        onChange={e => {
+          // console.log(e.target.value);
+          setSearch(e.target.value);
+        }}
+      />
       <Button type='button'>
         <CgSearch className='icon' />
       </Button>
