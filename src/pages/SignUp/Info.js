@@ -1,4 +1,4 @@
 function Info() {
-  return <>인증</>;
+  return <>정보입력</>;
 }
 export default Info;
