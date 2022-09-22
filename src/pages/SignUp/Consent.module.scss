@@ -1,0 +1,38 @@
+.authContainer {
+  width: 100%;
+  min-height: 100%;
+  .content {
+    padding-top: 40px;
+    text-align: start;
+    .title {
+      font-size: 1.333em;
+      text-align: start;
+      margin-bottom: 10px;
+    }
+    .titleText {
+      text-align: start;
+    }
+    .boxContent {
+      border-bottom: 1px solid #f2f2f2;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      span {
+        margin-bottom: 10px;
+        line-height: 50px;
+      }
+    }
+    div > .consentBox {
+      .contentBox {
+        padding: 6px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #dedede;
+
+        .boxText {
+          font-size: 0.9em;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}

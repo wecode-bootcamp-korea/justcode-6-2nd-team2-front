@@ -1,0 +1,102 @@
+.containerBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #f8f8fa;
+  .container {
+    width: 710px;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 80px;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 300px;
+    .closePage {
+      text-align: right;
+      button {
+        border: 0;
+        background-color: #fff;
+      }
+    }
+    h1 > img {
+      width: 146px;
+      height: 120px;
+      margin-bottom: 70px;
+    }
+    .tabBar {
+      width: 100%;
+      margin: 0 auto;
+      margin-bottom: 40px;
+      text-align: center;
+      .findTitle {
+        font-size: 1.8666em;
+        color: #036635;
+        margin-bottom: 30px;
+      }
+      .tabMenu {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          width: 50%;
+          font-size: 1.0667em;
+          line-height: 40px;
+        }
+        .before {
+          border: 1px solid #ececec;
+          border-bottom: 1px solid #036635;
+        }
+      }
+    }
+    .contentBox {
+      h2 {
+        width: 100%;
+        text-align: left;
+        font-size: 1.333em;
+        margin-bottom: 30px;
+      }
+      .inputBoxContainer {
+        border-top: 1px solid #222;
+        margin-bottom: 30px;
+        .inputBox {
+          width: 100%;
+          border-bottom: 1px solid #d1d5dd;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .inputTitle {
+            width: 130px;
+            line-height: 50px;
+            background-color: #f7f8f9;
+            margin-right: 10px;
+          }
+          .inputText {
+            width: 230px;
+            padding-left: 10px;
+            line-height: 32px;
+            border: 1px solid #d8d9db;
+            margin-right: 10px;
+          }
+          &:nth-child(4) {
+            position: relative;
+          }
+          .inputBtn {
+            width: 80px;
+            height: 32px;
+            border: 0;
+          }
+        }
+      }
+      .findBtn {
+        width: 200px;
+        line-height: 46px;
+        font-size: 20px;
+        color: #777;
+        border: 0;
+      }
+    }
+  }
+}
