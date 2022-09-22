@@ -1,20 +1,22 @@
 import styled from 'styled-components';
+import { MdToggleOn } from 'react-icons/md';
 import { MdToggleOff } from 'react-icons/md';
 
-function MovieFilter() {
+function MovieFilter({ filter, setFilter }) {
   return (
-    <Filter type='button'>
-      <MdToggleOff className='logo' />
+    <Filter
+      type='button'
+      onClick={() => {
+        setFilter(!filter);
+      }}
+    >
+      {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
       &nbsp;개봉작만
     </Filter>
   );
 }
 
 const Filter = styled.button`
-  /* padding: 0 0 0 30px; */
-  /* background: url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-on-air.png) no-repeat 0
-    2px; */
-
   display: flex;
   align-items: center;
 
@@ -23,7 +25,13 @@ const Filter = styled.button`
   font-family: 'NanumBarunGothic';
   font-size: 15px;
 
-  .logo {
+  .onLogo {
+    position: relative;
+    font-size: 30px;
+    color: lightblue;
+  }
+
+  .offLogo {
     position: relative;
     font-size: 30px;
     color: lightgray;

@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MovieCategory() {
+  // const [category] = useState('');
+
   return (
     <>
       <Category>

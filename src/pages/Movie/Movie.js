@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
-import MovieCategory from '../../components/Movie/MovieCategory';
-// import MovieContent from '../../components/MovieContent/MovieContent';
 import { Outlet } from 'react-router-dom';
+import MovieCategory from '../../components/Movie/MovieCategory';
 
 function Movie() {
   return (

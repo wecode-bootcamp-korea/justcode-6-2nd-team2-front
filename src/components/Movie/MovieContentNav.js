@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
-// import MovieCard from './MovieCard';
 import MovieFilter from './MovieFilter';
 import MovieSearch from './MovieSearch';
 
-function MovieListNav({ totalCount }) {
+function MovieContentNav({ filter, setFilter, totalCount, search, setSearch }) {
   return (
     <ListNav>
       <Div>
-        <MovieFilter />
+        <MovieFilter filter={filter} setFilter={setFilter} />
         <MovieCount>
           <Count>{totalCount}</Count>
           개의 영화가 검색되었습니다.
         </MovieCount>
       </Div>
-      <MovieSearch />
+      <MovieSearch search={search} setSearch={setSearch} />
     </ListNav>
   );
 }
@@ -43,4 +42,4 @@ const MovieCount = styled.div`
 
 const Count = styled.strong``;
 
-export default MovieListNav;
+export default MovieContentNav;
