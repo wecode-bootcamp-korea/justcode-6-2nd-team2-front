@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import ListDetailOne from '../Theater/ListDetailOne';
 import Modal from '../Modal';
 
 const Ll = styled.li`

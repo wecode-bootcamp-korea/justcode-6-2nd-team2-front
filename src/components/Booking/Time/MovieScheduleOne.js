@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Li = styled.li`
@@ -134,31 +135,33 @@ const Em3 = styled.em`
 function MovieScheduleOne() {
   return (
     <>
-      <Li>
-        <LiButton>
-          <Legend />
-          <Time>
-            <Strong1>20:00</Strong1>
-            <Em1>~22:11</Em1>
-          </Time>
-          <Title>
-            <Strong2>늑대사냥</Strong2>
-            <Em2>2D</Em2>
-          </Title>
-          <Info>
-            <Theater>
-              강남
-              <br />
-              3관
-            </Theater>
-            <Seat>
-              <Strong3>194</Strong3>
-              <Span>/</Span>
-              <Em3>232</Em3>
-            </Seat>
-          </Info>
-        </LiButton>
-      </Li>
+      <Link to='Seat' style={{ textDecoration: 'none' }}>
+        <Li>
+          <LiButton>
+            <Legend />
+            <Time>
+              <Strong1>20:00</Strong1>
+              <Em1>~22:11</Em1>
+            </Time>
+            <Title>
+              <Strong2>늑대사냥</Strong2>
+              <Em2>2D</Em2>
+            </Title>
+            <Info>
+              <Theater>
+                강남
+                <br />
+                3관
+              </Theater>
+              <Seat>
+                <Strong3>194</Strong3>
+                <Span>/</Span>
+                <Em3>232</Em3>
+              </Seat>
+            </Info>
+          </LiButton>
+        </Li>
+      </Link>
     </>
   );
 }

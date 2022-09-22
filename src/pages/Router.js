@@ -15,7 +15,7 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/Booking' element={<Booking />} />
+          <Route path='/Booking/*' element={<Booking />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

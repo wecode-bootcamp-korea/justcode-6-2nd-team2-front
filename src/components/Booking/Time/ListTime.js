@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 
 import 'swiper/css';
@@ -130,20 +130,6 @@ function ListTime({ type }) {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
-  const [swiper, setSwiper] = useState(null);
-
-  // const slideTo = index => {
-  //   swiper.slideTo(index);
-  // };
-
-  // useEffect(() => {
-  //   for (let i = 0; i < 24; i++) {
-  //     if (i === new window.Date().getHours()) {
-  //       slideTo(i);
-  //     }
-  //   }
-  // });
-
   return (
     <>
       <ScheduleBar>
@@ -168,7 +154,6 @@ function ListTime({ type }) {
               swiper.navigation.update();
             }}
             style={{ top: '-4px', width: '336px', overflow: 'visible' }}
-            onSwiper={setSwiper}
           >
             {time.map(element => {
               return (

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Modal from '../Modal';
 
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import 'swiper/css';
@@ -151,7 +151,7 @@ function Schedule() {
                 slidesPerView={14}
                 modules={[Navigation]}
                 onSlideChange={swiperCore => {
-                  const { activeIndex, snapIndex, previousIndex, realIndex } = swiperCore;
+                  const { activeIndex } = swiperCore;
                   setActiveIndex(activeIndex);
                 }}
                 className='mySwiper'
@@ -173,7 +173,6 @@ function Schedule() {
                             for (let i = 1; i < 19; i++) {
                               if (addDays(new window.Date(), i).getDate() === element) {
                                 setStartDate(addDays(new window.Date(), i));
-
                                 break;
                               }
                             }

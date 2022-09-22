@@ -1,7 +1,9 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import MovieSelect from '../../components/Booking/MovieSelect';
+import SeatSelect from '../../components/Booking/SeatSelect';
 
 const InnerWrap = styled.div`
   width: 1100px;
@@ -14,7 +16,13 @@ function Booking() {
   return (
     <>
       <InnerWrap>
-        <MovieSelect />
+        <Routes>
+          <Route path='/' element={<MovieSelect />} />
+          <Route path='Seat' element={<SeatSelect />} />
+        </Routes>
+
+        {/* <MovieSelect />
+        <SeatSelect /> */}
       </InnerWrap>
     </>
   );
