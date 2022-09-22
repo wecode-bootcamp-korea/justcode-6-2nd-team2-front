@@ -7,6 +7,8 @@ import GlobalStyle from '../styles/GlobalStyle';
 
 import Main from './Main/Main';
 import Booking from './Booking/Booking';
+import Movie from './Movie/Movie';
+import MovieContent from '../components/Movie/MovieContent';
 
 function Router() {
   return (
@@ -16,6 +18,11 @@ function Router() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/Booking/*' element={<Booking />} />
+          <Route path='/movie' element={<Movie />}>
+            <Route index element={<MovieContent />} />
+            <Route path='b' element={<MovieContent />} />
+            <Route path='c' element={<MovieContent />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
