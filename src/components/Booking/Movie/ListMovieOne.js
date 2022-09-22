@@ -62,7 +62,18 @@ const MovieGrade = styled.span`
   display: inline-block;
   margin: 0 2px 0 0;
   vertical-align: middle;
-  background-image: url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-19.png);
+
+  background-image: ${props => {
+    if (props.grade === '19') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-19.png)';
+    } else if (props.grade === '15') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-15.png)';
+    } else if (props.grade === '12') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-12.png)';
+    } else if (props.grade === 'all') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-all.png)';
+    }
+  }};
   width: 20px;
   height: 20px;
   overflow: hidden;
@@ -83,6 +94,7 @@ const Heart = styled.i`
   margin: 0 2px 0 0;
   width: 12px;
   height: 11px;
+
   background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-heart-small.png);
   overflow: hidden;
   padding: 0;
@@ -108,7 +120,7 @@ const Txt = styled.span`
   line-height: 1.15;
 `;
 
-function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL }) {
+function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL, title, grade, img }) {
   const [select, setSelect] = useState(false);
   const [modalup, setModalup] = useState(false);
   const [modalMessage, setModalMessage] = useState('영화는 최대 3개까지 선택이 가능합니다.');
@@ -135,10 +147,7 @@ function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL }) {
                 modalUpBtn();
                 return;
               }
-              setMovieURL([
-                ...movieURL,
-                'https://www.megabox.co.kr/SharedImg/2022/09/21/sUaMgi8aqcQ7PVmoi2Mie0qHrm8XpkKp_150.jpg',
-              ]);
+              setMovieURL([...movieURL, img]);
               plus();
             }
             if (count > 3) {
@@ -151,12 +160,12 @@ function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL }) {
         >
           {type === 'movie' && (
             <>
-              <MovieGrade>청소년관람불가</MovieGrade>
+              <MovieGrade grade={grade}>청소년관람불가</MovieGrade>
               <Heart>보고싶어 설정안함</Heart>
             </>
           )}
 
-          <Txt>늑대사냥</Txt>
+          <Txt>{title}</Txt>
         </Movie>
         {modalup && <Modal modalMessage={modalMessage} modalUpBtn={modalUpBtn} />}
       </Ll>

@@ -114,7 +114,7 @@ const Line = styled.div`
   }
 `;
 
-function ListOne({ direct, reset, select, count, setCount, name, setName }) {
+function ListOne({ direct, reset, select, count, setCount, name, setName, areaName, theaterName }) {
   const weekArr = [
     '1',
     '2',
@@ -159,7 +159,9 @@ function ListOne({ direct, reset, select, count, setCount, name, setName }) {
           }}
           className={select ? 'set-theater-active' : 'all'}
         >
-          <Txt>{direct}(8)</Txt>
+          <Txt>
+            {areaName}({theaterName.length})
+          </Txt>
         </Movie>
         <Line />
         {select && (
@@ -168,7 +170,7 @@ function ListOne({ direct, reset, select, count, setCount, name, setName }) {
               <DetailBox>
                 <BoxContainer>
                   <Ul>
-                    {weekArr.map(el => {
+                    {theaterName.map(el => {
                       return (
                         <ListDetailOne
                           key={el}
@@ -178,6 +180,7 @@ function ListOne({ direct, reset, select, count, setCount, name, setName }) {
                           count={count}
                           name={name}
                           setName={setName}
+                          theaterOne={el}
                         />
                       );
                     })}

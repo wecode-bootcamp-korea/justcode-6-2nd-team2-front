@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ListOne from './ListMovieOne';
 
@@ -184,6 +184,8 @@ function ListMovie({ type }) {
 
   const [count, setCount] = useState(0);
   const [movieURL, setMovieURL] = useState([]);
+  const [data, setData] = useState([]);
+
   const plus = () => {
     setCount(count + 1);
   };
@@ -191,6 +193,16 @@ function ListMovie({ type }) {
   const minus = () => {
     setCount(count - 1);
   };
+
+  useEffect(() => {
+    fetch('./data/booking/movie.json', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(mock => {
+        setData(mock.data);
+      });
+  }, []);
 
   return (
     <>
@@ -204,7 +216,7 @@ function ListMovie({ type }) {
             <InnerWrapper tabindex='0'>
               <Inner style={{ top: '0px' }}>
                 <Ul>
-                  {weekArr.map(el => {
+                  {data.map(el => {
                     return (
                       <ListOne
                         key={el}
@@ -215,6 +227,9 @@ function ListMovie({ type }) {
                         count={count}
                         movieURL={movieURL}
                         setMovieURL={setMovieURL}
+                        title={el.title}
+                        grade={el.grade}
+                        img={el.img}
                       />
                     );
                   })}

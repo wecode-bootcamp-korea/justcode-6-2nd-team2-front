@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ListTheaterOne from './ListTheaterOne';
 
@@ -153,6 +153,7 @@ function ListMovie({ type }) {
   const [select, setSelect] = useState('');
   const [count, setCount] = useState(0);
   const [name, setName] = useState([]);
+  const [data, setData] = useState([]);
 
   const direction = [
     '서울',
@@ -168,6 +169,16 @@ function ListMovie({ type }) {
     setSelect(direct);
   };
 
+  useEffect(() => {
+    fetch('./data/booking/theater.json', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(mock => {
+        setData(mock.data);
+      });
+  }, []);
+
   return (
     <>
       <div>
@@ -179,7 +190,7 @@ function ListMovie({ type }) {
           <ListWrapper>
             <InnerWrapper tabindex='0'>
               <Ul>
-                {direction.map(el => {
+                {data.map(el => {
                   if (el === select) {
                     return (
                       <ListTheaterOne
@@ -191,6 +202,8 @@ function ListMovie({ type }) {
                         setCount={setCount}
                         name={name}
                         setName={setName}
+                        areaName={el.area_name}
+                        theaterName={el.theater_name}
                       />
                     );
                   } else {
@@ -204,6 +217,8 @@ function ListMovie({ type }) {
                         setCount={setCount}
                         name={name}
                         setName={setName}
+                        areaName={el.area_name}
+                        theaterName={el.theater_name}
                       />
                     );
                   }

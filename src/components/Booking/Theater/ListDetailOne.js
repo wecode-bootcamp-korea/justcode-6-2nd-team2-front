@@ -41,7 +41,7 @@ const Movie = styled.button`
   }}
 `;
 
-function ListDetailOne({ direct, plus, minus, count, name, setName }) {
+function ListDetailOne({ direct, plus, minus, count, name, setName, theaterOne }) {
   const [select, setSelect] = useState(false);
 
   const [modalup, setModalup] = useState(false);
@@ -69,7 +69,7 @@ function ListDetailOne({ direct, plus, minus, count, name, setName }) {
                 modalUpBtn();
                 return;
               }
-              setName([...name, '서울도']);
+              setName([...name, theaterOne]);
               plus();
             }
             if (count > 3) {
@@ -80,7 +80,7 @@ function ListDetailOne({ direct, plus, minus, count, name, setName }) {
           }}
           img={select}
         >
-          {direct}도
+          {theaterOne}도
         </Movie>
         {modalup && <Modal modalMessage={modalMessage} modalUpBtn={modalUpBtn} />}
       </Ll>
