@@ -1,0 +1,278 @@
+.container {
+  position: relative;
+  height: 520px;
+  margin: 0 0 40px;
+  color: #ccc;
+  background-color: #151515;
+
+  .bgImg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: url('https://img.megabox.co.kr/SharedImg/2022/09/16/7SKcz0FHj1a0OANAOk2PC9IwDYsbz0D8_570.jpg')
+      center no-repeat;
+    background-size: 100% auto;
+    margin: 0 0 0 -550px;
+    z-index: 1;
+    width: 1100px;
+    height: 100%;
+    opacity: 0.8;
+  }
+
+  .bgMask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #0f0f0f 20%, rgba(15, 15, 15, 0) 50%, #0f0f0f 80%);
+  }
+
+  .content {
+    position: relative;
+    z-index: 5;
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 55px 0 0 0;
+
+    .type {
+      margin-left: 6px;
+      line-height: 22px;
+    }
+    .title {
+      font-size: 45px;
+      color: #fff;
+      font-weight: 400;
+      padding-top: 15px;
+    }
+    .titleEng {
+      font-size: 20px;
+      color: #fff;
+      padding-top: 15px;
+    }
+    .btnUtil {
+      display: flex;
+      padding-top: 15px;
+      .shareBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: transparent;
+        border-radius: 4px;
+        border: 1px solid #706f72;
+        height: 36px;
+        width: 100px;
+        min-width: 36px;
+        padding: 0 10px;
+        margin-left: 6px;
+        font-weight: 500;
+        &:hover {
+          color: #000;
+          background-color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .info {
+      display: inline-flex;
+      position: absolute;
+      left: 0;
+      bottom: 45px;
+      .score {
+        .flexCenter {
+          display: flex;
+          align-items: center;
+          .toolTip {
+            position: relative;
+            &:hover {
+              cursor: pointer;
+              .toolTipCon {
+                display: block;
+                position: absolute;
+                width: 320px;
+                background-color: #fff;
+                border-radius: 5px;
+                border: 1px solid #d8d9db;
+                z-index: 10;
+                left: -105px;
+                top: -90px;
+                padding: 15px 20px;
+                color: #555;
+                text-align: center;
+                .toolTipArr {
+                  display: block;
+                  position: absolute;
+                  left: 100px;
+                  bottom: -11px;
+                  width: 22px;
+                  height: 11px;
+                  background: url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-tooltip-arr-bottom.png)
+                    no-repeat;
+                }
+              }
+            }
+            .toolTipCon {
+              display: none;
+            }
+          }
+        }
+        padding-left: 35px;
+        &:first-child {
+          padding-left: 0;
+        }
+        //공통
+        .tit {
+          font-size: 14px;
+          font-weight: 400;
+          padding-bottom: 15px;
+        }
+
+        .flex {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .number {
+            font-size: 32px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 32px;
+            .scorePoint {
+              color: #006633;
+            }
+            .unit {
+              font-size: 15px;
+              color: #ccc;
+            }
+          }
+        }
+      }
+
+      // .rate {
+      //   padding-left: 35px;
+      //   &:first-child {
+      //     padding-left: 0;
+      //   }
+      // }
+      // .audience {
+      //   .unit {
+      //     //공통
+      //   }
+      // }
+    }
+
+    .poster {
+      overflow: hidden;
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 45px;
+      width: 260px;
+      height: 374px;
+      .posterWrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+        }
+      }
+    }
+    .ticketingBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 0;
+      bottom: 45px;
+      width: 260px;
+      height: 46px;
+      font-size: 18px;
+      font-weight: 700;
+      background-color: #006633;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  }
+}
+
+// 탭 - 하단
+.innerWrap {
+  // width: 1100px;
+  // margin: 0 auto;
+  .summary {
+    .detailTitle {
+      font-size: 30px;
+      color: #222;
+      line-height: 70px;
+    }
+    .detailContent {
+      font-size: 15px;
+      color: #444;
+    }
+  }
+  .movieInfo {
+    padding: 30px 0;
+    color: #222;
+    p {
+      display: inline-block;
+      position: relative;
+
+      // &:before {
+      //   content: '';
+      //   display: block;
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 9px;
+      //   width: 1px;
+      //   height: 13px;
+      //   background-color: #d8d9db;
+      // }
+    }
+    span {
+      margin: 0 10px;
+      color: #d8d9db;
+    }
+  }
+  //그래프
+  .movieGraph {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 70px;
+    .graphBox {
+      border: 1px solid #ddd;
+      display: table-cell;
+      padding: 30px 0;
+      text-align: center;
+      width: 25%;
+      .graphTitle {
+        color: #555;
+        font-size: 16px;
+      }
+      .circle {
+        margin: 0 auto;
+        background-color: #006633;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        line-height: 120px;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+      .graphColor {
+        font-size: 33px;
+        color: #006633;
+        font-weight: 400;
+      }
+    }
+  }
+}
