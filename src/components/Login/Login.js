@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function Login({ setModal, modal }) {
+function Login({ setModal, modal, setLoginModal }) {
   const navigate = useNavigate();
   //로그인 state
   const [id, setId] = useState('');
@@ -13,6 +13,8 @@ function Login({ setModal, modal }) {
   const [isValid, setIsValid] = useState(false);
   //checkbox
   const [check, setCheck] = useState(id);
+
+  const [btnCol, setBtnCol] = useState(`${styles.success}`);
 
   //onChange=> e.target.value
   const idHandler = e => {
@@ -34,10 +36,12 @@ function Login({ setModal, modal }) {
       setModal(false);
       setId('');
       setPassword('');
+      setBtnCol(`${styles.loginBtn}`);
     } else {
       alert('로그인 정보 확인');
       setId('');
       setPassword('');
+      setBtnCol(`${styles.loginBtn}`);
     }
   };
 
@@ -92,7 +96,7 @@ function Login({ setModal, modal }) {
                     <span style={{ color: '#3d7db7' }}>휴대폰 간편로그인</span>
                   </div>
                   <button
-                    className={isValid === false ? `${styles.loginBtn}` : `${styles.success}`}
+                    className={isValid === true ? `${styles.success}` : `${styles.loginBtn}`}
                     onClick={loginSuccess}
                   >
                     로그인
