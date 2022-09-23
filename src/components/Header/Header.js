@@ -161,9 +161,7 @@ function Header() {
           </li>
           <li className={styles.right}>
             <ul className={styles.rightTop}>
-              <li onClick={openModal} setLoginModal={setLoginModal}>
-                로그인
-              </li>
+              <li onClick={openModal}>로그인</li>
               <li>
                 <Link
                   to='/signup'

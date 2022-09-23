@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function Login({ setModal, modal, setLoginModal }) {
+function Login({ setModal, modal }) {
   const navigate = useNavigate();
   //로그인 state
   const [id, setId] = useState('');
