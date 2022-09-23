@@ -7,7 +7,6 @@ import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
   const [cardList] = useState([1, 1, 1, 1]);
-
   return (
     <MainPage>
       <Div>

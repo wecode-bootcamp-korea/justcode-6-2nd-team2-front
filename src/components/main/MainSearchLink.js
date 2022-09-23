@@ -3,7 +3,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FiFilm } from 'react-icons/fi';
 import { HiOutlineTicket } from 'react-icons/hi';
 
-import MovieSearch from '../../components/Movie/MovieSearch';
+import MovieSearch from '../Movie/MovieSearch';
 
 function MainSearchLink() {
   return (

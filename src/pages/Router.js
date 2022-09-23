@@ -30,8 +30,10 @@ function Router() {
           <Route path='/Booking/*' element={<Booking />} />
           <Route path='/movie' element={<Movie />}>
             <Route index element={<MovieContent />} />
-            <Route path='b' element={<MovieContent />} />
-            <Route path='c' element={<MovieContent />} />
+            <Route path='domestic' element={<MovieContent />} />
+            <Route path='abroad' element={<MovieContent />} />
+            <Route path='special' element={<MovieContent />} />
+            <Route path='film' element={<MovieContent />} />
           </Route>
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
