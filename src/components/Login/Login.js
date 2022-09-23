@@ -1,48 +1,62 @@
 import styles from './Login.module.scss';
+import Kakao from './Kakao';
 import { AiOutlineClose } from 'react-icons/ai';
-
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function Login({ setModal, modal, setLoginModal }) {
+function Login({ setModal, modal }) {
   const navigate = useNavigate();
   //로그인 state
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   //활성화
   const [isValid, setIsValid] = useState(false);
-  //checkbox
-  const [check, setCheck] = useState(id);
 
-  const [btnCol, setBtnCol] = useState(`${styles.success}`);
+  const [btnCol, setBtnCol] = useState(`${styles.loginBtn}`);
 
   //onChange=> e.target.value
   const idHandler = e => {
     const idValue = e.target.value;
     setId(idValue);
-    idValue.length >= 5 && password.length >= 5 ? setIsValid(true) : setIsValid(false);
+    idValue !== undefined && password.length >= 8 ? setIsValid(true) : setIsValid(false);
   };
   const pwHandler = e => {
-    const pwValue = e.target.value;
-    setPassword(pwValue);
-    id.length >= 5 && pwValue.length >= 5 ? setIsValid(true) : setIsValid(false);
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+    passwordValue.length >= 8 && id !== undefined ? setIsValid(true) : setIsValid(false);
   };
 
   //login Btn
-  const loginSuccess = () => {
-    // isValid === true ? navigate('/') : navigate('/signup');
-    if (isValid === true) {
-      navigate('/');
-      setModal(false);
-      setId('');
-      setPassword('');
-      setBtnCol(`${styles.loginBtn}`);
-    } else {
-      alert('로그인 정보 확인');
-      setId('');
-      setPassword('');
-      setBtnCol(`${styles.loginBtn}`);
-    }
+  const body = {
+    account_id: id, //'roy_oh0910'
+    password: password, // "qwerty12!"
+  };
+  const loginSuccess = e => {
+    // POST 'http://localhost:10010/user/login'
+    e.preventDefault();
+    fetch('http://localhost:10010/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'LOGIN_SUCCESS') {
+          localStorage.setItem('token', result.token);
+          // navigate('/');
+          setModal(false);
+          setId('');
+          setPassword('');
+          setBtnCol(`${styles.loginBtn}`);
+        } else {
+          alert('로그인 정보 확인');
+          setId('');
+          setPassword('');
+          setBtnCol(`${styles.loginBtn}`);
+        }
+      });
   };
 
   //checkBox
@@ -88,7 +102,7 @@ function Login({ setModal, modal, setLoginModal }) {
                       <input
                         id='chkSave'
                         type='checkbox'
-                        value={check}
+                        // value={check}
                         style={{ width: '16px', height: '16px' }}
                       />
                       <label for='chkSave'>아이디 저장</label>
@@ -125,10 +139,7 @@ function Login({ setModal, modal, setLoginModal }) {
                         />
                       </span>
                       <span>
-                        <img
-                          src='https://www.megabox.co.kr/static/pc/images/member/ico-kakao.png'
-                          alt='kakao'
-                        />
+                        <Kakao />
                       </span>
                       <span>
                         <img

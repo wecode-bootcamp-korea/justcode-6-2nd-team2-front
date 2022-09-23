@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import Logo from '../../assets/starbox.png';
 import mainLogo from '../../assets/starbox-wh.png';
@@ -11,11 +11,13 @@ import {
 } from 'react-icons/ai';
 import { BsCalendar4Week } from 'react-icons/bs';
 import SubNav from './SubNav';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import Login from '../Login/Login';
+import Logout from '../Login/Logout';
 
 function Header() {
+  const navigate = useNavigate();
   const location = useLocation();
   // console.log(location.pathname);
   const [tabIndex, setTabIndex] = useState(0);
@@ -25,6 +27,13 @@ function Header() {
   const openModal = () => {
     setLoginModal(true);
     setSubNavMenu(false);
+  };
+
+  //logout
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+    console.log('로그아웃');
   };
 
   const tabClick = () => {
@@ -124,89 +133,99 @@ function Header() {
         location.pathname === '/' ? `${styles.mainHeaderContainer}` : `${styles.headerContainer}`
       }
     >
-      <div className={styles.navContainer}>
-        <ul className={styles.navBox}>
-          <li className={styles.left}>
-            <ul className={styles.leftBottom}>
-              <li className={styles.leftIcon}>
-                <div onClick={tabClick}>
-                  {subNavMenu ? (
-                    <AiFillCloseCircle className={styles.iconSize} size='26' />
+      <div>
+        <div className={styles.navContainer}>
+          <ul className={styles.navBox}>
+            <li className={styles.left}>
+              <ul className={styles.leftBottom}>
+                <li className={styles.leftIcon}>
+                  <div onClick={tabClick}>
+                    {subNavMenu ? (
+                      <AiFillCloseCircle className={styles.iconSize} size='26' />
+                    ) : (
+                      <AiOutlineMenu className={styles.iconSize} size='26' />
+                    )}
+                  </div>
+                  <div>
+                    <AiOutlineSearch className={styles.iconSize} size='26' />
+                  </div>
+                </li>
+                <li className={styles.mainMenuContainer}>
+                  <ul className={styles.mainMenu}>
+                    {tabArr.map((section, index) => {
+                      return section.title;
+                    })}
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to='/'>
+                <img
+                  src={location.pathname === '/' ? `${mainLogo}` : `${Logo}`}
+                  className={styles.navLogo}
+                  onClick={tabIndex}
+                />
+              </Link>
+            </li>
+            <li className={styles.right}>
+              <ul className={styles.rightTop}>
+                <li setLoginModal={setLoginModal}>
+                  {localStorage.getItem('token') ? (
+                    <span onClick={logout}>로그아웃</span>
                   ) : (
-                    <AiOutlineMenu className={styles.iconSize} size='26' />
+                    <span onClick={openModal}>로그인</span>
                   )}
-                </div>
-                <div>
-                  <AiOutlineSearch className={styles.iconSize} size='26' />
-                </div>
-              </li>
-              <li className={styles.mainMenuContainer}>
-                <ul className={styles.mainMenu}>
-                  {tabArr.map((section, index) => {
-                    return section.title;
-                  })}
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <Link to='/'>
-              <img
-                src={location.pathname === '/' ? `${mainLogo}` : `${Logo}`}
-                className={styles.navLogo}
-                onClick={tabIndex}
-              />
-            </Link>
-          </li>
-          <li className={styles.right}>
-            <ul className={styles.rightTop}>
-              <li onClick={openModal} setLoginModal={setLoginModal}>
-                로그인
-              </li>
-              <li>
-                <Link
-                  to='/signup'
-                  style={
-                    location.pathname === '/'
-                      ? { textDecoration: 'none', color: '#fff' }
-                      : { textDecoration: 'none', color: '#222' }
-                  }
-                >
-                  회원가입
-                </Link>
-              </li>
-              <li>빠른예매</li>
-            </ul>
-            <ul className={styles.rightBottom}>
-              <li>이벤트</li>
-              <li>스토어</li>
-              <li>혜택</li>
-              <li className={styles.rightIcon}>
-                <div>
-                  <BsCalendar4Week className={styles.iconSize} size='26' />
-                </div>
-                <div>
-                  <AiOutlineUser className={styles.iconSize} size='26' />
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.borderBottom}></div>
-      <div className={styles.locationView}>
-        <ul className={styles.locationBox}>
-          <li className={styles.tabLocation}>{tabArr[tabIndex].content}</li>
-          <li className={styles.tabLocation}>{tabArr[tabIndex].mainMenu}</li>
-          <li className={styles.tabLocation}>{tabArr[tabIndex].subMenu}</li>
-        </ul>
-      </div>
-      <div className={styles.subNav}>
-        {subNavMenu ? <SubNav location={location.pathname} setSubNavMenu={setSubNavMenu} /> : ''}
-      </div>
-      <div className={loginModal === true && `${styles.openModal}`}>
-        {openModal && <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />}
+                </li>
+                <li>
+                  <Link
+                    to='/signup'
+                    style={
+                      location.pathname === '/'
+                        ? { textDecoration: 'none', color: '#fff' }
+                        : { textDecoration: 'none', color: '#222' }
+                    }
+                  >
+                    회원가입
+                  </Link>
+                </li>
+                <li>빠른예매</li>
+              </ul>
+              <ul className={styles.rightBottom}>
+                <li>이벤트</li>
+                <li>스토어</li>
+                <li>혜택</li>
+                <li className={styles.rightIcon}>
+                  <div>
+                    <BsCalendar4Week className={styles.iconSize} size='26' />
+                  </div>
+                  <div>
+                    <AiOutlineUser className={styles.iconSize} size='26' />
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.borderBottom}></div>
+        <div className={styles.locationView}>
+          <ul className={styles.locationBox}>
+            <li className={styles.tabLocation}>{tabArr[tabIndex].content}</li>
+            <li className={styles.tabLocation}>{tabArr[tabIndex].mainMenu}</li>
+            <li className={styles.tabLocation}>{tabArr[tabIndex].subMenu}</li>
+          </ul>
+        </div>
+        <div className={styles.subNav}>
+          {subNavMenu ? <SubNav location={location.pathname} setSubNavMenu={setSubNavMenu} /> : ''}
+        </div>
+        <div className={loginModal === true && `${styles.openModal}`}>
+          {openModal && <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />}
+          {/* {localStorage.getItem('token') ? (
+            <Logout logout={logout} />
+          ) : (
+            <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />
+          )} */}
+        </div>
       </div>
     </div>
   );
