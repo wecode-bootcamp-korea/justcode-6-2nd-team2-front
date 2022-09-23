@@ -41,6 +41,8 @@ const Button = styled.div`
 
   width: 100%;
   height: 36px;
+
+  margin-top: 10px;
 `;
 
 export default MainBoxOffice;
