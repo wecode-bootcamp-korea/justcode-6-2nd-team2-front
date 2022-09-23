@@ -66,7 +66,7 @@ function Header() {
       title: (
         <li className={styles.mainMenuList} onClick={() => tabHandler(2)}>
           <Link
-            to='/ticket'
+            to='/Booking'
             style={
               location.pathname !== '/'
                 ? { textDecoration: 'none', color: '#333' }
@@ -79,12 +79,12 @@ function Header() {
       ),
       content: <AiTwotoneHome color='#999' />,
       mainMenu: (
-        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+        <Link to='/Booking' style={{ textDecoration: 'none', color: '#333' }}>
           > 예매
         </Link>
       ),
       subMenu: (
-        <Link to='/movie' style={{ textDecoration: 'none', color: '#333' }}>
+        <Link to='/Booking' style={{ textDecoration: 'none', color: '#333' }}>
           > 전체예매
         </Link>
       ),
@@ -161,7 +161,9 @@ function Header() {
           </li>
           <li className={styles.right}>
             <ul className={styles.rightTop}>
-              <li onClick={openModal}>로그인</li>
+              <li onClick={openModal} setLoginModal={setLoginModal}>
+                로그인
+              </li>
               <li>
                 <Link
                   to='/signup'

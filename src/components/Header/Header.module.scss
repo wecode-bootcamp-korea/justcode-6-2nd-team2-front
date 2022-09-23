@@ -101,15 +101,16 @@
     position: absolute;
     top: 130px;
     left: 0;
-    z-index: 99999;
+    z-index: 90000;
   }
   .openModal {
     width: 100%;
     height: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.2);
+    background-color: rgba($color: #000000, $alpha: 0.4);
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 91000;
   }
 }
 .mainHeaderContainer {
@@ -217,7 +218,7 @@
     position: absolute;
     top: 130px;
     left: 0;
-    z-index: 99999;
+    z-index: 90000;
   }
   .openModal {
     width: 100%;
@@ -226,5 +227,6 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 91000;
   }
 }
