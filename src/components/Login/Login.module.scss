@@ -1,10 +1,11 @@
 .loginContainer {
   color: #444;
   position: fixed;
-  overflow: hidden;
-  top: 20%;
-  padding-left: 400px;
-  padding-right: 400px;
+  // overflow: hidden;
+  top: 50%;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
   .loginBox {
     width: 850px;
     height: 484px;
