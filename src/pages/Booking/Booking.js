@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import MovieSelect from '../../components/Booking/MovieSelect';
@@ -20,9 +20,6 @@ function Booking() {
           <Route path='/' element={<MovieSelect />} />
           <Route path='Seat' element={<SeatSelect />} />
         </Routes>
-
-        {/* <MovieSelect />
-        <SeatSelect /> */}
       </InnerWrap>
     </>
   );
