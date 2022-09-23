@@ -1,30 +1,64 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MovieCategory() {
-  // const [category] = useState('');
+  const [category] = useState([
+    {
+      id: 1,
+      link: '/movie',
+      title: '박스오피스',
+    },
+    {
+      id: 2,
+      link: 'domestic',
+      title: '국내 영화',
+    },
+    {
+      id: 3,
+      link: 'abroad',
+      title: '해외 영화',
+    },
+    {
+      id: 4,
+      link: 'special',
+      title: '특별 상영',
+    },
+    {
+      id: 5,
+      link: 'film',
+      title: '필름 소사이어티',
+    },
+  ]);
 
   return (
     <>
       <Category>
         <CategoryBox>
-          <CategoryTitle>
-            <CategoryLink to='/movie' end className={({ isActive }) => (isActive ? 'active' : '')}>
-              박스오피스
-            </CategoryLink>
-          </CategoryTitle>
-          <CategoryTitle>
-            <CategoryLink to='b'>국내 영화</CategoryLink>
-          </CategoryTitle>
-          <CategoryTitle>
-            <CategoryLink to='c'>해외 영화</CategoryLink>
-          </CategoryTitle>
-          <CategoryTitle>
-            <CategoryLink to='d'>특별 상영</CategoryLink>
-          </CategoryTitle>
-          <CategoryTitle>
-            <CategoryLink to='e'>필름 소사이어티</CategoryLink>
-          </CategoryTitle>
+          {category.map(link => {
+            switch (link.id) {
+              case 1: {
+                return (
+                  <CategoryTitle key={link.id}>
+                    <CategoryLink
+                      to={link.link}
+                      end
+                      className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                      {link.title}
+                    </CategoryLink>
+                  </CategoryTitle>
+                );
+              }
+              default: {
+                return (
+                  <CategoryTitle key={link.id}>
+                    <CategoryLink to={link.link}>{link.title}</CategoryLink>
+                  </CategoryTitle>
+                );
+              }
+            }
+          })}
         </CategoryBox>
       </Category>
     </>
@@ -37,9 +71,11 @@ const CategoryBox = styled.ul`
   display: flex;
   flex-direction: row;
 `;
+
 const CategoryTitle = styled.li`
   width: 100%;
 `;
+
 const CategoryLink = styled(NavLink)`
   position: relative;
   display: block;
