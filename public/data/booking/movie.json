@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "title": "공조",
+      "grade": "15",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/08/29/oUQrNQTflUqvHUQG6kvlzF8SEhJSomfh_150.jpg"
+    },
+    {
+      "title": "늑대사냥",
+      "grade": "19",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/09/21/sUaMgi8aqcQ7PVmoi2Mie0qHrm8XpkKp_150.jpg"
+    },
+    {
+      "title": "프린세스 아야",
+      "grade": "all",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/08/31/zopUisvBi8rNLl5YC3GolxqR4JCs7BPD_150.jpg"
+    },
+    {
+      "title": "인생은 아름다워",
+      "grade": "12",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/09/02/ZjCzEAqxR4iABJcxNikwyLSZE5DZn3GA_150.jpg"
+    },
+    {
+      "title": "아바라 리마스터링",
+      "grade": "12",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/08/29/nxQhoJtnfnmVqAG1QVCl2Hp5bRNrTtqL_150.jpg"
+    },
+    {
+      "title": "정직한 후보2",
+      "grade": "12",
+      "img": "https://www.megabox.co.kr/SharedImg/2022/08/31/zopUisvBi8rNLl5YC3GolxqR4JCs7BPD_150.jpg"
+    }
+  ]
+}

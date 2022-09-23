@@ -6,6 +6,7 @@ import theme from '../styles/Theme';
 import GlobalStyle from '../styles/GlobalStyle';
 
 import Main from './Main/Main';
+import Booking from './Booking/Booking';
 import Movie from './Movie/Movie';
 import MovieContent from '../components/Movie/MovieContent';
 import Header from '../components/Header/Header';
@@ -26,10 +27,21 @@ function Router() {
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/Booking/*' element={<Booking />} />
           <Route path='/movie' element={<Movie />}>
             <Route index element={<MovieContent />} />
-            <Route path='b' element={<MovieContent />} />
-            <Route path='c' element={<MovieContent />} />
+            <Route path='domestic' element={<MovieContent />} />
+            <Route path='abroad' element={<MovieContent />} />
+            <Route path='special' element={<MovieContent />} />
+            <Route path='film' element={<MovieContent />} />
+          </Route>
+          {/* 영화 상세페이지 */}
+          <Route path='/moviedetail' end element={<MovieDetail />}>
+            {/* <Route index element={<MovieInfo />} /> */}
+            <Route path='movieinfo' element={<MovieInfo />} />
+            <Route path='comment' element={<MovieComment />} />
+            <Route path='moviepost' element={<MoviePost />} />
+            <Route path='trailer' element={<MovieTrailer />} />
           </Route>
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
