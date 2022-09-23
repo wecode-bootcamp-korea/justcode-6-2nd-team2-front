@@ -1,10 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Outlet } from 'react-router-dom';
 import MovieCategory from '../../components/Movie/MovieCategory';
 
 function Movie() {
+  // const axios = require('axios');
+
+  axios.get('http://localhost:10010/movie/list').then(res => {
+    console.log(res.data);
+  });
+
   return (
     <MV>
       <MoviePage>
