@@ -13,6 +13,7 @@ import Header from '../components/Header/Header';
 import UserFind from './Find/UserFind';
 import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
+import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
 import MovieInfo from './MovieDetail/MovieInfo';
 import MovieComment from './MovieDetail/MovieComment';
@@ -47,6 +48,7 @@ function Router() {
           <Route path='/user-find' element={<UserFind />} />
           <Route path='/pass-find' element={<PassFind />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/cinema' element={<Cinema />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

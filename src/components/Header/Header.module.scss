@@ -101,20 +101,22 @@
     position: absolute;
     top: 130px;
     left: 0;
+    z-index: 90000;
   }
   .openModal {
     width: 100%;
     height: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.2);
+    background-color: rgba($color: #000000, $alpha: 0.4);
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 91000;
   }
 }
 .mainHeaderContainer {
   position: relative;
   width: 100%;
-  background-color: #000000;
+  background-color: #001a27;
   color: #fff;
   .navContainer {
     width: 1100px;
@@ -196,7 +198,7 @@
     width: 100%;
     // position: absolute;
     padding: 10px;
-    background-color: #f8f8fa;
+    background-color: #002533;
     .locationBox {
       width: 1100px;
       margin: 0 auto;
@@ -216,6 +218,7 @@
     position: absolute;
     top: 130px;
     left: 0;
+    z-index: 90000;
   }
   .openModal {
     width: 100%;
@@ -224,5 +227,6 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 91000;
   }
 }
