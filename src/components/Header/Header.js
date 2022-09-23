@@ -189,7 +189,18 @@ function Header() {
                     회원가입
                   </Link>
                 </li>
-                <li>빠른예매</li>
+                <li>
+                  <Link
+                    to='/Booking'
+                    style={
+                      location.pathname === '/'
+                        ? { textDecoration: 'none', color: '#fff' }
+                        : { textDecoration: 'none', color: '#222' }
+                    }
+                  >
+                    빠른예매
+                  </Link>
+                </li>
               </ul>
               <ul className={styles.rightBottom}>
                 <li>이벤트</li>
