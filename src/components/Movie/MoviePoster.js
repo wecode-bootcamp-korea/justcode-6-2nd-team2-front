@@ -13,8 +13,14 @@ function MoviePoster() {
           <div className='posterHover'>
             <DetailLink to='moviedetail'>
               <div className='content'>
-                <div className='summary'>늑댓안양 내용 어쩌구 저쩌구</div>
-                <div className='reviewRate'>9.1</div>
+                <div className='summary'>
+                  늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구
+                  저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구
+                  저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구
+                </div>
+                <div className='reviewRate'>
+                  관람평 <span>9.1</span>
+                </div>
               </div>
             </DetailLink>
           </div>
@@ -39,13 +45,6 @@ const Div = styled.div`
     overflow: hidden;
   }
 
-  .content {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    color: #fff;
-  }
-
   .posterHover {
     display: none;
     width: 100%;
@@ -57,6 +56,32 @@ const Div = styled.div`
 
     &:hover {
       cursor: pointer;
+    }
+
+    .content {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      color: #fff;
+
+      .summary {
+        padding: 6px;
+        line-height: 150%;
+      }
+
+      .reviewRate {
+        text-align: center;
+
+        span {
+          margin-left: 10px;
+          font-size: 25px;
+          color: #008833;
+        }
+      }
     }
   }
 `;

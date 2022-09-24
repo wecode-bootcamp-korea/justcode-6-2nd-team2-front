@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { MdContactless } from 'react-icons/md';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
-import { useLocation } from 'react-router-dom';
+
 import MovieContentNav from './MovieContentNav';
 import MovieList from './MovieList';
 
@@ -80,14 +80,13 @@ const getQuery = params => {
 };
 
 function MovieContent() {
+  const location = useLocation();
+
   const [filter, setFilter] = useState(false);
   const [search, setSearch] = useState('');
   const [pageNo, setPageNo] = useState(1);
-  const [cardList] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-  const location = useLocation();
   const [movieList, setMovieList] = useState([]);
   // const isMountedRef = useRef(false);
-  // console.log(loc, loc.pathname.split('/')[2]);
 
   const getLoader = async params => {
     // let url = 'http://localhost:10010/movie/list';
@@ -98,8 +97,8 @@ function MovieContent() {
       });
     }
     //영화 리스트 GET
-    const resp = await axios.get(url);
-    setMovieList([...movieList, ...resp.data]);
+    const response = await axios.get(url);
+    setMovieList([...movieList, ...response.data]);
   };
 
   const onLoadMore = () => {
@@ -139,19 +138,23 @@ function MovieContent() {
   // }, [location.pathname]);
 
   // ('https://60c1a3544f7e880017dbff1f.mockapi.io/posts?page=1&limit=20');
-  console.log(movieList.map(i => i.id));
+  // console.log(movieList.map(i => i.id));
 
   return (
     <>
       <MovieContentNav
         filter={filter}
         setFilter={setFilter}
-        totalCount={cardList.length}
+        totalCount={movieList.length}
         search={search}
         setSearch={setSearch}
       />
-      <MovieList movieList={movieList} search={search} setSearch={setSearch} />
-      <button onClick={onLoadMore}>ejqhrl</button>
+      <MovieList
+        movieList={movieList}
+        onLoadMore={onLoadMore}
+        search={search}
+        setSearch={setSearch}
+      />
     </>
   );
 }
