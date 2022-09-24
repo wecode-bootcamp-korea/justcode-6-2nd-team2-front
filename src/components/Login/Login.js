@@ -28,8 +28,8 @@ function Login({ setModal, modal }) {
 
   //login Btn
   const body = {
-    account_id: id, //'roy_oh0910'
-    password: password, // "qwerty12!"
+    account_id: id, //roy_oh0910 , mark_kim0106
+    password: password, // qwerty12! , markzzang1!
   };
   const loginSuccess = e => {
     // POST 'http://localhost:10010/user/login'

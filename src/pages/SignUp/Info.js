@@ -11,54 +11,43 @@ function Info() {
             <label for='birth'>생년월일</label>
             <input type='text' id='birth' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputBox}>
             <label for='phone'>휴대폰 번호</label>
             <input type='text' id='phone' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputBox}>
             <label for='id'>아이디</label>
-            <input type='text' id='id' />
+            <input type='text' id='id' minLength='8' maxLength='12' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputBox}>
             <label for='password'>비밀번호</label>
-            <input type='text' id='password' />
+            <input type='text' id='password' maxLength='20' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputBox}>
-            <label for='pwConfirm'>생년월일</label>
-            <input type='text' id='pwConfirm' />
+            <label for='password'>비밀번호 확인</label>
+            <input type='text' id='password' maxLength='20' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputBox}>
             <label for='email'>이메일 주소</label>
             <input type='text' id='email' />
           </div>
-        </div>
-        <div className={styles.boxContent}>
           <div className={styles.inputKiosk}>
             <p>
               무인발권기 <span>기능 설정</span>
             </p>
             <div className={styles.kioskTrue}>
               <label for='kiosk1'>사용</label>
-              <input type='checkbox' id='kiosk1' />
-              <label for='kiosk1'></label>
-              <input type='checkbox' id='kiosk1' />
+              <input type='radio' id='kiosk1' />
             </div>
             <div className={styles.kioskFalse}>
               <label for='kiosk2'>미사용</label>
-              <input type='checkbox' id='kiosk2' />
-              <label for='kiosk2'></label>
-              <input type='checkbox' id='kiosk2' />
+              <input type='radio' id='kiosk2' />
             </div>
+          </div>
+          <div className={styles.addCinema}>
+            <p>자주 방문하는 스타박스를 등록해 주세요!</p>
+            <button>설정</button>
+            <div className={styles.CinemaContainer}></div>
           </div>
         </div>
       </div>
