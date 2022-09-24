@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Outlet } from 'react-router-dom';
 import MovieCategory from '../../components/Movie/MovieCategory';
 
 function Movie() {
+  const [movieList, setMovieList] = useState([]);
+  //영화 리스트 GET
+  axios.get('http://localhost:10010/movie/list').then(res => {
+    setMovieList(res.data);
+  });
+
   return (
     <MV>
       <MoviePage>
@@ -14,7 +21,7 @@ function Movie() {
           <MovieCategory />
           {/* 영화 리스트 */}
           {/* <MovieContent /> */}
-          <Outlet />
+          <Outlet movieList={movieList} setMovieList={setMovieList} />
         </div>
         {/* 더보기 */}
         <MoreButton>

@@ -28,14 +28,12 @@ function MovieCard() {
 
 const Card = styled.li`
   width: 230px;
-  height: 450px;
+  /* height: 450px; */
   margin: 0 0 0 60px;
   padding: 0;
   margin-bottom: 60px;
 
   background-color: transparent;
-
-  /* border: 1px solid black; */
 `;
 
 const Div = styled.div`
