@@ -254,7 +254,7 @@ function Result() {
           </SeatType>
           <SeatNum>
             <p>선택좌석</p>
-            <div style={{ padding: '0 6px' }}>
+            <div style={{ padding: '10px 6px' }}>
               <SeatSelect>-</SeatSelect>
               <SeatSelect>-</SeatSelect>
               <SeatSelect>-</SeatSelect>
