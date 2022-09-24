@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
 
-function MovieList({ cardList }) {
+function MovieList({ movieList }) {
   return (
     <>
       <CardList>
-        {cardList.map(card => {
+        {movieList.map(card => {
           return (
             <li key={card.id}>
               <MovieCard />

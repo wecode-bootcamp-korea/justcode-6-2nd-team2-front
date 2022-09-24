@@ -6,11 +6,11 @@ import { Outlet } from 'react-router-dom';
 import MovieCategory from '../../components/Movie/MovieCategory';
 
 function Movie() {
-  const [movieList, setMovieList] = useState([]);
+  // const [movieList, setMovieList] = useState([]);
   //영화 리스트 GET
-  axios.get('http://localhost:10010/movie/list').then(res => {
-    setMovieList(res.data);
-  });
+  // axios.get('http://localhost:10010/movie/list').then(res => {
+  //   setMovieList(res.data);
+  // });
 
   return (
     <MV>
@@ -21,7 +21,7 @@ function Movie() {
           <MovieCategory />
           {/* 영화 리스트 */}
           {/* <MovieContent /> */}
-          <Outlet movieList={movieList} setMovieList={setMovieList} />
+          <Outlet />
         </div>
         {/* 더보기 */}
         <MoreButton>
