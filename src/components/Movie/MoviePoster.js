@@ -46,13 +46,14 @@ const Div = styled.div`
   }
 
   .posterHover {
+    position: absolute;
     display: none;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    position: absolute;
     top: 0;
     left: 0;
+
+    background: rgba(0, 0, 0, 0.7);
 
     &:hover {
       cursor: pointer;
@@ -65,11 +66,11 @@ const Div = styled.div`
       justify-content: space-between;
       width: 100%;
       height: 100%;
-      padding: 10px;
+      padding: 15px;
       color: #fff;
 
       .summary {
-        padding: 6px;
+        text-align: justify;
         line-height: 150%;
       }
 

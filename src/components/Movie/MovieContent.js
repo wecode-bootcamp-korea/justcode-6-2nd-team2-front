@@ -5,7 +5,7 @@ import MovieList from './MovieList';
 function MovieContent() {
   const [filter, setFilter] = useState(false);
   const [search, setSearch] = useState('');
-  const [movieList, setMovieList] = useState([]);
+  const [movieList] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
 
   return (
     <>

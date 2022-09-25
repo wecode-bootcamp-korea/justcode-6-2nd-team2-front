@@ -11,23 +11,23 @@ function MovieCategory() {
     },
     {
       id: 2,
+      link: 'now',
+      title: '현재 상영작',
+    },
+    {
+      id: 3,
+      link: 'upcoming',
+      title: '개봉 예정작',
+    },
+    {
+      id: 4,
       link: 'domestic',
       title: '국내 영화',
     },
     {
-      id: 3,
+      id: 5,
       link: 'abroad',
       title: '해외 영화',
-    },
-    {
-      id: 4,
-      link: 'special',
-      title: '특별 상영',
-    },
-    {
-      id: 5,
-      link: 'film',
-      title: '필름 소사이어티',
     },
   ]);
 
@@ -41,7 +41,7 @@ function MovieCategory() {
                 return (
                   <CategoryTitle key={link.id}>
                     <CategoryLink
-                      to={link.link}
+                      to='/movie'
                       end
                       className={({ isActive }) => (isActive ? 'active' : '')}
                     >
