@@ -37,23 +37,32 @@ function MovieCategory() {
         <CategoryBox>
           {category.map(link => {
             switch (link.id) {
-              case 1: {
+              // case 1: {
+              //   return (
+              //     <CategoryTitle key={link.id}>
+              //       <CategoryLink
+              //         to={link.link}
+              //         end={link.id === 1}
+              //         className={({ isActive }) => (isActive ? 'active' : '')}
+              //       >
+              //         {link.title}
+              //       </CategoryLink>
+              //     </CategoryTitle>
+              //   );
+              // }
+              default: {
                 return (
+                  // <CategoryTitle key={link.id}>
+                  //   <CategoryLink to={link.link}>{link.title}</CategoryLink>
+                  // </CategoryTitle>
                   <CategoryTitle key={link.id}>
                     <CategoryLink
                       to={link.link}
-                      end
+                      end={link.id === 1}
                       className={({ isActive }) => (isActive ? 'active' : '')}
                     >
                       {link.title}
                     </CategoryLink>
-                  </CategoryTitle>
-                );
-              }
-              default: {
-                return (
-                  <CategoryTitle key={link.id}>
-                    <CategoryLink to={link.link}>{link.title}</CategoryLink>
                   </CategoryTitle>
                 );
               }

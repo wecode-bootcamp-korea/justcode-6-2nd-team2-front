@@ -4,14 +4,14 @@ import MoviePoster from './MoviePoster';
 import MovieBook from './MovieBook';
 import MovieLike from './MovieLike';
 
-function MovieCard({ alertModal, setAlertModal }) {
+function MovieCard({ data, alertModal, setAlertModal }) {
   return (
     <>
       <Card>
         <MoviePoster />
         <Div>
-          <Grade alt='등급' src={require('../../assets/age_19.png')} />
-          <Title>늑댓안양</Title>
+          <Grade alt='등급' src={require({'../../assets/age_19.png'})} />
+          <Title>{data.title}</Title>
         </Div>
         <Div>
           <Rate>예매율 18.7%</Rate>

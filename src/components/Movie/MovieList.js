@@ -11,7 +11,7 @@ function MovieList({ movieList, onLoadMore, alertModal, setAlertModal }) {
         {movieList.map(card => {
           return (
             <li key={card.id}>
-              <MovieCard alertModal={alertModal} setAlertModal={setAlertModal} />
+              <MovieCard data={card} alertModal={alertModal} setAlertModal={setAlertModal} />
             </li>
           );
         })}
