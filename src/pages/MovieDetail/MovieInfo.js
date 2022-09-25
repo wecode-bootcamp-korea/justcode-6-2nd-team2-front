@@ -27,9 +27,9 @@ function MovieInfo() {
               <div>
                 <p>감독 : {item.director}</p>
                 <span>|</span>
-                <p>장르 : {item.genre}</p>
-                <span>|</span>
                 <p>등급 : {item.grade_name}</p>
+                <span>|</span>
+                <p>장르 : {item.genre}</p>
                 <span>|</span>
                 <p>개봉일 : {item.open_date}</p>
               </div>
