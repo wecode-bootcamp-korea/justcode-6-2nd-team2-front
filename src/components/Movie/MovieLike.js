@@ -2,10 +2,16 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-function MovieLike() {
+function MovieLike({ alertModal, setAlertModal }) {
   return (
     <>
-      <Like>111</Like>
+      <Like
+        onClick={() => {
+          setAlertModal(!alertModal);
+        }}
+      >
+        111
+      </Like>
     </>
   );
 }

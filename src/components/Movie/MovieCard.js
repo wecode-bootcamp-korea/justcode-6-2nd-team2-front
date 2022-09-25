@@ -1,10 +1,10 @@
+import styled from 'styled-components';
+
 import MoviePoster from './MoviePoster';
 import MovieBook from './MovieBook';
 import MovieLike from './MovieLike';
 
-import styled from 'styled-components';
-
-function MovieCard() {
+function MovieCard({ alertModal, setAlertModal }) {
   return (
     <>
       <Card>
@@ -18,7 +18,7 @@ function MovieCard() {
           <Date>개봉일 2022.09.21</Date>
         </Div>
         <Button>
-          <MovieLike />
+          <MovieLike alertModal={alertModal} setAlertModal={setAlertModal} />
           <MovieBook />
         </Button>
       </Card>

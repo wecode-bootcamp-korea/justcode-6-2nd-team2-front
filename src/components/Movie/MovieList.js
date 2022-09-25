@@ -4,21 +4,21 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 import MovieCard from './MovieCard';
 
-function MovieList({ movieList, onLoadMore }) {
+function MovieList({ movieList, onLoadMore, alertModal, setAlertModal }) {
   return (
     <>
       <CardList>
         {movieList.map(card => {
           return (
             <li key={card.id}>
-              <MovieCard />
+              <MovieCard alertModal={alertModal} setAlertModal={setAlertModal} />
             </li>
           );
         })}
       </CardList>
-      <CardListMore onClick={onLoadMore}>
+      <ViewMore onClick={onLoadMore}>
         더보기 <IoIosArrowDown />
-      </CardListMore>
+      </ViewMore>
     </>
   );
 }
@@ -31,7 +31,7 @@ const CardList = styled.ol`
   margin-left: -60px;
 `;
 
-const CardListMore = styled.button`
+const ViewMore = styled.button`
   width: 100%;
   height: 40px;
 

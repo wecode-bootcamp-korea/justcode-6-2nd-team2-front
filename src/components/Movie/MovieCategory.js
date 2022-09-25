@@ -41,7 +41,7 @@ function MovieCategory() {
                 return (
                   <CategoryTitle key={link.id}>
                     <CategoryLink
-                      to='/movie'
+                      to={link.link}
                       end
                       className={({ isActive }) => (isActive ? 'active' : '')}
                     >
