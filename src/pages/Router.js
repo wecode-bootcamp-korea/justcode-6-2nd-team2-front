@@ -29,6 +29,7 @@ function Router() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/Booking/*' element={<Booking />} />
+          {/* 영화페이지 */}
           <Route path='/movie' element={<Movie />}>
             <Route index element={<MovieContent />} />
             <Route path='domestic' element={<MovieContent />} />
