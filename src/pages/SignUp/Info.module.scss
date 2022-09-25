@@ -1,11 +1,26 @@
-.boxContent {
-  text-align: center;
-  .inputKiosk {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span {
-      display: block;
+.container {
+  width: 100%;
+
+  margin: 0 auto;
+  .content {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    .boxContent {
+      text-align: center;
+      .inputKiosk {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          display: block;
+        }
+      }
+    }
+    .infoConsent {
+      width: 100%;
+    }
+    .modalContainer {
     }
   }
 }

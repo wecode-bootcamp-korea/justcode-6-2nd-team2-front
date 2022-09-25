@@ -42,7 +42,7 @@ function Consent() {
               개인정보 수집 및 이용 동의(필수)
             </span>
             <div className={styles.contentBox}>
-              <p className={styles.boxText}></p>
+              <p className={styles.boxText}>제1조</p>
               <p className={styles.boxText}>
                 스타박스중앙(주)(이하"회사")는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고
                 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는
@@ -57,18 +57,25 @@ function Consent() {
               마케팅 활용을 위한 개인정보 수집 이용 안내(선택)
             </span>
             <div className={styles.contentBox}>
-              <p className={styles.boxText}>제 1조.목적</p>
+              <p className={styles.boxText}>선택 입력(수집) 항목</p>
               <p className={styles.boxText}>
-                본 약관은 스타박스중앙(주)(이하 "회사"라 합니다)가 제공하는 온라인,오프라인
-                서비스(이하 "서비스"라 합니다) 이용과 관련하여 회사와 이용자의 권리, 의무 및
-                책임사항을 규정함을 목적으로 합니다.
+                구분 항목 이용 목적 고객 맞춤형 상품 및 서비스 추천 등 마케팅 정보 이메일,
+                휴대폰번호, 주소, 생년월일, 선호영화관, 선호장르, 선호시간대, 문자/이메일/앱푸쉬
+                정보 수신 동의 여부, 서비스 이용 기록, 포인트 적립 및 사용 정보, 접속 로그, 프로필
+                사진, 본인 갤러리 사진 정보 고객 맞춤형 상품 및 서비스 추천, 당사 신규 상품 / 서비스
+                안내 및 권유, 사은/할인 행사 등 각종 이벤트 정보 등의 안내 및 권유 마케팅 홍보 등을
+                위한 고객 분석, 혜택 및 서비스 개발을 위한 고객 통계 분석 및 연구 조사 신규 서비스
+                개발 및 맞춤 서비스 제공 개인 프로필 설정 / 포토카드 서비스 이용 위치 정보 활용
+                모바일 단말기 기기 정보 위치 정보 서비스 기반 기록 활용 및 서비스 혜택 안내- 해당
+                정보는 자료 수집 시점에 별도 동의를 받으며, 동의를 받은 기간 까지만 보관 후 안전한
+                방법으로 파기 합니다.
               </p>
             </div>
           </div>
           <div className={styles.consentBox}>
             <input type='checkbox' />{' '}
             <span className={styles.boxTitle} style={{ color: '#036635' }}>
-              서비스 이용 약관 동의(필수)
+              위치기반서비스 이용 약관 동의(선택)
             </span>
             <div className={styles.contentBox}>
               <p className={styles.boxText}>제 1조.목적</p>

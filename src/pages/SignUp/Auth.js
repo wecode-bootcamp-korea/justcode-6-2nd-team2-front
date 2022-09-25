@@ -5,10 +5,11 @@ import Phone from './Phone';
 import { useState } from 'react';
 
 function Auth() {
-  const [alert, setAlert] = useState(false);
+  const [modal, setModal] = useState(false);
   const phoneHandler = () => {
-    setAlert(true);
+    setModal(!modal);
   };
+
   return (
     <div className={styles.authContainer}>
       <div className={styles.content}>
@@ -36,7 +37,9 @@ function Auth() {
           </ul>
         </div>
       </div>
-      <div className={styles.authAlert}>{alert === true ? <Phone /> : null}</div>
+      <div className={styles.authModal}>
+        {modal === true ? <Phone phoneHandler={phoneHandler} /> : null}
+      </div>
     </div>
   );
 }

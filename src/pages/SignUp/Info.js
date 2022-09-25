@@ -1,6 +1,14 @@
 import styles from './Info.module.scss';
+import ListTheater from '../../components/Booking/Theater/ListTheater';
+import { useState } from 'react';
+import InfoConsent from './InfoCosent';
 
 function Info() {
+  const [modal, setModal] = useState(false);
+  const openModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -43,12 +51,15 @@ function Info() {
               <label for='kiosk2'>미사용</label>
               <input type='radio' id='kiosk2' />
             </div>
+            <div className={styles.addTheater}>
+              <p>자주 방문하는 스타박스를 등록해 주세요!</p>
+              <button onClick={openModal}>설정</button>
+            </div>
           </div>
-          <div className={styles.addCinema}>
-            <p>자주 방문하는 스타박스를 등록해 주세요!</p>
-            <button>설정</button>
-            <div className={styles.CinemaContainer}></div>
+          <div className={styles.infoConsent}>
+            <InfoConsent />
           </div>
+          <div className={styles.modalContainer}>{modal === true ? <ListTheater /> : null}</div>
         </div>
       </div>
     </div>

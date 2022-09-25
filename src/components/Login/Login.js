@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import styles from './Login.module.scss';
 import Kakao from './Kakao';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -45,7 +47,7 @@ function Login({ setModal, modal }) {
       .then(result => {
         if (result.message === 'LOGIN_SUCCESS') {
           localStorage.setItem('token', result.token);
-          // navigate('/');
+          navigate('/');
           setModal(false);
           setId('');
           setPassword('');
