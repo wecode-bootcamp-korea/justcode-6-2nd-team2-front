@@ -41,7 +41,7 @@ const Input = styled.input`
   background-color: transparent;
   border: 0;
   outline: none;
-  caret-color: #fff;
+  caret-color: #000;
   /* color: #fff; */
 `;
 

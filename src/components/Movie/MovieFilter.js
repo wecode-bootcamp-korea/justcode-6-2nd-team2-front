@@ -18,7 +18,7 @@ function MovieFilter({
         }}
       >
         {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
-        &nbsp;개봉작만
+        &nbsp;전체
       </Filter>
       <Filter
         onClick={() => {
