@@ -55,7 +55,7 @@ function MovieDetailTab() {
       <TabWrap>
         <TabInner>
           <TabList>
-            <TabLink to='movieinfo' className={({ isActive }) => (isActive ? 'active' : '')}>
+            <TabLink to='movieinfo' end className={({ isActive }) => (isActive ? 'active' : '')}>
               주요정보
             </TabLink>
           </TabList>
