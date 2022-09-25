@@ -10,7 +10,7 @@ function MovieCard({ data, alertModal, setAlertModal }) {
       <Card>
         <MoviePoster />
         <Div>
-          <Grade alt='등급' src={require({'../../assets/age_19.png'})} />
+          <Grade alt='등급' src={require('../../assets/age_19.png')} />
           <Title>{data.title}</Title>
         </Div>
         <Div>
@@ -28,10 +28,8 @@ function MovieCard({ data, alertModal, setAlertModal }) {
 
 const Card = styled.li`
   width: 230px;
-  /* height: 450px; */
-  margin: 0 0 0 60px;
+  margin: 0 0 60px 60px;
   padding: 0;
-  margin-bottom: 60px;
 
   background-color: transparent;
 `;
