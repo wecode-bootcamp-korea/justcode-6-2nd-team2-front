@@ -2,17 +2,45 @@ import styled from 'styled-components';
 import { MdToggleOn } from 'react-icons/md';
 import { MdToggleOff } from 'react-icons/md';
 
-function MovieFilter({ filter, setFilter }) {
+function MovieFilter({
+  filter,
+  setFilter,
+  dateOrder,
+  setDateOrder,
+  alphabeticalOrder,
+  setAlphabeticalOrder,
+}) {
   return (
-    <Filter
-      type='button'
-      onClick={() => {
-        setFilter(!filter);
-      }}
-    >
-      {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
-      &nbsp;개봉작만
-    </Filter>
+    <>
+      <Filter
+        onClick={() => {
+          setFilter(!filter);
+        }}
+      >
+        {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
+        &nbsp;개봉작만
+      </Filter>
+      <Filter
+        onClick={() => {
+          setDateOrder(!dateOrder);
+        }}
+      >
+        {dateOrder ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
+        &nbsp;개봉일순
+      </Filter>
+      <Filter
+        onClick={() => {
+          setAlphabeticalOrder(!alphabeticalOrder);
+        }}
+      >
+        {alphabeticalOrder ? (
+          <MdToggleOn className='onLogo' />
+        ) : (
+          <MdToggleOff className='offLogo' />
+        )}
+        &nbsp;가나다순
+      </Filter>
+    </>
   );
 }
 

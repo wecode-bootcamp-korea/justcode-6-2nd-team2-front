@@ -3,11 +3,28 @@ import styled from 'styled-components';
 import MovieFilter from './MovieFilter';
 import MovieSearch from './MovieSearch';
 
-function MovieContentNav({ filter, setFilter, totalCount, search, setSearch }) {
+function MovieContentNav({
+  filter,
+  setFilter,
+  dateOrder,
+  setDateOrder,
+  alphabeticalOrder,
+  setAlphabeticalOrder,
+  totalCount,
+  search,
+  setSearch,
+}) {
   return (
     <ListNav>
       <Div>
-        <MovieFilter filter={filter} setFilter={setFilter} />
+        <MovieFilter
+          filter={filter}
+          setFilter={setFilter}
+          dateOrder={dateOrder}
+          setDateOrder={setDateOrder}
+          alphabeticalOrder={alphabeticalOrder}
+          setAlphabeticalOrder={setAlphabeticalOrder}
+        />
         <MovieCount>
           <Count>{totalCount}</Count>
           개의 영화가 검색되었습니다.

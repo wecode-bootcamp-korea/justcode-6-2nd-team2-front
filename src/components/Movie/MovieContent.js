@@ -12,6 +12,8 @@ function MovieContent() {
   const [movieList, setMovieList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [filter, setFilter] = useState(false);
+  const [dateOrder, setDateOrder] = useState(false);
+  const [alphabeticalOrder, setAlphabeticalOrder] = useState(false);
   const [search, setSearch] = useState('');
   const [alertModal, setAlertModal] = useState(false);
   // const isMountedRef = useRef(false);
@@ -148,6 +150,10 @@ function MovieContent() {
       <MovieContentNav
         filter={filter}
         setFilter={setFilter}
+        dateOrder={dateOrder}
+        setDateOrder={setDateOrder}
+        alphabeticalOrder={alphabeticalOrder}
+        setAlphabeticalOrder={setAlphabeticalOrder}
         totalCount={movieList.length}
         search={search}
         setSearch={setSearch}

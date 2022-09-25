@@ -42,7 +42,7 @@ function MovieCategory() {
               //     <CategoryTitle key={link.id}>
               //       <CategoryLink
               //         to={link.link}
-              //         end={link.id === 1}
+              //         end
               //         className={({ isActive }) => (isActive ? 'active' : '')}
               //       >
               //         {link.title}
