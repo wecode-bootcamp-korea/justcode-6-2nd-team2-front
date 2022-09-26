@@ -94,6 +94,7 @@ function MovieContent() {
     }
     //영화 리스트 GET
     const response = await axios.get(url);
+    // console.log(movieList);
     setMovieList([...movieList, ...response.data]);
   };
 

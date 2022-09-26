@@ -52,9 +52,11 @@ const Grade = styled.img`
 const Title = styled.p`
   width: 100%;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 5px;
   padding: 2px 0 0 1px;
+
   font-size: 1.3333em;
   font-weight: 400;
 `;

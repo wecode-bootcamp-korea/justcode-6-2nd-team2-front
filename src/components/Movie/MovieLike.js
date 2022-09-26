@@ -1,6 +1,6 @@
 import React from 'react';
-
 import styled from 'styled-components';
+// import { BsSuitHeart, BsSuitHeartFill } from 'react/-icons/bs';
 
 function MovieLike({ alertModal, setAlertModal }) {
   return (
