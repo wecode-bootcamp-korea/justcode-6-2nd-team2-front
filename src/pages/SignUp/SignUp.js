@@ -11,7 +11,15 @@ import Complete from './Complete';
 
 function SignUp() {
   const location = useLocation();
-
+  const [checkBox, setCheckBox] = useState([]);
+  const checkHandler = (checked, id) => {
+    if (checked) {
+      setCheckBox([...checkBox, id]);
+      console.log('체크');
+    } else {
+      // setCheckBox(check);
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.contentsBox}>

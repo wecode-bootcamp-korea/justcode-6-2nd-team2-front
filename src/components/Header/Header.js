@@ -55,9 +55,9 @@ function Header() {
         <div className={styles.borderBottom}></div>
         <div className={styles.locationView}>
           <ul className={styles.locationBox}>
-            <li className={styles.tabLocation}>
+            {/* <li className={styles.tabLocation}>
               {location.pathname === '/' ? null : <Location location={location} />}
-            </li>
+            </li> */}
             <li></li>
           </ul>
         </div>
