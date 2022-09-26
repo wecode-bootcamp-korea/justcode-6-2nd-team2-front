@@ -7,6 +7,8 @@ import SeatSelect from '../../components/Booking/SeatSelect';
 import Payment from '../../components/Booking/Payment';
 
 const InnerWrap = styled.div`
+  position: relative;
+  height: 800px;
   width: 1100px;
   margin: 0 auto;
   padding-top: 40px;

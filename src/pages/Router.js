@@ -19,6 +19,10 @@ import MovieInfo from './MovieDetail/MovieInfo';
 import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
 import MovieTrailer from './MovieDetail/MovieTrailer';
+import Consent from './SignUp/Consent';
+import Info from './SignUp/Info';
+import Complete from './SignUp/Complete';
+import Footer from '../components/Footer/Footer';
 
 function Router() {
   return (
@@ -55,9 +59,14 @@ function Router() {
 
           <Route path='/user-find' element={<UserFind />} />
           <Route path='/pass-find' element={<PassFind />} />
-          <Route path='/signup' element={<SignUp />} />
+          <Route path='/signup' element={<SignUp />}>
+            <Route path='consent' element={<Consent />} />
+            <Route path='info' element={<Info />} />
+            <Route path='complete' element={<Complete />} />
+          </Route>
           <Route path='/cinema' element={<Cinema />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

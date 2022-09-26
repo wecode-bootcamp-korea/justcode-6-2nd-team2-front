@@ -2,6 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CountContext, AllContext } from '../../../pages/Booking/Booking';
+import { CreditContext } from '../Payment';
+
+import './Result.scss';
 
 const Container = styled.div`
   position: relative;
@@ -40,7 +43,7 @@ const Cate = styled.p`
 
 const InfoArea = styled.div`
   position: relative;
-  min-height: 105px;
+  min-height: 50px;
   margin-left: 48px;
   padding: 0 104px 0 0;
   font-size: 0.8667em;
@@ -52,16 +55,6 @@ const Theater = styled.p`
   font-weight: 400;
   line-height: 1.1;
   margin-top: 10px;
-  color: #c4c4c4;
-  font-size: 1em;
-`;
-
-const TheaterDetail = styled.p`
-  padding: 1px 0 0 0;
-  font-size: 1.0667em;
-  font-weight: 400;
-  line-height: 1.1;
-  margin-top: 3px;
   color: #c4c4c4;
   font-size: 1em;
 `;
@@ -82,7 +75,7 @@ const Time = styled.p`
   margin-left: 10px;
   padding-left: 11px;
   color: #c4c4c4;
-  font-size: 0.8667em;
+  font-size: 1em;
   line-height: 1.1;
   display: flex;
   &::before {
@@ -108,76 +101,66 @@ const Time = styled.p`
 `;
 
 const SeatArea = styled.div`
-  position: relative;
-  min-height: 240px;
-  margin: 10px 0 0 20px;
-  border-radius: 5px;
-  border: 1px solid #434343;
+  margin-left: 20px;
+  height: auto;
+  overflow-y: auto;
+  max-height: 270px;
 `;
 
-const SeatType = styled.div`
-  float: left;
-  padding: 16px 0 0 20px;
-  em {
-    color: #c4c4c4;
-    font-size: 0.8667em;
-    letter-spacing: -1px;
-    font-style: normal;
-  }
-  li {
-    display: flex;
-    margin-bottom: 5px;
-  }
+const Box = styled.div`
+  position: relative;
+  border-radius: 4px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background-color: #434343;
+  color: #fff;
+`;
+
+const BoxDiscount = styled.div`
+  position: relative;
+  border-radius: 4px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background-color: #434343;
   &::before {
     content: '';
-    display: block;
     position: absolute;
-    right: 117px;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background-color: #434343;
+    top: -18px;
+    left: 50%;
+    margin-left: -12px;
+    width: 24px;
+    height: 24px;
+    background: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-circle-minus.png);
   }
 `;
 
-const SeatImg = styled.div`
-  width: 14px;
-  height: 14px;
-  margin: 2px 8px 0px 0px;
-`;
-
-const SeatNum = styled.div`
-  float: right;
-  width: 116px;
-  p {
-    height: 38px;
-    font-size: 0.8667em;
-    color: #c4c4c4;
-    text-align: center;
-    padding-top: 17px;
-  }
-`;
-
-const SeatSelect = styled.div`
-  display: block;
+const SpanLeft = styled.span`
+  color: #c4c4c4;
   float: left;
-  width: 40px;
-  height: 35px;
-  margin: 7px 0 0 8px;
-  padding-top: 5px;
+  font-size: 0.8667em;
+`;
+
+const SpanRight = styled.span`
+  color: #c4c4c4;
+  float: right;
   font-size: 0.9333em;
-  border: 1px solid #5c5c5c;
-  text-align: center;
-  font-family: Roboto, Dotum, '돋움', sans-serif;
+  font-family: Roboto;
   font-weight: 300;
+`;
+
+const All = styled.div`
+  margin: 7px 0 0 0;
+  padding: 7px 0 0 0;
+  border-top: 1px solid #4d4d4d;
+  height: 25px;
 `;
 
 const PayArea = styled.div`
   position: absolute;
   left: 0;
-  bottom: 56px;
+  bottom: 91px;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0 20px;
   strong {
     font-size: 1.6em;
     color: #59bec9;
@@ -223,15 +206,64 @@ const ButtonArea = styled.div`
 function Result() {
   const { adultNum, setAdultNum, teenNum, setTeenNum } = useContext(CountContext);
   const { allSelectArray, setAllSelectArray } = useContext(AllContext);
+  const { means, setMeans } = useContext(CreditContext);
 
   const [all, setAll] = useState([]);
-  const [totalPay, setTotalPay] = useState(0);
+  const [totalPay, setTotalPay] = useState(adultNum * 12000 + teenNum * 10000);
 
-  const clickHandler = event => {
-    if (!(allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0)) {
-      event.preventDefault();
+  function onClickPayment() {
+    /* 1. 가맹점 식별하기 */
+    const { IMP } = window;
+    IMP.init('imp10300638');
+
+    let pg = '';
+    let pay_method = '';
+
+    if (means === 'credit') {
+      pg = 'html5_inicis';
+      pay_method = 'card';
+    } else if (means === 'mobile') {
+      pg = 'danal';
+      pay_method = 'card';
+    } else if (means === 'easy' || means === 'naver') {
+      pg = 'tosspay';
+      pay_method = 'trans';
+    } else if (means === 'kakao') {
+      pg = 'kakaopay';
+      pay_method = 'card';
+    } else if (means === 'payco') {
+      pg = 'payco';
+      pay_method = 'card';
     }
-  };
+
+    /* 2. 결제 데이터 정의하기 */
+    const data = {
+      pg: pg, // PG사
+      pay_method: pay_method, // 결제수단
+      merchant_uid: `mid_${new window.Date().getTime()}`, // 주문번호
+      amount: 100, // 결제금액
+      name: '메가박스 티켓', // 주문명
+      buyer_name: '이동호', // 구매자 이름
+      buyer_tel: '01030003000', // 구매자 전화번호
+      buyer_email: 'ldoh92@gmail.com', // 구매자 이메일
+      buyer_addr: '이동호', // 구매자 주소
+      buyer_postcode: '06018', // 구매자 우편번호
+    };
+
+    /* 4. 결제 창 호출하기 */
+    IMP.request_pay(data, callback);
+  }
+
+  /* 3. 콜백 함수 정의하기 */
+  function callback(response) {
+    const { success } = response;
+
+    if (success) {
+      alert(`결제 성공하였습니다.`);
+    } else {
+      alert(`결제 실패하였습니다.`);
+    }
+  }
 
   useEffect(() => {
     let test = new Array(allSelectArray);
@@ -247,9 +279,9 @@ function Result() {
     setAll(test[0]);
   }, [allSelectArray]);
 
-  useEffect(() => {
-    setTotalPay(adultNum * 12000 + teenNum * 10000);
-  }, [adultNum, teenNum]);
+  // useEffect(() => {
+  //   setTotalPay(adultNum * 12000 + teenNum * 10000);
+  // }, [adultNum, teenNum]);
 
   return (
     <>
@@ -270,55 +302,42 @@ function Result() {
             </Time>
           </Date>
         </InfoArea>
-        {/* <SeatArea>
-          <SeatType>
-            <ul>
-              <li>
-                <SeatImg
-                  style={{
-                    backgroundImage:
-                      'url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-seat-condition-choice-s.png)',
-                  }}
-                />
-                <em>선택</em>
-              </li>
-              <li>
-                <SeatImg
-                  style={{
-                    backgroundImage:
-                      'url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-seat-condition-finish-s.png)',
-                  }}
-                />
-                <em>예매완료</em>
-              </li>
-              <li>
-                <SeatImg
-                  style={{
-                    backgroundImage:
-                      'url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-seat-condition-common-s.png)',
-                  }}
-                />
-                <em>일반</em>
-              </li>
-            </ul>
-          </SeatType>
-          <SeatNum>
-            <p>선택좌석</p>
-            <div style={{ padding: '10px 6px' }}>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map(el => {
-                return (
-                  <SeatSelect
-                    key={el}
-                    className={adultNum + teenNum >= el ? 'possible' : 'initial'}
-                    style={{ backgroundColor: all[el - 1] && '#503396' }}
-                  >
-                    {all[el - 1] ? all[el - 1] : '-'}
-                  </SeatSelect>
-                );
-              })}
-            </div>
-          </SeatNum>
-        </SeatArea> */}
+        <SeatArea>
+          <Box>
+            {adultNum !== 0 && (
+              <div style={{ height: '25px' }}>
+                <SpanLeft>성인 {adultNum} </SpanLeft>
+                <SpanRight>
+                  {String(adultNum * 12000).slice(0, -3) + ',' + String(adultNum * 12000).slice(-3)}
+                </SpanRight>
+              </div>
+            )}
+            {teenNum !== 0 && (
+              <div style={{ height: '22px' }}>
+                <SpanLeft>청소년 {teenNum} </SpanLeft>
+                <SpanRight>
+                  {String(teenNum * 10000).slice(0, -3) + ',' + String(teenNum * 10000).slice(-3)}
+                </SpanRight>
+              </div>
+            )}
+            <All>
+              <SpanLeft style={{ color: '#fff', fontSize: '1em' }}>금액</SpanLeft>
+              <SpanRight style={{ color: '#fff', fontSize: '1em' }}>
+                {String(totalPay).slice(0, -3) + ',' + String(totalPay).slice(-3)}
+              </SpanRight>
+            </All>
+          </Box>
+          <BoxDiscount>
+            <All>
+              <SpanLeft style={{ color: '#fff', fontSize: '1em' }}>할인적용</SpanLeft>
+              <SpanRight style={{ color: '#fff', fontSize: '1em' }}>0 원 </SpanRight>
+            </All>
+          </BoxDiscount>
+        </SeatArea>
+        <PayArea style={{ bottom: '124px' }}>
+          <p style={{ float: 'left', marginTop: '9px', color: '#c4c4c4' }}>추가차액</p>
+          <p style={{ float: 'right', color: '#c4c4c4', marginTop: '9px' }}>0</p>
+        </PayArea>
         <PayArea>
           <p style={{ float: 'left', marginTop: '9px' }}>최종결제금액</p>
           <p style={{ float: 'right' }}>
@@ -330,35 +349,30 @@ function Result() {
             원
           </p>
         </PayArea>
+        <PayArea style={{ bottom: '51px', borderTop: '1px solid #6a6a6c' }}>
+          <p style={{ float: 'left', marginTop: '9px', color: '#c4c4c4' }}>결제수단</p>
+          <p style={{ float: 'right', color: '#c4c4c4', marginTop: '9px' }}>
+            {means === 'credit' && '신용/체크카드'}
+            {means === 'mobile' && '휴대폰 결제'}
+            {(means === 'easy' || means === 'naver') && '토스페이'}
+            {means === 'kakao' && '카카오페이'}
+            {means === 'payco' && '페이코'}
+          </p>
+        </PayArea>
         <ButtonArea>
           <button style={{ borderRadius: '0px 0px 0px 4px' }}>이전</button>
-          <Link
+          <button
             style={{
               borderRadius: '0px 0px 4px 0px',
-              backgroundColor:
-                allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0
-                  ? '#329eb1'
-                  : '#e0e0e0',
-              color:
-                allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0
-                  ? 'white'
-                  : '#aaa',
-              cursor:
-                allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0
-                  ? 'pointer'
-                  : 'auto',
+              backgroundColor: '#329eb1',
+              color: '#fff',
+              cursor: 'pointer',
               textDecoration: 'none',
             }}
-            disabled={
-              allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0
-                ? false
-                : true
-            }
-            to='../Payment'
-            onClick={clickHandler}
+            onClick={() => onClickPayment()}
           >
             결제
-          </Link>
+          </button>
         </ButtonArea>
       </Container>
     </>
