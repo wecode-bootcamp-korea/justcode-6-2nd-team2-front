@@ -13,7 +13,6 @@ const TitleArea = styled.div`
   position: relative;
   margin-left: 20px;
   padding: 0 0 0 28px;
-  border-bottom: 1px solid #434343;
   span {
     display: block;
     position: absolute;
@@ -33,7 +32,7 @@ const Title = styled.p`
   line-height: 1.1;
 `;
 const Cate = styled.p`
-  padding: 4px 0 10px 0;
+  padding: 4px 0 0 0;
   font-size: 0.8667em;
   color: #aaa;
   line-height: 1.1;
@@ -42,10 +41,9 @@ const Cate = styled.p`
 const InfoArea = styled.div`
   position: relative;
   min-height: 105px;
-  margin-left: 20px;
+  margin-left: 48px;
   padding: 0 104px 0 0;
   font-size: 0.8667em;
-  border-bottom: 1px solid #434343;
 `;
 
 const Theater = styled.p`
@@ -73,32 +71,39 @@ const Date = styled.p`
   font-size: 1.0667em;
   font-weight: 400;
   line-height: 1.1;
-  margin-top: 3px;
+  margin-top: 5px;
   color: #c4c4c4;
   font-size: 1em;
+  display: flex;
 `;
 
 const Time = styled.p`
-  padding: 1px 0 0 0;
-  font-size: 1.0667em;
-  font-weight: 400;
+  position: relative;
+  margin-left: 10px;
+  padding-left: 11px;
+  color: #c4c4c4;
+  font-size: 0.8667em;
   line-height: 1.1;
-  margin-top: 19px;
-  font-size: 0.9333em;
-  font-weight: 300;
-`;
-
-const Poster = styled.p`
-  position: absolute;
-  right: 24px;
-  top: -3px;
-  width: 70px;
-  height: 100px;
-  padding: 0;
-  img {
+  display: flex;
+  &::before {
+    content: '';
     display: block;
-    width: 70px;
-    height: 100px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 12px;
+    margin-top: -7px;
+    background-color: #747474;
+  }
+  i {
+    margin-top: -2px;
+    margin-right: 3px;
+    overflow: hidden;
+    width: 13px;
+    height: 13px;
+    background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-clock-white.png);
+    display: inline-block;
   }
 `;
 
@@ -255,15 +260,17 @@ function Result() {
           <Cate>2D</Cate>
         </TitleArea>
         <InfoArea>
-          <Theater>동대문</Theater>
-          <TheaterDetail>컴포트1관</TheaterDetail>
-          <Date>2022.09.23(금)</Date>
-          <Time>12:10 ~ 14:29</Time>
-          <Poster>
-            <img src='https://www.megabox.co.kr/SharedImg/2022/08/29/oUQrNQTflUqvHUQG6kvlzF8SEhJSomfh_150.jpg'></img>
-          </Poster>
+          <Theater>동대문/컴포트1관</Theater>
+          {/* <TheaterDetail>컴포트1관</TheaterDetail> */}
+          <Date>
+            2022.09.23(금)
+            <Time>
+              <i />
+              15:20~17:39
+            </Time>
+          </Date>
         </InfoArea>
-        <SeatArea>
+        {/* <SeatArea>
           <SeatType>
             <ul>
               <li>
@@ -311,7 +318,7 @@ function Result() {
               })}
             </div>
           </SeatNum>
-        </SeatArea>
+        </SeatArea> */}
         <PayArea>
           <p style={{ float: 'left', marginTop: '9px' }}>최종결제금액</p>
           <p style={{ float: 'right' }}>
@@ -350,7 +357,7 @@ function Result() {
             to='../Payment'
             onClick={clickHandler}
           >
-            다음
+            결제
           </Link>
         </ButtonArea>
       </Container>

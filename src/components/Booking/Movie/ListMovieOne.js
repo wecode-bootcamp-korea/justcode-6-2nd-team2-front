@@ -61,18 +61,6 @@ const MovieGrade = styled.span`
   display: inline-block;
   margin: 0 2px 0 0;
   vertical-align: middle;
-
-  background-image: ${props => {
-    if (props.grade === '19') {
-      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-19.png)';
-    } else if (props.grade === '15') {
-      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-15.png)';
-    } else if (props.grade === '12') {
-      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-12.png)';
-    } else if (props.grade === 'all') {
-      return 'url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-all.png)';
-    }
-  }};
   width: 20px;
   height: 20px;
   overflow: hidden;
@@ -80,6 +68,7 @@ const MovieGrade = styled.span`
   text-indent: -9999px;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
   text-align: left;
   font-size: 0.8667em;
   letter-spacing: 0;
@@ -119,7 +108,19 @@ const Txt = styled.span`
   line-height: 1.15;
 `;
 
-function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL, title, grade, img }) {
+function ListOne({
+  array,
+  type,
+  plus,
+  minus,
+  count,
+  movieURL,
+  setMovieURL,
+  title,
+  grade,
+  img,
+  id,
+}) {
   const [select, setSelect] = useState(false);
   const [modalup, setModalup] = useState(false);
   const [modalMessage, setModalMessage] = useState('영화는 최대 3개까지 선택이 가능합니다.');
@@ -159,7 +160,7 @@ function ListOne({ array, type, plus, minus, count, movieURL, setMovieURL, title
         >
           {type === 'movie' && (
             <>
-              <MovieGrade grade={grade}>청소년관람불가</MovieGrade>
+              <MovieGrade style={{ backgroundImage: `url(${grade})` }}>청소년관람불가</MovieGrade>
               <Heart>보고싶어 설정안함</Heart>
             </>
           )}

@@ -41,36 +41,25 @@ const Context = createContext({
   setInitial: () => {},
 });
 
-const Context2 = createContext({
-  adultNum: 0,
-  setAdultNum: () => {},
-  teenNum: 0,
-  setTeenNum: () => {},
-});
-
 function SeatSelect() {
   const [initial, setInitial] = useState(false);
-  const [adultNum, setAdultNum] = useState(0);
-  const [teenNum, setTeenNum] = useState(0);
 
   return (
     <>
       <Context.Provider value={{ initial, setInitial }}>
-        <Context2.Provider value={{ adultNum, setAdultNum, teenNum, setTeenNum }}>
-          <NavTitle />
-          <ContainerWrapper>
-            <Section>
-              <SectionInner>
-                <Title />
-                <Count />
-                <Screen />
-              </SectionInner>
-              <SectionInner2>
-                <Result />
-              </SectionInner2>
-            </Section>
-          </ContainerWrapper>
-        </Context2.Provider>
+        <NavTitle />
+        <ContainerWrapper>
+          <Section>
+            <SectionInner>
+              <Title />
+              <Count />
+              <Screen />
+            </SectionInner>
+            <SectionInner2>
+              <Result />
+            </SectionInner2>
+          </Section>
+        </ContainerWrapper>
       </Context.Provider>
     </>
   );
@@ -78,4 +67,3 @@ function SeatSelect() {
 
 export default SeatSelect;
 export const InitialContext = Context;
-export const CountContext = Context2;

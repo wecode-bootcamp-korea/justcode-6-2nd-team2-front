@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { InitialContext, CountContext } from '../SeatSelect';
+import { InitialContext } from '../SeatSelect';
+import { CountContext, AllContext } from '../../../pages/Booking/Booking';
+
+import Modal from '../Modal';
 
 const Container = styled.div`
   min-height: 52px;
@@ -86,8 +89,11 @@ const Number = styled.div`
 
 function Count() {
   const { initial, setInitial } = useContext(InitialContext);
-
   const { adultNum, setAdultNum, teenNum, setTeenNum } = useContext(CountContext);
+  const { allSelectArray, setAllSelectArray } = useContext(AllContext);
+
+  const [modalup, setModalup] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const clickDown = type => {
     if (type === 'adult') {
@@ -111,6 +117,11 @@ function Count() {
     }
   };
 
+  const modalUpBtn = state => {
+    setModalMessage(state);
+    setModalup(!modalup);
+  };
+
   useEffect(() => {
     if (initial === true) {
       setAdultNum(0);
@@ -125,23 +136,64 @@ function Count() {
         <Cell>
           <p>성인</p>
           <CellInner>
-            <Down onClick={() => clickDown('adult')}>-</Down>
+            <Down
+              onClick={() => {
+                if (allSelectArray.length > adultNum + teenNum - 1) {
+                  modalUpBtn('좌석을 먼저 취소해주세요');
+                  return;
+                }
+                clickDown('adult');
+              }}
+            >
+              -
+            </Down>
             <Number>
               <button>{adultNum}</button>
             </Number>
-            <Up onClick={() => clickUp('adult')}>+</Up>
+            <Up
+              onClick={() => {
+                if (8 < adultNum + teenNum + 1) {
+                  modalUpBtn('인원선택은 총 8명까지 가능합니다.');
+                  return;
+                }
+                clickUp('adult');
+              }}
+            >
+              +
+            </Up>
           </CellInner>
         </Cell>
         <Cell>
           <p>청소년</p>
           <CellInner>
-            <Down onClick={() => clickDown('teen')}>-</Down>
+            <Down
+              onClick={() => {
+                if (allSelectArray.length > adultNum + teenNum - 1) {
+                  modalUpBtn('좌석을 먼저 취소해주세요');
+                  return;
+                }
+                clickDown('teen');
+              }}
+            >
+              -
+            </Down>
             <Number>
               <button>{teenNum}</button>
             </Number>
-            <Up onClick={() => clickUp('teen')}>+</Up>
+            <Up
+              onClick={() => {
+                if (8 < adultNum + teenNum + 1) {
+                  modalUpBtn('인원선택은 총 8명까지 가능합니다.');
+                  return;
+                }
+                clickUp('teen');
+              }}
+            >
+              +
+            </Up>
           </CellInner>
         </Cell>
+        {modalup && <Modal modalMessage={modalMessage} modalUpBtn={modalUpBtn} />}
       </Container>
     </>
   );
