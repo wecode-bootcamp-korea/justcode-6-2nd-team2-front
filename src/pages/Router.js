@@ -13,6 +13,7 @@ import Header from '../components/Header/Header';
 import UserFind from './Find/UserFind';
 import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
+import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
 import MovieInfo from './MovieDetail/MovieInfo';
 import MovieComment from './MovieDetail/MovieComment';
@@ -38,6 +39,13 @@ function Router() {
           </Route>
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
+            <Route index element={<MovieInfo />} />
+            <Route path='comment' element={<MovieComment />} />
+            <Route path='moviepost' element={<MoviePost />} />
+            <Route path='trailer' element={<MovieTrailer />} />
+          </Route>
+          {/* 영화 상세페이지 */}
+          <Route path='/moviedetail' end element={<MovieDetail />}>
             {/* <Route index element={<MovieInfo />} /> */}
             <Route path='movieinfo' element={<MovieInfo />} />
             <Route path='comment' element={<MovieComment />} />
@@ -48,6 +56,7 @@ function Router() {
           <Route path='/user-find' element={<UserFind />} />
           <Route path='/pass-find' element={<PassFind />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/cinema' element={<Cinema />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
