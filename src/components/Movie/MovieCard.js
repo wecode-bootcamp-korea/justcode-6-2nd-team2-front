@@ -18,7 +18,14 @@ function MovieCard({ data }) {
           <Date>개봉일 2022.09.21</Date>
         </Div>
         <Button>
-          <MovieLike />
+          <MovieLike
+            background='transparent'
+            color='#000'
+            fontSize='15px'
+            fontWeight='400'
+            hoverBackground='#ebebeb'
+            iconColor='#006633'
+          />
           <MovieBook />
         </Button>
       </Card>

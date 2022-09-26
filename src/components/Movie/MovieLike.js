@@ -1,19 +1,39 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { BsSuitHeart, BsSuitHeartFill } from 'react/-icons/bs';
+import { HiHeart } from 'react-icons/hi';
 
 import AlertModal from '../AlertModal/AlertModal';
 
-function MovieLike() {
+function MovieLike({
+  width,
+  height,
+  background,
+  color,
+  fontSize,
+  fontWeight,
+  hoverColor,
+  hoverBackground,
+  iconColor,
+}) {
   const [alertModal, setAlertModal] = useState(false);
   return (
     <>
       <Like
+        width={width}
+        height={height}
+        background={background}
+        color={color}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+        hoverColor={hoverColor}
+        hoverBackground={hoverBackground}
+        iconColor={iconColor}
         onClick={() => {
           setAlertModal(!alertModal);
         }}
       >
-        111
+        <HiHeart className='iconColor' />
+        &nbsp;&nbsp;111
       </Like>
       <AlertModal
         visible={alertModal}
@@ -32,23 +52,29 @@ function MovieLike() {
 }
 
 const Like = styled.button`
-  width: 34%;
-  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${props => props.width};
+  height: ${props => props.height};
+  min-width: 34%;
+  min-height: 36px;
 
-  line-height: 36px;
-
-  background: #503396;
-  background-color: transparent;
+  background: ${props => props.background};
   border: 1px solid #ebebeb;
   border-radius: 4px;
 
+  color: ${props => props.color};
   text-align: center;
-  color: #004433;
-  font-weight: 400;
+  line-height: 36px;
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
 
   &:hover {
-    background-color: #ebebeb;
     cursor: pointer;
+
+    background-color: ${props => props.hoverBackground};
+    color: ${props => props.hoverColor};
   }
 `;
 
