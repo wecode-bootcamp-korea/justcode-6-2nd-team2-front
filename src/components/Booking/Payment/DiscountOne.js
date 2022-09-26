@@ -158,7 +158,7 @@ function DiscountList({ type }) {
                     <button>중앙멤버십</button>
                   </ListOne>
                   <ListOne>
-                    <button>해피머니상품권 해피캐시</button>
+                    <button>해피머니 해피캐시</button>
                   </ListOne>
                   <ListOne>
                     <button>문화누리카드</button>

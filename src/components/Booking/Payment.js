@@ -5,6 +5,8 @@ import NavTitle from './Nav/NavTitle';
 import Title from './Payment/Title';
 import DiscountList from './Payment/DiscountList';
 import Result from './Payment/Result';
+import Credit from './Payment/Credit';
+import Title2 from './Payment/Title2';
 
 const ContainerWrapper = styled.div`
   width: 1100px;
@@ -46,6 +48,8 @@ function Payment() {
           <SectionInner1>
             <Title />
             <DiscountList />
+            <Credit />
+            <Title2 />
           </SectionInner1>
           <SectionInner2>
             <Result />
