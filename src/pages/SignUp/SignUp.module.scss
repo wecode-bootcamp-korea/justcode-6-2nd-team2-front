@@ -1,5 +1,5 @@
 .container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,6 +19,7 @@
     .tabTitle {
       ul {
         display: flex;
+
         li {
           padding-right: 50px;
           font-size: 14px;
@@ -26,6 +27,9 @@
           border-bottom: 1px solid #d1d5dd;
           &:nth-child(4) {
             padding-right: 0px;
+          }
+          &:active {
+            color: #036635;
           }
         }
       }
