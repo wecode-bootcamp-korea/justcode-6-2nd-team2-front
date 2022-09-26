@@ -4,13 +4,21 @@ import styles from './Phone.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 
-function Phone() {
+function Phone({ setModal }) {
   const navigate = useNavigate();
   const [num, setNum] = useState('');
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
   const [toggle, setToggle] = useState(false);
+
+  const closeBtn = () => {
+    setModal(false);
+  };
 
   const phoneRef = useRef();
   const verifyRef = useRef();
+  const userName = useRef();
+  const birthValue = useRef();
 
   //phone Num
   const phoneHandler = e => {
@@ -50,6 +58,8 @@ function Phone() {
       body: JSON.stringify({
         // "phone": "010-6863-0106"
         phone: phoneRef.current.value,
+        name: userName.current.value,
+        birth: birthValue.current.value,
       }),
     })
       .then(res => res.json())
@@ -81,28 +91,29 @@ function Phone() {
         navigate('/signup/consent');
       });
   };
+  //success 페이지 이동
 
   return (
     <div className={styles.phoneContainer}>
       <div className={styles.top}>
         <p>휴대폰 인증하기</p>
-        <button onClick={phoneHandler}>
+        <button onClick={closeBtn}>
           <AiOutlineClose color='white' />
         </button>
       </div>
       <div className={styles.contentBox}>
-        {/* <div className={styles.inputBox}>
+        <div className={styles.inputBox}>
           <label className={styles.title} for='name'>
             이름
           </label>
-          <input id='name' type='text' placeholder='성명입력' />
+          <input id='name' value={name} rer={userName} type='text' placeholder='성명입력' />
         </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='birth'>
             생년월일
           </label>
-          <input id='name' type='text' placeholder='성명입력' />
-        </div> */}
+          <input id='birth' value={birth} rer={birthValue} type='text' placeholder='성명입력' />
+        </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='phone'>
             휴대폰 번호

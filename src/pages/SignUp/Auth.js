@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 function Auth() {
   const [modal, setModal] = useState(false);
-  const phoneHandler = () => {
-    setModal(!modal);
+  const modalHandler = () => {
+    setModal(true);
   };
 
   return (
@@ -16,7 +16,7 @@ function Auth() {
         <h1 className={styles.title}>회원가입을 위함 본인인증 단계입니다.</h1>
         <p className={styles.titleText}>원하시는 인증방법을 선택해주세요.</p>
         <div className={styles.boxContent}>
-          <button onClick={phoneHandler}>
+          <button onClick={modalHandler}>
             <GiSmartphone size='80px' color='lightgray' />
             <p>휴대폰 인증</p>
           </button>
@@ -38,7 +38,7 @@ function Auth() {
         </div>
       </div>
       <div className={styles.authModal}>
-        {modal === true ? <Phone phoneHandler={phoneHandler} /> : null}
+        {modal === true ? <Phone setModal={setModal} /> : null}
       </div>
     </div>
   );
