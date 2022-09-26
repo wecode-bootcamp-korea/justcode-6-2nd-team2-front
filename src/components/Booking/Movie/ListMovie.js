@@ -195,7 +195,7 @@ function ListMovie({ type }) {
   };
 
   useEffect(() => {
-    fetch('./data/booking/movie.json', {
+    fetch('http://localhost:10010/movie/list', {
       method: 'get',
     })
       .then(res => res.json())
@@ -228,8 +228,9 @@ function ListMovie({ type }) {
                         movieURL={movieURL}
                         setMovieURL={setMovieURL}
                         title={el.title}
-                        grade={el.grade}
+                        grade={el.grade_image}
                         img={el.img}
+                        id={el.id}
                       />
                     );
                   })}

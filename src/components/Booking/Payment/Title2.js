@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { InitialContext } from '../SeatSelect';
 
 const Tit = styled.div`
-  padding: 8px 0 41px 0;
+  padding: 8px 0 7px 0;
+  margin-top: 40px !important;
 `;
 
 const Left = styled.h3`
@@ -38,22 +38,15 @@ const Right = styled.div`
   }
 `;
 
-function Title() {
-  const { initial, setInitial } = useContext(InitialContext);
-
+function Title2() {
   return (
     <>
       <Tit>
-        <Left>관람인원선택</Left>
-        <Right>
-          <button onClick={() => setInitial(true)}>
-            <i />
-            초기화
-          </button>
-        </Right>
+        <Left>결제수단선택</Left>
+        <Right></Right>
       </Tit>
     </>
   );
 }
 
-export default Title;
+export default Title2;

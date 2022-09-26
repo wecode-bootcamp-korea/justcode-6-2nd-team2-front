@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { InitialContext } from '../SeatSelect';
 
 const Tit = styled.div`
   padding: 8px 0 41px 0;
@@ -39,14 +38,12 @@ const Right = styled.div`
 `;
 
 function Title() {
-  const { initial, setInitial } = useContext(InitialContext);
-
   return (
     <>
       <Tit>
-        <Left>관람인원선택</Left>
+        <Left>관람권 및 할인 적용</Left>
         <Right>
-          <button onClick={() => setInitial(true)}>
+          <button>
             <i />
             초기화
           </button>
