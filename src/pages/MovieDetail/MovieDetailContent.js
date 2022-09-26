@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import Likes from '../../components/moviedetail/Likes';
 import styles from './index.module.scss';
+import MovieLike from '../../components/Movie/MovieLike';
 import { BsShare, BsShareFill, BsFillQuestionCircleFill } from 'react-icons/bs';
 import { RiCheckboxMultipleLine } from 'react-icons/ri';
 import { IoTicketOutline, IoPeopleOutline } from 'react-icons/io5';
@@ -25,7 +24,7 @@ function MovieDetailContent({ movieList }) {
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.titleEng}>{item.eng_title}</p>
                 <div className={styles.btnUtil}>
-                  <Likes
+                  <MovieLike
                     width='100px'
                     hoverBackground='#fff'
                     background='transparent'
@@ -39,9 +38,9 @@ function MovieDetailContent({ movieList }) {
                     onMouseOut={() => setShare(false)}
                   >
                     {share ? (
-                      <BsShareFill size='17' color='#006633' style={{ marginRight: 4 }} />
+                      <ShareIcon size='17' color='#006633' />
                     ) : (
-                      <BsShare size='17' color='#fff' style={{ marginRight: 4 }} />
+                      <ShareIconFill size='17' color='#fff' />
                     )}
                     공유하기
                   </button>
@@ -125,6 +124,12 @@ const GradeImg = styled.div`
   top: 10px;
   width: 100%;
   height: 100%;
+`;
+const ShareIcon = styled(BsShare)`
+  margin-right: 4px;
+`;
+const ShareIconFill = styled(BsShareFill)`
+  margin-right: 4px;
 `;
 // const movieList = {
 //   title: '공조 2: 인터내셔날',
