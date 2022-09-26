@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { TbThumbUp } from 'react-icons/tb';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import CommentModal from './CommentModal';
+
 function Comment() {
-  const [modal, setModal] = useState(false);
   return (
     <>
       <CommentWrap>
@@ -23,11 +22,8 @@ function Comment() {
           </UserImg>
 
           <UserBox>
-            <div>
-              {/* {item.title} */}
-              재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
-            </div>
-            <PostBtn onClick={() => setModal(true)}>
+            <div>재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</div>
+            <PostBtn>
               <HiOutlinePencilAlt size='20' color='#666' />
               관람평쓰기
             </PostBtn>
@@ -64,9 +60,6 @@ function Comment() {
           </li>
         </ul>
       </CommentWrap>
-
-      {/* modal */}
-      {modal && <CommentModal onClose={() => setModal(false)} />}
     </>
   );
 }
