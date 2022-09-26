@@ -17,8 +17,12 @@ function MovieFilter({
           setFilter(!filter);
         }}
       >
-        {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
-        &nbsp;전체
+        {filter ? (
+          <span className='onLogo'>&nbsp;전체</span>
+        ) : (
+          <span className='offLogo'>&nbsp;전체</span>
+        )}
+        {/* &nbsp;전체 */}
       </Filter>
       <Filter
         onClick={() => {
@@ -54,15 +58,17 @@ const Filter = styled.button`
   font-size: 15px;
 
   .onLogo {
-    position: relative;
+    /* position: relative;
     font-size: 30px;
-    color: lightblue;
+    color: lightblue; */
+    font-weight: 700;
   }
 
   .offLogo {
-    position: relative;
-    font-size: 30px;
-    color: lightgray;
+    /* position: relative;
+    font-size: 30px;*/
+    /* color: lightgray; */
+    font-weight: 400;
   }
 
   &:hover {

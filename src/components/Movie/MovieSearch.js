@@ -8,7 +8,6 @@ function MovieSearch({ search, setSearch }) {
         type='search'
         placeholder='영화명 검색'
         onChange={e => {
-          // console.log(e.target.value);
           setSearch(e.target.value);
         }}
       />
@@ -22,12 +21,11 @@ function MovieSearch({ search, setSearch }) {
 const Search = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   width: 230px;
   height: 36px;
   margin: 0;
-  /* padding: 0 31px 0 0; */
-  align-items: center;
 
   border: 1px solid #d8d9db;
   border-radius: 3px;
