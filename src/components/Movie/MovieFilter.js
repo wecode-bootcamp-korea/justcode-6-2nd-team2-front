@@ -1,48 +1,46 @@
 import styled from 'styled-components';
-import { MdToggleOn } from 'react-icons/md';
-import { MdToggleOff } from 'react-icons/md';
 
-function MovieFilter({
-  filter,
-  setFilter,
-  dateOrder,
-  setDateOrder,
-  alphabeticalOrder,
-  setAlphabeticalOrder,
-}) {
+function MovieFilter({ sort, setSort }) {
   return (
     <>
       <Filter
         onClick={() => {
+          setSort(null);
+        }}
+      >
+        {/* onClick={() => {
           setFilter(!filter);
+          activeFilter();
         }}
       >
-        {filter ? (
-          <span className='onLogo'>&nbsp;전체</span>
-        ) : (
-          <span className='offLogo'>&nbsp;전체</span>
-        )}
-        {/* &nbsp;전체 */}
+        {filter ? <span className='onLogo'>전체</span> : <span className='offLogo'>전체</span>}  */}
+        <span className={sort === null ? 'onLogo' : 'offLogo'}>전체</span>
       </Filter>
       <Filter
         onClick={() => {
-          setDateOrder(!dateOrder);
+          // setDateOrder(!dateOrder);
+          // activeDateOrder();
+          setSort('date');
         }}
       >
-        {dateOrder ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
-        &nbsp;개봉일순
+        {sort === 'date' ? (
+          <span className='onLogo'>개봉일순</span>
+        ) : (
+          <span className='offLogo'>개봉일순</span>
+        )}
       </Filter>
       <Filter
         onClick={() => {
-          setAlphabeticalOrder(!alphabeticalOrder);
+          // setAlphabeticalOrder(!alphabeticalOrder);
+          // activeAlphabeticalOrder();
+          setSort('title');
         }}
       >
-        {alphabeticalOrder ? (
-          <MdToggleOn className='onLogo' />
+        {sort === 'title' ? (
+          <span className='onLogo'>가나다순</span>
         ) : (
-          <MdToggleOff className='offLogo' />
+          <span className='offLogo'>가나다순</span>
         )}
-        &nbsp;가나다순
       </Filter>
     </>
   );
@@ -51,6 +49,7 @@ function MovieFilter({
 const Filter = styled.button`
   display: flex;
   align-items: center;
+  padding: 0 6px 0 0;
 
   background-color: transparent;
   border: none;
@@ -58,16 +57,11 @@ const Filter = styled.button`
   font-size: 15px;
 
   .onLogo {
-    /* position: relative;
-    font-size: 30px;
-    color: lightblue; */
-    font-weight: 700;
+    color: #006633;
+    /* font-weight: 700; */
   }
 
   .offLogo {
-    /* position: relative;
-    font-size: 30px;*/
-    /* color: lightgray; */
     font-weight: 400;
   }
 

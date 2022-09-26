@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import qs from 'qs';
+import axios from 'axios';
 
-import MovieContentNav from './MovieContentBar';
+import MovieContentBar from './MovieContentBar';
 import MovieList from './MovieList';
 
 function MovieContent() {
   const location = useLocation();
   const [movieList, setMovieList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
-  const [filter, setFilter] = useState(false);
-  const [dateOrder, setDateOrder] = useState(false);
-  const [alphabeticalOrder, setAlphabeticalOrder] = useState(false);
+  const [sort, setSort] = useState(null); // null, title, date
   const [search, setSearch] = useState('');
-  // const isMountedRef = useRef(false);
 
   const getCategory = pathname => {
     switch (pathname) {
@@ -47,23 +44,21 @@ function MovieContent() {
   const pageSize = 20;
 
   const getQuery = params => {
-    let obj = {
-      limit: pageSize,
-    };
+    let obj = {};
 
     if (params.pathname) {
       obj = {
         ...obj,
-        showing: getCategory(params.pathname),
+        showing: getCategory(params.pathname).category,
       };
     }
 
-    // if (params.sort) {
-    //   obj = {
-    //     ...obj,
-    //     [params.sort.name]: params.sort.value,
-    //   };
-    // }
+    if (params.sort) {
+      obj = {
+        ...obj,
+        sort: params.sort,
+      };
+    }
 
     if (params.search) {
       obj = {
@@ -83,8 +78,10 @@ function MovieContent() {
   };
 
   const getLoader = async params => {
-    // let url = 'http://localhost:10010/movie/list';
+    // mock data
     let url = 'https://60c1a3544f7e880017dbff1f.mockapi.io/posts';
+    // STARBOX API
+    // let url = 'http://localhost:10010/movie/list';
     if (params) {
       url += qs.stringify(getQuery(params), {
         addQueryPrefix: true,
@@ -92,64 +89,75 @@ function MovieContent() {
     }
     //영화 리스트 GET
     const response = await axios.get(url);
-    setMovieList([...movieList, ...response.data]);
+    //mock data
+    setMovieList(response.data);
+    // STARBOX DATA
+    // setMovieList(response.data.data);
   };
 
   const onLoadMore = () => {
-    const currentList = [...movieList].splice(0, pageSize * pageNo);
+    const startPageNo = (pageNo - 1) * pageSize;
+    const endPageNo = startPageNo + pageSize;
+    const currentList = [...movieList].splice(startPageNo, endPageNo);
     if (currentList.length < 20) return;
     const params = {
       pathname: location.pathname,
       page: pageNo + 1,
       search,
+      sort,
     };
     setPageNo(params.page);
     getLoader(params);
   };
 
+  // const likeLoader = () => {
+  //   const params = {
+  //     pathname: location.pathname,
+  //     page: pageNo,
+  //     search,
+  //     sort,
+  //   };
+  //   getLoader(params);
+  // };
+
   useEffect(() => {
-    // if (!isMountedRef.current) {
     getLoader({
       page: 1,
       pathname: location.pathname,
-    }).then(() => {
-      // isMountedRef.current = true;
     });
+  }, [location.pathname]);
 
-    // return () => {
-    //   isMountedRef.current = false;
-    // };
-  }, []);
-
-  // useEffect(() => {
-  //   return () => {
-  //     setPageNo(1);
-  //     setSearch('');
-  //     setFilter(false);
-  //     setMovieList([]);
-  //     // isMountedRef.current = false;
-  //   };
-  // }, [location.pathname]);
+  const onSearch = value => {
+    getLoader({
+      page: 1,
+      pathname: location.pathname,
+      sort,
+      ...(value && {
+        search: value,
+      }),
+    });
+    setSearch(value);
+  };
 
   return (
     <>
-      <MovieContentNav
-        filter={filter}
-        setFilter={setFilter}
-        dateOrder={dateOrder}
-        setDateOrder={setDateOrder}
-        alphabeticalOrder={alphabeticalOrder}
-        setAlphabeticalOrder={setAlphabeticalOrder}
+      <MovieContentBar
+        sort={sort}
+        setSort={value => {
+          setSort(value);
+          setPageNo(1);
+          getLoader({
+            page: 1,
+            pathname: location.pathname,
+            sort: value,
+            search,
+          });
+        }}
         totalCount={movieList.length}
         search={search}
-        setSearch={setSearch}
+        onSearch={onSearch}
       />
-      <MovieList
-        movieList={movieList}
-        search={search}
-        setSearch={setSearch}
-        onLoadMore={onLoadMore}
-      />
+      <MovieList movieList={movieList} setSearch={setSearch} onLoadMore={onLoadMore} />
     </>
   );
 }
