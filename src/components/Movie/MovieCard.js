@@ -4,7 +4,7 @@ import MoviePoster from './MoviePoster';
 import MovieBook from './MovieBook';
 import MovieLike from './MovieLike';
 
-function MovieCard({ data, alertModal, setAlertModal }) {
+function MovieCard({ data }) {
   return (
     <>
       <Card>
@@ -18,7 +18,7 @@ function MovieCard({ data, alertModal, setAlertModal }) {
           <Date>개봉일 2022.09.21</Date>
         </Div>
         <Button>
-          <MovieLike alertModal={alertModal} setAlertModal={setAlertModal} />
+          <MovieLike />
           <MovieBook />
         </Button>
       </Card>

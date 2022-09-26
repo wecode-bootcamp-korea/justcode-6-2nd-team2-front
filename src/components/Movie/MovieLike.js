@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 // import { BsSuitHeart, BsSuitHeartFill } from 'react/-icons/bs';
 
-function MovieLike({ alertModal, setAlertModal }) {
+import AlertModal from '../AlertModal/AlertModal';
+
+function MovieLike() {
+  const [alertModal, setAlertModal] = useState(false);
   return (
     <>
       <Like
@@ -12,6 +15,18 @@ function MovieLike({ alertModal, setAlertModal }) {
       >
         111
       </Like>
+      <AlertModal
+        visible={alertModal}
+        modalTitle='알림'
+        text='로그인 후 이용가능한 서비스입니다.'
+        confirmText='확인'
+        onClose={() => {
+          setAlertModal(false);
+        }}
+        onConfirm={() => {
+          setAlertModal(false);
+        }}
+      />
     </>
   );
 }

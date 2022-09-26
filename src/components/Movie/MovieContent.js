@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 
-import MovieContentNav from './MovieContentNav';
+import MovieContentNav from './MovieContentBar';
 import MovieList from './MovieList';
-import AlertModal from '../AlertModal/AlertModal';
 
 function MovieContent() {
   const location = useLocation();
@@ -15,7 +14,6 @@ function MovieContent() {
   const [dateOrder, setDateOrder] = useState(false);
   const [alphabeticalOrder, setAlphabeticalOrder] = useState(false);
   const [search, setSearch] = useState('');
-  const [alertModal, setAlertModal] = useState(false);
   // const isMountedRef = useRef(false);
 
   const getCategory = pathname => {
@@ -94,7 +92,6 @@ function MovieContent() {
     }
     //영화 리스트 GET
     const response = await axios.get(url);
-    // console.log(movieList);
     setMovieList([...movieList, ...response.data]);
   };
 
@@ -136,18 +133,6 @@ function MovieContent() {
 
   return (
     <>
-      <AlertModal
-        visible={alertModal}
-        modalTitle='알림'
-        text='로그인 후 이용가능한 서비스입니다.'
-        confirmText='확인'
-        onClose={() => {
-          setAlertModal(false);
-        }}
-        onConfirm={() => {
-          setAlertModal(false);
-        }}
-      />
       <MovieContentNav
         filter={filter}
         setFilter={setFilter}
@@ -163,8 +148,6 @@ function MovieContent() {
         movieList={movieList}
         search={search}
         setSearch={setSearch}
-        alertModal={alertModal}
-        setAlertModal={setAlertModal}
         onLoadMore={onLoadMore}
       />
     </>
