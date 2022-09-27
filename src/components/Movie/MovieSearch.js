@@ -47,7 +47,6 @@ const Input = styled.input`
   border: 0;
   outline: none;
   caret-color: #000;
-  /* color: #fff; */
 `;
 
 const Button = styled.button`
@@ -56,8 +55,6 @@ const Button = styled.button`
 
   border: none;
   background-color: transparent;
-  /* url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png)
-    no-repeat center; */
 
   .icon {
     vertical-align: middle;

@@ -78,9 +78,9 @@ function MovieContent() {
   };
 
   const getLoader = async params => {
-    // mock data
+    //mock data
     // let url = 'https://60c1a3544f7e880017dbff1f.mockapi.io/posts';
-    // STARBOX API
+    //STARBOX API
     let url = 'http://localhost:10010/movie/list';
     if (params) {
       url += qs.stringify(getQuery(params), {
@@ -91,7 +91,7 @@ function MovieContent() {
     const response = await axios.get(url);
     //mock data
     // setMovieList(response.data);
-    // STARBOX DATA
+    //STARBOX DATA
     setMovieList(response.data.data);
   };
 

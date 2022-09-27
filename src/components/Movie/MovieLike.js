@@ -17,26 +17,16 @@ function MovieLike({
   hoverBackground,
   iconColor,
 }) {
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
 
-  const activeLike = () => {
-    // const token = localStorage.getItem('login_token');
-
-    // if (!token) {
-    //   setAlertModal(true);
-    //   return;
-    // }
-    if (!like) {
-      setLike(like + 1);
-      return;
-    }
-
-    if (like === false) {
-      setLike(like - 1);
-      return;
-    }
-  };
+  // const activeLike = () => {
+  // const token = localStorage.getItem('login_token');
+  // if (!token) {
+  //   setAlertModal(true);
+  //   return;
+  // }
+  // };
 
   return (
     <>
@@ -51,12 +41,12 @@ function MovieLike({
         hoverBackground={hoverBackground}
         iconColor={iconColor}
         onClick={() => {
-          activeLike();
+          // activeLike();
           likeLoader();
         }}
       >
         <HiHeart className='iconColor' />
-        {/* &nbsp;&nbsp;{data.likes} */}
+        &nbsp;&nbsp;{data.likes}
         15
       </Like>
       <AlertModal

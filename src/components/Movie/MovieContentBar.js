@@ -36,7 +36,6 @@ const Div = styled.div`
 `;
 
 const MovieCount = styled.div`
-  /* padding: 1px; */
   margin-left: 10px;
   font-size: 15px;
 `;

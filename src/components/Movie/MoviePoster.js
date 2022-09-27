@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function MoviePoster({ data, height }) {
+function MoviePoster({ data }) {
   return (
     <>
       <Div>
         <div className='wrap'>
-          <div className='poster' height={height}>
+          <div className='poster'>
             <Rank>{data.id}</Rank>
             <Poster alt='포스터 이미지' src={data.poster_img} />
           </div>
@@ -70,6 +70,9 @@ const Div = styled.div`
       color: #fff;
 
       .summary {
+        width: 100%;
+        height: 155px;
+        overflow: hidden;
         text-align: justify;
         line-height: 130%;
       }
@@ -77,16 +80,12 @@ const Div = styled.div`
       .reviewScore {
         display: flex;
         justify-content: center;
-
+        align-items: center;
         text-align: center;
-
-        .review {
-          margin-bottom: -10px;
-        }
 
         .score {
           margin-left: 10px;
-          font-size: 20px;
+          font-size: 25px;
           color: #008833;
         }
       }

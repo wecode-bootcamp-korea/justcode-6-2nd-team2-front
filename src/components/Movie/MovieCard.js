@@ -76,13 +76,11 @@ const Title = styled.p`
 
 const Rate = styled.span`
   font-size: 14px;
-  /* margin: 0 3px 0 0; */
 `;
 
 const Date = styled(Rate)`
   font-size: 14px;
   padding-left: 6px;
-  /* border-left: 1px solid lightgray; */
 `;
 
 const Button = styled.div`

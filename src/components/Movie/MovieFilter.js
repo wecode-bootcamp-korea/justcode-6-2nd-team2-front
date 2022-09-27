@@ -40,7 +40,6 @@ const Filter = styled.button`
 
   .onLogo {
     color: #006633;
-    /* font-weight: 700; */
   }
 
   .offLogo {
