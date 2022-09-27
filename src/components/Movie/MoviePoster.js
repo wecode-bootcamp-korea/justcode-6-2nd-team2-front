@@ -1,25 +1,24 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function MoviePoster({ data }) {
+function MoviePoster({ data, height }) {
   return (
     <>
       <Div>
         <div className='wrap'>
-          <div className='poster'>
-            <Rank>1</Rank>
-            <Poster alt='포스터 이미지' src={require('../../assets/poster.png')} />
+          <div className='poster' height={height}>
+            <Rank>{data.id}</Rank>
+            <Poster alt='포스터 이미지' src={data.poster_img} />
           </div>
           <div className='posterHover'>
             <DetailLink to='moviedetail'>
               <div className='content'>
-                <div className='summary'>
-                  늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구
-                  저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구
-                  저쩌구늑댓안양 내용 어쩌구 저쩌구늑댓안양 내용 어쩌구 저쩌구
-                </div>
-                <div className='reviewRate'>
-                  관람평 <span>9.1</span>
+                <div className='summary'>{data.detail_content}</div>
+                <div className='reviewScore'>
+                  <div className='review'>
+                    <span>관람평</span>
+                  </div>
+                  <div className='score'>{data.reviews_rate}</div>
                 </div>
               </div>
             </DetailLink>
@@ -37,7 +36,8 @@ const Div = styled.div`
   }
 
   .poster {
-    width: 100%;
+    width: 230px;
+    height: 331px;
   }
 
   .wrap:hover > .posterHover {
@@ -48,8 +48,8 @@ const Div = styled.div`
   .posterHover {
     position: absolute;
     display: none;
-    width: 100%;
-    height: 100%;
+    width: 230px;
+    height: 331px;
     top: 0;
     left: 0;
 
@@ -71,15 +71,22 @@ const Div = styled.div`
 
       .summary {
         text-align: justify;
-        line-height: 150%;
+        line-height: 130%;
       }
 
-      .reviewRate {
+      .reviewScore {
+        display: flex;
+        justify-content: center;
+
         text-align: center;
 
-        span {
+        .review {
+          margin-bottom: -10px;
+        }
+
+        .score {
           margin-left: 10px;
-          font-size: 25px;
+          font-size: 20px;
           color: #008833;
         }
       }

@@ -8,9 +8,9 @@ function MovieCard({ data }) {
   return (
     <>
       <Card>
-        <MoviePoster data={data} />
+        <MoviePoster data={data} height='330.82px' />
         <Div>
-          <Grade alt='등급' src={require('../../assets/age_19.png')} />
+          <Grade alt='등급' src={data.grade_image} />
           <Title>{data.title}</Title>
         </Div>
         <div>

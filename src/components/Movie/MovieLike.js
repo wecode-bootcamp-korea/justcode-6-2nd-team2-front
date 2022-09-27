@@ -21,13 +21,21 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   const activeLike = () => {
-    const token = localStorage.getItem('login_token');
+    // const token = localStorage.getItem('login_token');
 
-    if (!token) {
-      setAlertModal(true);
+    // if (!token) {
+    //   setAlertModal(true);
+    //   return;
+    // }
+    if (!like) {
+      setLike(like + 1);
       return;
     }
-    setLike(like + 1);
+
+    if (like === false) {
+      setLike(like - 1);
+      return;
+    }
   };
 
   return (
@@ -48,7 +56,8 @@ function MovieLike({
         }}
       >
         <HiHeart className='iconColor' />
-        &nbsp;&nbsp;{data.likes}
+        {/* &nbsp;&nbsp;{data.likes} */}
+        15
       </Like>
       <AlertModal
         visible={alertModal}

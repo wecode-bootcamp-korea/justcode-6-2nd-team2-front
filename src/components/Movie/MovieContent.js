@@ -30,9 +30,9 @@ function MovieContent() {
           category: 'domestic',
         };
       }
-      case '/movie/abroad': {
+      case '/movie/international': {
         return {
-          category: 'abroad',
+          category: 'international',
         };
       }
       default: {
