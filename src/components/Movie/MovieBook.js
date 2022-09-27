@@ -1,23 +1,23 @@
-import React from 'react';
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MovieBook() {
   return (
     <>
-      <Book>예매</Book>
+      <Booking to='/booking'>
+        <Book>예매</Book>
+      </Booking>
     </>
   );
 }
 
-const Book = styled.button`
+const Booking = styled(Link)`
   width: 63%;
   height: 36px;
 
   line-height: 36px;
 
   background: #006633;
-  border: none;
   border-radius: 4px;
 
   text-align: center;
@@ -29,6 +29,16 @@ const Book = styled.button`
     background-color: #004433;
     cursor: pointer;
   }
+`;
+
+const Book = styled.button`
+  background: transparent;
+  border: none;
+
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
 `;
 
 export default MovieBook;
