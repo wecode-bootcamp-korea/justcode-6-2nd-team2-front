@@ -1,81 +1,12 @@
 .headerContainer {
   position: relative;
   width: 100%;
-  .navContainer {
-    width: 1100px;
-    margin: 0 auto;
-    .navBox {
-      font-size: 18px;
-      display: flex;
-      justify-content: space-between;
-      text-align: center;
-      align-items: center;
-      .left {
-        width: 40%;
-        padding-top: 40px;
-        .leftBottom {
-          display: flex;
-          justify-content: space-between;
-          .leftIcon {
-            display: flex;
-            .iconPadding {
-              margin-right: 10px;
-            }
-          }
-          .mainMenuContainer {
-            width: 100%;
-            .mainMenu {
-              display: flex;
-              justify-content: space-around;
-              .linkText {
-                color: #444;
-                text-decoration: none;
-              }
-
-              .mouseoverTab {
-                position: absolute;
-                top: 0;
-                left: 0;
-              }
-            }
-          }
-        }
+  .navWrap {
+    .navContainer {
+      width: 100%;
+      margin: 0 auto;
+      .mainNav {
       }
-      .navLogo {
-        width: 146px;
-        height: 120px;
-        padding: 10px;
-      }
-      .right {
-        width: 40%;
-        .rightTop {
-          display: flex;
-          justify-content: flex-end;
-          padding: 10px;
-          padding-top: -20px;
-          li {
-            padding-right: 20px;
-            font-size: 14px;
-            color: #222;
-          }
-        }
-        .rightBottom {
-          height: 50%;
-          display: flex;
-          justify-content: space-between;
-          .linkTextR {
-            color: #444;
-            text-decoration: none;
-          }
-          .rightIcon {
-            display: flex;
-          }
-        }
-      }
-    }
-    .iconSize {
-      width: 40px;
-      padding-right: 10px;
     }
   }
   .borderBottom {
@@ -83,6 +14,7 @@
     height: 1px;
     background-color: #222;
   }
+
   .locationView {
     width: 100%;
     // position: absolute;
@@ -112,109 +44,22 @@
     z-index: 91000;
   }
 }
+
 .mainHeaderContainer {
-  position: relative;
-  width: 100%;
   background-color: #001a27;
   color: #fff;
-  .navContainer {
-    width: 1100px;
-    margin: 0 auto;
-    .navBox {
-      font-size: 18px;
-      display: flex;
-      justify-content: space-between;
-      text-align: center;
-      align-items: center;
-      .left {
-        width: 40%;
-        padding-top: 40px;
-        .leftBottom {
-          display: flex;
-          justify-content: space-between;
-          .leftIcon {
-            display: flex;
-            .iconPadding {
-              margin-right: 10px;
-            }
-          }
-          .mainMenuContainer {
-            width: 100%;
-            .mainMenu {
-              display: flex;
-              justify-content: space-around;
-              .mainlinkText {
-                color: #fff;
-                text-decoration: none;
-              }
-              .mouseoverTab {
-                position: absolute;
-                top: 0;
-                left: 0;
-              }
-            }
-          }
-        }
-      }
-      .navLogo {
-        width: 146px;
-        height: 120px;
-        padding: 10px;
-      }
-      .right {
-        width: 40%;
-        .rightTop {
-          display: flex;
-          justify-content: flex-end;
-          padding: 10px;
-          padding-top: -20px;
-          li {
-            padding-right: 20px;
-            font-size: 14px;
-            color: #fff;
-          }
-        }
-        .rightBottom {
-          height: 50%;
-          display: flex;
-          justify-content: space-between;
-          .mainTextR {
-            color: #fff;
-            text-decoration: none;
-          }
-          .rightIcon {
-            display: flex;
-          }
-        }
+  position: relative;
+  width: 100%;
+  .navWrap {
+    .navContainer {
+      width: 100%;
+      margin: 0 auto;
+      .mainNav {
       }
     }
-    .iconSize {
-      width: 40px;
-      padding-right: 10px;
-    }
-  }
-  .borderBottom {
-    width: 100%;
-    height: 1px;
-    background-color: #222;
   }
   .locationView {
-    width: 100%;
-    // position: absolute;
-    padding: 10px;
-    background-color: #002533;
-    .locationBox {
-      width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: flex-start;
-      .tabLocation {
-        padding-right: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
+    display: none;
   }
   .subNav {
     width: 100%;

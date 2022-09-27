@@ -8,7 +8,6 @@ import Logo from '../../assets/starbox.png';
 import Login from '../Login/Login';
 import Nav from './Nav';
 import Location from './Location';
-import HoverNav from './HoverNav';
 
 function Header() {
   const navigate = useNavigate();
@@ -48,9 +47,10 @@ function Header() {
         location.pathname === '/' ? `${styles.mainHeaderContainer}` : `${styles.headerContainer}`
       }
     >
-      <div>
+      <div className={styles.navWrap}>
         <div className={styles.navContainer}>
           <Nav
+            className={styles.mainNav}
             Logo={Logo}
             mainLogo={mainLogo}
             subNavMenu={subNavMenu}
@@ -61,6 +61,7 @@ function Header() {
             logout={logout}
             setSubNavMenu={setSubNavMenu}
           />
+          <div className={styles.bgColor}></div>
         </div>
         <div className={styles.borderBottom}></div>
         <div className={styles.locationView}>
@@ -70,14 +71,12 @@ function Header() {
             </li>
           </ul>
         </div>
+
         <div className={styles.subNav}>
           {subNavMenu && <SubNav location={location.pathname} setSubNavMenu={setSubNavMenu} />}
         </div>
         <div className={loginModal === true && `${styles.openModal}`}>
           {openModal && <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />}
-        </div>
-        <div className={mouseHover === true && `${styles.hoverNav}`}>
-          {hoverEvent && <HoverNav />}
         </div>
       </div>
     </div>

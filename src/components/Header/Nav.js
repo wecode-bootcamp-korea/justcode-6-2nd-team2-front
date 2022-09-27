@@ -1,7 +1,9 @@
-import styles from './Header.module.scss';
+import styles from './Nav.module.scss';
 import { AiFillCloseCircle, AiOutlineSearch, AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
 import { BsCalendar4Week } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import CategoryL from './CategoryL';
+import CategoryR from './CategoryR';
 
 function Nav({
   Logo,
@@ -18,7 +20,7 @@ function Nav({
     setSubNavMenu(false);
   };
   return (
-    <>
+    <div className={styles.navWrap}>
       <ul className={styles.navBox}>
         <li className={styles.left}>
           <ul className={styles.leftBottom}>
@@ -35,41 +37,7 @@ function Nav({
               </div>
             </li>
             <li className={styles.mainMenuContainer}>
-              <ul className={styles.mainMenu}>
-                <li>
-                  <Link
-                    to='/movie'
-                    onClick={tabClose}
-                    className={
-                      location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
-                    }
-                  >
-                    영화
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to='/Booking'
-                    onClick={tabClose}
-                    className={
-                      location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
-                    }
-                  >
-                    예매
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to='/cinema'
-                    onClick={tabClose}
-                    className={
-                      location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
-                    }
-                  >
-                    극장
-                  </Link>
-                </li>
-              </ul>
+              <CategoryL location={location} tabClose={tabClose} />
             </li>
           </ul>
         </li>
@@ -83,7 +51,13 @@ function Nav({
         </li>
         <li className={styles.right}>
           <ul className={styles.rightTop}>
-            <li setLoginModal={setLoginModal} onClick={tabClose}>
+            <li
+              setLoginModal={setLoginModal}
+              onClick={tabClose}
+              className={
+                location.pathname === '/' ? `${styles.mainNavLogin}` : `${styles.navLogin}`
+              }
+            >
               {localStorage.getItem('token') ? (
                 <span onClick={logout}>로그아웃</span>
               ) : (
@@ -118,38 +92,8 @@ function Nav({
             </li>
           </ul>
           <ul className={styles.rightBottom}>
-            <li>
-              <Link
-                to='/event'
-                onClick={tabClose}
-                className={
-                  location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
-                }
-              >
-                이벤트
-              </Link>
-            </li>
-            <li>
-              <Link
-                to='/store'
-                onClick={tabClose}
-                className={
-                  location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
-                }
-              >
-                스토어
-              </Link>
-            </li>
-            <li>
-              <Link
-                to='/benefit'
-                onClick={tabClose}
-                className={
-                  location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
-                }
-              >
-                혜택
-              </Link>
+            <li className={styles.mainMenuContainerR}>
+              <CategoryR location={location} tabClose={tabClose} />
             </li>
             <li className={styles.rightIcon}>
               <div onClick={tabClose}>
@@ -162,7 +106,8 @@ function Nav({
           </ul>
         </li>
       </ul>
-    </>
+      <div className={styles.navHoverBg}></div>
+    </div>
   );
 }
 export default Nav;
