@@ -40,6 +40,8 @@ const Modal = styled.div`
   z-index: 1;
 
   .modalWrap {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -78,24 +80,30 @@ const Modal = styled.div`
     }
 
     .content {
+      display: flex;
+      flex-direction: column;
       padding: 20px 20px 0 20px;
-    }
 
-    .bottom {
-      text-align: center;
-      padding: 15px 0 20px 0;
+      .bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      .confirmButton {
-        padding: 10px 15px;
+        text-align: center;
+        padding: 15px 0 20px 0;
 
-        background-color: #006633;
-        border: none;
-        border-radius: 4px;
+        .confirmButton {
+          padding: 10px 15px;
 
-        color: #fff;
+          background-color: #006633;
+          border: none;
+          border-radius: 4px;
 
-        &:hover {
-          cursor: pointer;
+          color: #fff;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

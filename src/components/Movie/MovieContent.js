@@ -79,9 +79,9 @@ function MovieContent() {
 
   const getLoader = async params => {
     // mock data
-    let url = 'https://60c1a3544f7e880017dbff1f.mockapi.io/posts';
+    // let url = 'https://60c1a3544f7e880017dbff1f.mockapi.io/posts';
     // STARBOX API
-    // let url = 'http://localhost:10010/movie/list';
+    let url = 'http://localhost:10010/movie/list';
     if (params) {
       url += qs.stringify(getQuery(params), {
         addQueryPrefix: true,
@@ -90,9 +90,9 @@ function MovieContent() {
     //영화 리스트 GET
     const response = await axios.get(url);
     //mock data
-    setMovieList(response.data);
+    // setMovieList(response.data);
     // STARBOX DATA
-    // setMovieList(response.data.data);
+    setMovieList(response.data.data);
   };
 
   const onLoadMore = () => {
@@ -110,15 +110,15 @@ function MovieContent() {
     getLoader(params);
   };
 
-  // const likeLoader = () => {
-  //   const params = {
-  //     pathname: location.pathname,
-  //     page: pageNo,
-  //     search,
-  //     sort,
-  //   };
-  //   getLoader(params);
-  // };
+  const likeLoader = () => {
+    const params = {
+      pathname: location.pathname,
+      page: pageNo,
+      search,
+      sort,
+    };
+    getLoader(params);
+  };
 
   useEffect(() => {
     getLoader({
@@ -157,7 +157,12 @@ function MovieContent() {
         search={search}
         onSearch={onSearch}
       />
-      <MovieList movieList={movieList} setSearch={setSearch} onLoadMore={onLoadMore} />
+      <MovieList
+        movieList={movieList}
+        setSearch={setSearch}
+        likeLoader={likeLoader}
+        onLoadMore={onLoadMore}
+      />
     </>
   );
 }

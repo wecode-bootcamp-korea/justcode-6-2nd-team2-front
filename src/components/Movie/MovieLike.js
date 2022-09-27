@@ -5,6 +5,8 @@ import { HiHeart } from 'react-icons/hi';
 import AlertModal from '../AlertModal/AlertModal';
 
 function MovieLike({
+  data,
+  likeLoader,
   width,
   height,
   background,
@@ -15,7 +17,19 @@ function MovieLike({
   hoverBackground,
   iconColor,
 }) {
+  const [like, setLike] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
+
+  const activeLike = () => {
+    const token = localStorage.getItem('login_token');
+
+    if (!token) {
+      setAlertModal(true);
+      return;
+    }
+    setLike(like + 1);
+  };
+
   return (
     <>
       <Like
@@ -29,11 +43,12 @@ function MovieLike({
         hoverBackground={hoverBackground}
         iconColor={iconColor}
         onClick={() => {
-          setAlertModal(!alertModal);
+          activeLike();
+          likeLoader();
         }}
       >
         <HiHeart className='iconColor' />
-        &nbsp;&nbsp;111
+        &nbsp;&nbsp;{data.likes}
       </Like>
       <AlertModal
         visible={alertModal}

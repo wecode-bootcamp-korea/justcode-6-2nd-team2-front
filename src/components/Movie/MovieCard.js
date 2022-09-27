@@ -8,17 +8,18 @@ function MovieCard({ data }) {
   return (
     <>
       <Card>
-        <MoviePoster />
+        <MoviePoster data={data} />
         <Div>
           <Grade alt='등급' src={require('../../assets/age_19.png')} />
           <Title>{data.title}</Title>
         </Div>
-        <Div>
-          <Rate>예매율 18.7%</Rate>
-          <Date>개봉일 2022.09.21</Date>
-        </Div>
+        <div>
+          <Rate>예매율 {data.book_rate}</Rate>
+          <Date>개봉일 {data.open_date}</Date>
+        </div>
         <Button>
           <MovieLike
+            data={data}
             background='transparent'
             color='#000'
             fontSize='15px'
@@ -39,6 +40,11 @@ const Card = styled.li`
   padding: 0;
 
   background-color: transparent;
+
+  div {
+    display: flex;
+    flex-direction: space-between;
+  }
 `;
 
 const Div = styled.div`
@@ -69,12 +75,14 @@ const Title = styled.p`
 `;
 
 const Rate = styled.span`
-  margin: 0 6px 0 0;
+  font-size: 14px;
+  /* margin: 0 3px 0 0; */
 `;
 
 const Date = styled(Rate)`
+  font-size: 14px;
   padding-left: 6px;
-  border-left: 1px solid lightgray;
+  /* border-left: 1px solid lightgray; */
 `;
 
 const Button = styled.div`

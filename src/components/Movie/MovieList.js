@@ -4,14 +4,19 @@ import styled from 'styled-components';
 import MovieCard from './MovieCard';
 import ListViewMore from './ListViewMore';
 
-function MovieList({ movieList, onLoadMore, alertModal, setAlertModal }) {
+function MovieList({ movieList, onLoadMore, likeLoader, alertModal, setAlertModal }) {
   return (
     <>
       <CardList>
         {movieList.map(card => {
           return (
             <li key={card.id}>
-              <MovieCard data={card} alertModal={alertModal} setAlertModal={setAlertModal} />
+              <MovieCard
+                data={card}
+                likeLoader={likeLoader}
+                alertModal={alertModal}
+                setAlertModal={setAlertModal}
+              />
             </li>
           );
         })}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function MoviePoster() {
+function MoviePoster({ data }) {
   return (
     <>
       <Div>
