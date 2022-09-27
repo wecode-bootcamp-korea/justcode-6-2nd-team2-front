@@ -1,31 +1,12 @@
-import { useState } from 'react';
-import Issue from '../../components/Signup/Issue';
 import styles from './Consent.module.scss';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 function Consent() {
-  const issue = [...Array(5).keys()]; //체크박트 컴포넌트와 함께 box map돌리기
-  const [checkedItems, setCheckedItems] = useState(new Set());
-  const [isAllChecked, setIsAllChecked] = useState(false);
+  // const [next, setNext] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const checkItemHandler = (id, isChecked) => {
-    if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-    } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
-    }
-  };
-
-  const allCheckedHandler = isChecked => {
-    if (isChecked) {
-      setCheckedItems(new Set(id => id));
-      setIsAllChecked(true);
-    } else {
-      checkedItems.clear();
-      setCheckedItems(setCheckedItems);
-      setIsAllChecked(false);
-    }
+  const nextClick = () => {
+    navigate('/signup' + '/info');
   };
 
   return (
@@ -34,13 +15,13 @@ function Consent() {
         <h1 className={styles.title}>약관동의 및 정보활용동의</h1>
         <p className={styles.titleText}>스타박스 서비스 이용을 위한 약관에 동의해주세요.</p>
         <div className={styles.boxContent}>
-          <input type='checkbox' onChange={allCheckedHandler} />
+          <input type='checkbox' />
           <span>필수항목 전체동의</span>
         </div>
         <div>
           <div className={styles.consentBox}>
-            {/* <input type='checkbox' /> */}
-            <Issue checkItemHandler={checkItemHandler} isAllChecked={isAllChecked} />
+            <input type='checkbox' />
+
             <span className={styles.boxTitle} style={{ color: '#036635' }}>
               서비스 이용 약관 동의(필수)
             </span>
@@ -68,8 +49,8 @@ function Consent() {
             </div>
           </div>
           <div className={styles.consentBox}>
-            {/* <input type='checkbox' /> */}
-            <Issue checkItemHandler={checkItemHandler} />
+            <input type='checkbox' />
+
             <span className={styles.boxTitle} style={{ color: '#036635' }}>
               개인정보 수집 및 이용 동의(필수)
             </span>
@@ -109,7 +90,7 @@ function Consent() {
             </div>
           </div>
           <div className={styles.consentBox}>
-            <input type='checkbox' />{' '}
+            <input type='checkbox' />
             <span className={styles.boxTitle} style={{ color: '#036635' }}>
               위치기반서비스 이용 약관 동의(선택)
             </span>
@@ -125,6 +106,7 @@ function Consent() {
             </div>
           </div>
         </div>
+        <button onClick={nextClick}>확인</button>
       </div>
     </div>
   );

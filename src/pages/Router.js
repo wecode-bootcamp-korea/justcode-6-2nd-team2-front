@@ -22,6 +22,7 @@ import MovieTrailer from './MovieDetail/MovieTrailer';
 import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
+import ListTheater from '../components/Booking/Theater/ListTheater';
 
 function Router() {
   return (
@@ -55,6 +56,7 @@ function Router() {
             <Route path='moviepost' element={<MoviePost />} />
             <Route path='trailer' element={<MovieTrailer />} />
           </Route>
+          {/* <Route path='/theater' element={<ListTheater />} /> */}
 
           <Route path='/user-find' element={<UserFind />} />
           <Route path='/pass-find' element={<PassFind />} />

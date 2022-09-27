@@ -78,9 +78,13 @@ function Phone({ setModal }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        //"user_phone_number" : "01052593913",
-        //"verificationCode" : "405771"
+        // "name" : "오인환",
+        // "phone" : "010-9459-5314",
+        // "birth" : "770808",
+        // "verificationCode" : "110572"
+        name: userName.current.value,
         phone: phoneRef.current.value,
+        birth: birthValue.current.value,
         verificationCode: verifyRef.current.value,
       }),
     })
@@ -89,6 +93,9 @@ function Phone({ setModal }) {
         console.log(res);
         alert('인증성공');
         navigate('/signup/consent');
+        window.localStorage.setItem('name', userName.current.value);
+        window.localStorage.setItem('birth', birthValue.current.value);
+        window.localStorage.setItem('phone', phoneRef.current.value);
       });
   };
   //success 페이지 이동
@@ -106,13 +113,13 @@ function Phone({ setModal }) {
           <label className={styles.title} for='name'>
             이름
           </label>
-          <input id='name' value={name} rer={userName} type='text' placeholder='성명입력' />
+          <input id='name' ref={userName} type='text' placeholder='성명입력' />
         </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='birth'>
             생년월일
           </label>
-          <input id='birth' value={birth} rer={birthValue} type='text' placeholder='성명입력' />
+          <input id='birth' ref={birthValue} type='text' placeholder='생년월일' />
         </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='phone'>

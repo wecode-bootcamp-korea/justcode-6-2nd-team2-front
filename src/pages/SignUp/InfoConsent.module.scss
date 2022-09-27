@@ -1,9 +1,35 @@
 .container {
-  // width: 600px;
-  height: 800px;
+  width: 600px;
   border: 1px solid #d8d9db;
+  border-radius: 10px;
+  .title {
+    font-size: 18px;
+    line-height: 60px;
+    border-bottom: 1px solid #d8d9db;
+  }
   .consentBox {
+    text-align: start;
     padding: 30px;
-    background-color: antiquewhite;
+    dt {
+    }
+    .text {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+    // background-color: antiquewhite;
+    .checkConsenBox {
+      display: flex;
+      align-items: center;
+      height: 46px;
+      padding-left: 10px;
+      background-color: #f8f8fa;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      .checkTitle {
+        font-size: 14px;
+        margin-right: 20px;
+      }
+    }
   }
 }
