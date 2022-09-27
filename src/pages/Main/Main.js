@@ -6,7 +6,7 @@ import MainBoxOffice from '../../components/Main/MainBoxOffice';
 import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
-  const [cardList] = useState([1, 1, 1, 1]);
+  const [movieList] = useState([1, 1, 1, 1]);
   return (
     <MainPage>
       <Div>
@@ -18,7 +18,7 @@ function Main() {
           <AiOutlinePlus className='icon' />
         </More>
         <section>
-          <MainBoxOffice cardList={cardList} />
+          <MainBoxOffice movieList={movieList} />
         </section>
         <MainSearchLink />
       </Div>
