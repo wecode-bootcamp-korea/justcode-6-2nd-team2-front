@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,15 +10,21 @@ function MainBoxOffice({ movieList }) {
     <BoxOffice>
       {movieList.map(card => {
         return (
-          <li key={card.id}>
-            <List>
-              <MoviePoster />
-              <Button>
-                <MovieLike />
-                <MovieBook />
-              </Button>
-            </List>
-          </li>
+          <List key={card.id}>
+            <MoviePoster data={card} />
+            <Button>
+              <MovieLike
+                data={card}
+                background='rgba(0,0,0,0.2)'
+                color='#fff'
+                fontSize='15px'
+                fontWeight='400'
+                hoverBackground='#ebebeb'
+                iconColor='#006633'
+              />
+              <MovieBook />
+            </Button>
+          </List>
         );
       })}
     </BoxOffice>
@@ -28,6 +33,7 @@ function MainBoxOffice({ movieList }) {
 
 const BoxOffice = styled.ol`
   display: flex;
+  align-items: center;
   flex-direction: row;
 `;
 

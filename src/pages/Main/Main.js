@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import MainBoxOffice from '../../components/Main/MainBoxOffice';
 import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
-  const [movieList] = useState([1, 1, 1, 1]);
+  const [movieList, setMovieList] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:10010/movie/list').then(response => {
+      setMovieList(response.data.data);
+    });
+  }, []);
+
   return (
     <MainPage>
       <Div>
         <Title>
           <span>박스오피스</span>
         </Title>
-        <More>
+        <More to='/movie'>
           더 많은 영화 보기
           <AiOutlinePlus className='icon' />
         </More>
@@ -68,7 +76,7 @@ const Title = styled.button`
   }
 `;
 
-const More = styled.div`
+const More = styled(Link)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -80,6 +88,7 @@ const More = styled.div`
   font-size: 15px;
   color: #aaa;
   line-height: 16px;
+  text-decoration: none;
 
   .icon {
     margin-left: 4px;
