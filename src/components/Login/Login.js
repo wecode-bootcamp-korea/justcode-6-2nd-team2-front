@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import styles from './Login.module.scss';
 import Kakao from './Kakao';
 import { AiOutlineClose } from 'react-icons/ai';

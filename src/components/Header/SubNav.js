@@ -23,7 +23,7 @@ function SubNav({ setSubNavMenu, location, tabArr }) {
         return (
           <div key={data.id} className={styles.subNavBox}>
             <div className={styles.subNavTitle}>{data.title}</div>
-            <Link to={'/' + data.url} style={{ textDecoration: 'none' }} onClick={remove}>
+            <Link to={data.url} style={{ textDecoration: 'none' }} onClick={remove}>
               <TabNav list={data.content} />
             </Link>
           </div>

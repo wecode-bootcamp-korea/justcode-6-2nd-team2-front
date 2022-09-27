@@ -1,6 +1,6 @@
 /* eslint-disable */
 import styles from './SignUp.module.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../assets/starbox.png';
 import Auth from './Auth';
 import Info from './Info';
@@ -12,14 +12,7 @@ import Complete from './Complete';
 function SignUp() {
   const location = useLocation();
   const [checkBox, setCheckBox] = useState([]);
-  const checkHandler = (checked, id) => {
-    if (checked) {
-      setCheckBox([...checkBox, id]);
-      console.log('체크');
-    } else {
-      // setCheckBox(check);
-    }
-  };
+
   return (
     <div className={styles.container}>
       <div className={styles.contentsBox}>
@@ -30,12 +23,40 @@ function SignUp() {
         </Link>
         <div className={styles.tabTitle}>
           <ul>
-            <li className={location.pathname === '/signup' ? `${styles.active}` : ''}>
+            <li
+              className={
+                location.pathname === '/signup' ? `${styles.activeTitle}` : `${styles.stepTitle}`
+              }
+            >
               STEP1.본인인증
             </li>
-            <li>STEP2.약관동의</li>
-            <li>STEP3.정보입력</li>
-            <li>STEP4.가입완료</li>
+            <li
+              className={
+                location.pathname === '/signup/consent'
+                  ? `${styles.activeTitle}`
+                  : `${styles.stepTitle}`
+              }
+            >
+              STEP2.약관동의
+            </li>
+            <li
+              className={
+                location.pathname === '/signup/info'
+                  ? `${styles.activeTitle}`
+                  : `${styles.stepTitle}`
+              }
+            >
+              STEP3.정보입력
+            </li>
+            <li
+              className={
+                location.pathname === '/signup/complete'
+                  ? `${styles.activeTitle}`
+                  : `${styles.stepTitle}`
+              }
+            >
+              STEP4.가입완료
+            </li>
           </ul>
         </div>
         <div className={styles.content}>

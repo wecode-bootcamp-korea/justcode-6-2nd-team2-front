@@ -19,17 +19,26 @@
     .tabTitle {
       ul {
         display: flex;
-
-        li {
-          padding-right: 50px;
+        justify-content: space-around;
+        border-bottom: 1px solid #d1d5dd;
+        .stepTitle {
+          text-decoration: none;
+          color: #444;
           font-size: 14px;
           padding-bottom: 10px;
-          border-bottom: 1px solid #d1d5dd;
           &:nth-child(4) {
             padding-right: 0px;
           }
-          &:active {
-            color: #036635;
+        }
+        .activeTitle {
+          text-decoration: none;
+          color: #036635;
+          font-weight: bolder;
+          font-size: 14px;
+          padding-bottom: 11px;
+          border-bottom: 3px solid #036635;
+          &:nth-child(4) {
+            padding-right: 0px;
           }
         }
       }

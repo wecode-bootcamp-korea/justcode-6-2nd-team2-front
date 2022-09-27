@@ -31,9 +31,12 @@
       width: 100%;
       margin: 0 auto;
       text-align: center;
-      p {
+      padding-top: 10px;
+      .linkText {
+        line-height: 30px;
         padding-top: 12px;
         color: #aaa;
+        text-decoration: none;
       }
     }
   }
