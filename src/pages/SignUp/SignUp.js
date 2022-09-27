@@ -30,7 +30,9 @@ function SignUp() {
         </Link>
         <div className={styles.tabTitle}>
           <ul>
-            <li>STEP1.본인인증</li>
+            <li className={location.pathname === '/signup' ? `${styles.active}` : ''}>
+              STEP1.본인인증
+            </li>
             <li>STEP2.약관동의</li>
             <li>STEP3.정보입력</li>
             <li>STEP4.가입완료</li>
