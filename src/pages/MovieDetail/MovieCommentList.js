@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { TbThumbUp } from 'react-icons/tb';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import SelectBox from '../../components/moviedetail/SelectBox';
 
-function Comment() {
+function MovieCommentList() {
+  const [movieList, setMovieList] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:10010/movie/detail/1`)
+      .then(res => res.json())
+      .then(res => setMovieList(res.data));
+  }, []);
+  console.log('CommentList', movieList);
+  const [view, setView] = useState(false);
+  const viewComment = () => {
+    setView(!view);
+  };
+  const rate = [
+    { label: '1점', value: '1' },
+    { label: '2점', value: '2' },
+    { label: '3점', value: '3' },
+    { label: '4점', value: '4' },
+    { label: '5점', value: '5' },
+  ];
+  const options = [
+    { label: '배우', value: 'op1' },
+    { label: 'ost', value: 'op2' },
+    { label: '스토리', value: 'op3' },
+    { label: '연출', value: 'op4' },
+    { label: '영상미', value: 'op5' },
+  ];
   return (
     <>
       <CommentWrap>
-        <CommentTitle>
-          {/* {item.title}  */}에 대한 <span>11,611</span>개의 이야기가 있어요!
-        </CommentTitle>
+        {movieList.map((item, idx) => {
+          return (
+            <CommentTitle key={idx}>
+              {item.title}에 대한 <span>11,611</span>개의 이야기가 있어요!
+            </CommentTitle>
+          );
+        })}
         {/* 기대평 등록 상단 */}
         <CommentBox>
           <UserImg>
@@ -22,10 +52,29 @@ function Comment() {
           </UserImg>
 
           <UserBox>
-            <div>재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</div>
-            <PostBtn>
-              <HiOutlinePencilAlt size='20' color='#666' />
-              관람평쓰기
+            {view ? (
+              <UserInput>
+                <SelectBox placeholder='평점 선택' items={options} />
+                <SelectBox placeholder='평점 선택' items={rate} />
+                \
+                <InputBox type='text' placeholder='관람평을 입력해주세요' />
+              </UserInput>
+            ) : (
+              <div>재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</div>
+            )}
+
+            <PostBtn onClick={viewComment}>
+              {view ? (
+                <>
+                  <HiOutlinePencilAlt size='20' color='#666' />
+                  등록
+                </>
+              ) : (
+                <>
+                  <HiOutlinePencilAlt size='20' color='#666' />
+                  관람평쓰기
+                </>
+              )}
             </PostBtn>
           </UserBox>
         </CommentBox>
@@ -70,6 +119,7 @@ const CommentTitle = styled.div`
   color: #006633;
   font-size: 22px;
   margin-bottom: 15px;
+  margin-top: 40px;
 `;
 const CommentBox = styled.div`
   display: flex;
@@ -83,6 +133,12 @@ const UserBox = styled.div`
   width: 100%;
   border: 1px solid #eaeaea;
   border-radius: 0 10px 10px 10px;
+`;
+const UserInput = styled.div`
+  display: flex;
+`;
+const InputBox = styled.input`
+  width: 300px;
 `;
 const PostBtn = styled.button`
   display: flex;
@@ -170,4 +226,4 @@ const UserImg = styled.div`
 		}
 	}
 `;
-export default Comment;
+export default MovieCommentList;

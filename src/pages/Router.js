@@ -18,7 +18,8 @@ import MovieDetail from './MovieDetail';
 import MovieInfo from './MovieDetail/MovieInfo';
 import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
-import MovieTrailer from './MovieDetail/MovieTrailer';
+// import MovieTrailer from './MovieDetail/MovieTrailer';
+import MovieTrailers from './MovieDetail/MovieTrailers';
 
 function Router() {
   return (
@@ -40,17 +41,10 @@ function Router() {
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
             <Route index element={<MovieInfo />} />
-            <Route path='comment' element={<MovieComment />} />
-            <Route path='moviepost' element={<MoviePost />} />
-            <Route path='trailer' element={<MovieTrailer />} />
-          </Route>
-          {/* 영화 상세페이지 */}
-          <Route path='/moviedetail' end element={<MovieDetail />}>
-            {/* <Route index element={<MovieInfo />} /> */}
             <Route path='movieinfo' element={<MovieInfo />} />
             <Route path='comment' element={<MovieComment />} />
             <Route path='moviepost' element={<MoviePost />} />
-            <Route path='trailer' element={<MovieTrailer />} />
+            <Route path='trailers' element={<MovieTrailers />} />
           </Route>
 
           <Route path='/user-find' element={<UserFind />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.scss';
-import Comment from '../../components/moviedetail/Comment';
+import MovieComment from './MovieComment';
 
 function MovieInfo() {
   const [movieList, setMovieList] = useState([]);
@@ -9,7 +9,6 @@ function MovieInfo() {
     fetch(`http://localhost:10010/movie/detail/1`)
       .then(res => res.json())
       .then(res => setMovieList(res.data));
-    // console.log(setMovieList);
   }, []);
   return (
     <>
@@ -19,7 +18,12 @@ function MovieInfo() {
             <div className={styles.summary}>
               <div>
                 <div className={styles.detailTitle}>{item.detail_title}</div>
-                <div className={styles.detailContent}>{item.detail_content}</div>
+                {/* <div className={styles.detailContent}>{item.detail_content.split('\n')}</div> */}
+                <div className={styles.detailContent}>
+                  {item.detail_content}
+                  {/* {item.detail_content.replace('/\n/g', `<br>`)} */}
+                  {/* {item.detail_content.replace('/\n/g', `<br>`)} */}
+                </div>
               </div>
             </div>
             <div className={styles.movieInfo}>
@@ -58,8 +62,7 @@ function MovieInfo() {
           </div>
         );
       })}
-
-      {/* */}
+      <MovieComment />
       {/* <div className={styles.innerWrap}>
         <div className={styles.summary}>
           <div className={styles.summaryBox}>
@@ -106,7 +109,7 @@ function MovieInfo() {
           </div>
         </div>
       </div> */}
-      <Comment />
+      {/* <Comment movieList={movieList} /> */}
     </>
   );
   // }

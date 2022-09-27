@@ -22,7 +22,7 @@ function MovieDetail() {
       <MovieDetailContent movieList={movieList} />
       <Wrapper>
         <MovieDetailTab />
-        <Outlet />
+        <Outlet movieList={movieList} setMovieList={setMovieList} />
       </Wrapper>
     </>
   );

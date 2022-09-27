@@ -2,29 +2,27 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from './index.module.scss';
-import MovieLike from '../../components/Movie/MovieLike';
 import { BsShare, BsShareFill, BsFillQuestionCircleFill } from 'react-icons/bs';
 import { RiCheckboxMultipleLine } from 'react-icons/ri';
 import { IoTicketOutline, IoPeopleOutline } from 'react-icons/io5';
+import Likes from '../../components/MovieBtn/Like';
 
 function MovieDetailContent({ movieList }) {
   const [share, setShare] = useState(false);
-  // console.log(movieList);
   return (
     <>
       {movieList.map((item, idx) => {
         return (
           <div key={idx}>
             <div className={styles.container}>
-              <BgImg />
-              {/* <BgImg style={{ background: url('background_img')  }} {...props} /> */}
+              <BgImg backgroundImg={item.background_img} />
 
               <div className={styles.bgMask} />
               <div className={styles.content}>
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.titleEng}>{item.eng_title}</p>
                 <div className={styles.btnUtil}>
-                  <MovieLike
+                  <Likes
                     width='100px'
                     hoverBackground='#fff'
                     background='transparent'
@@ -38,9 +36,9 @@ function MovieDetailContent({ movieList }) {
                     onMouseOut={() => setShare(false)}
                   >
                     {share ? (
-                      <ShareIcon size='17' color='#006633' />
+                      <ShareIconFill size='17' color='#006633' />
                     ) : (
-                      <ShareIconFill size='17' color='#fff' />
+                      <ShareIcon size='17' color='#fff' />
                     )}
                     공유하기
                   </button>
@@ -61,16 +59,16 @@ function MovieDetailContent({ movieList }) {
                     <div className={styles.flex}>
                       <IoTicketOutline size='22' />
                       <p className={styles.number}>
-                        2<span className={styles.unit}>위({item.book_rate})</span>
+                        2<span className={styles.unit}> 위 ({item.book_rate})</span>
                       </p>
                     </div>
                   </div>
                   <div className={styles.score}>
                     {/* <p className={`${styles.tit} ${styles.flexCenter}`}> */}
                     <div className={`${styles.tit} ${styles.flexCenter}`}>
-                      누적관객수
+                      <div>누적관객수</div>
                       <div className={styles.toolTip}>
-                        <BsFillQuestionCircleFill style={{ marginLeft: 5 }} />
+                        <BsFillQuestionCircleFill />
                         <div className={styles.toolTipCon}>
                           <div className={styles.toolTipArr} />
                           누적관객 및 전일관객은 영화진흥 위원회
@@ -83,17 +81,17 @@ function MovieDetailContent({ movieList }) {
                       <IoPeopleOutline size='22' />
                       <p className={styles.number}>
                         {new Intl.NumberFormat().format(item.audience)}
-                        <span className={styles.unit}>명</span>
+                        <span className={styles.unit}> 명</span>
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className={styles.poster}>
-                  <div className={styles.posterWrap}>
-                    <GradeImg />
+                <Poster>
+                  <PosterWrap>
+                    <GradeImg gradeImg={item.grade_image} />
                     <img src={item.poster_img} alt={item.title} />
-                  </div>
-                </div>
+                  </PosterWrap>
+                </Poster>
                 <Link className={styles.ticketingBtn} to='/'>
                   예매
                 </Link>
@@ -109,7 +107,7 @@ const BgImg = styled.div`
   position: absolute;
   left: 50%;
   top: 0;
-  background: url(${props => props.background_img}) center no-repeat;
+  background: url(${props => props.backgroundImg}) center no-repeat;
 
   background-size: 100% auto;
   margin: 0 0 0 -550px;
@@ -118,18 +116,40 @@ const BgImg = styled.div`
   height: 100%;
   opacity: 0.8;
 `;
-const GradeImg = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  width: 100%;
-  height: 100%;
-`;
+
 const ShareIcon = styled(BsShare)`
   margin-right: 4px;
 `;
 const ShareIconFill = styled(BsShareFill)`
   margin-right: 4px;
+`;
+const Poster = styled.div`
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 260px;
+  height: 374px;
+`;
+const PosterWrap = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+`;
+const GradeImg = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 23px;
+  height: 23px;
+  background: url(${props => props.gradeImg}) center no-repeat;
 `;
 // const movieList = {
 //   title: '공조 2: 인터내셔날',
