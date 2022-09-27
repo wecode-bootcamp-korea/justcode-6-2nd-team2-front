@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { TbThumbUp } from 'react-icons/tb';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import SelectBox from '../../components/moviedetail/SelectBox';
+import SelectBox from '../../components/Moviedetail/SelectBox';
 
 function MovieCommentList() {
   const [movieList, setMovieList] = useState();
@@ -13,6 +13,7 @@ function MovieCommentList() {
       .then(res => setMovieList(res.data));
   }, []);
   console.log('CommentList', movieList);
+
   const [view, setView] = useState(false);
   const viewComment = () => {
     setView(!view);
@@ -34,13 +35,14 @@ function MovieCommentList() {
   return (
     <>
       <CommentWrap>
-        {movieList.map((item, idx) => {
-          return (
-            <CommentTitle key={idx}>
-              {item.title}에 대한 <span>11,611</span>개의 이야기가 있어요!
-            </CommentTitle>
-          );
-        })}
+        {movieList &&
+          movieList.map((item, idx) => {
+            return (
+              <CommentTitle key={idx}>
+                {item.title}에 대한 <span>11,611</span>개의 이야기가 있어요!
+              </CommentTitle>
+            );
+          })}
         {/* 기대평 등록 상단 */}
         <CommentBox>
           <UserImg>
@@ -56,7 +58,6 @@ function MovieCommentList() {
               <UserInput>
                 <SelectBox placeholder='평점 선택' items={options} />
                 <SelectBox placeholder='평점 선택' items={rate} />
-                \
                 <InputBox type='text' placeholder='관람평을 입력해주세요' />
               </UserInput>
             ) : (

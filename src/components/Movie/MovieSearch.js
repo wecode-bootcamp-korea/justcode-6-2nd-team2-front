@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 import { CgSearch } from 'react-icons/cg';
 
-function MovieSearch({ search, setSearch }) {
+function MovieSearch({ search, onSearch }) {
   return (
     <Search>
       <Input
         type='search'
         placeholder='영화명 검색'
-        onChange={e => {
-          // console.log(e.target.value);
-          setSearch(e.target.value);
+        onKeyPress={e => {
+          if (e.key === 'Enter') {
+            onSearch(e.target.value);
+          }
         }}
       />
-      <Button type='button'>
+      <Button
+        type='button'
+        onClick={() => {
+          onSearch(search);
+        }}
+      >
         <CgSearch className='icon' />
       </Button>
     </Search>
@@ -22,12 +28,11 @@ function MovieSearch({ search, setSearch }) {
 const Search = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   width: 230px;
   height: 36px;
   margin: 0;
-  /* padding: 0 31px 0 0; */
-  align-items: center;
 
   border: 1px solid #d8d9db;
   border-radius: 3px;
@@ -41,8 +46,7 @@ const Input = styled.input`
   background-color: transparent;
   border: 0;
   outline: none;
-  caret-color: #fff;
-  /* color: #fff; */
+  caret-color: #000;
 `;
 
 const Button = styled.button`
@@ -51,8 +55,6 @@ const Button = styled.button`
 
   border: none;
   background-color: transparent;
-  /* url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png)
-    no-repeat center; */
 
   .icon {
     vertical-align: middle;

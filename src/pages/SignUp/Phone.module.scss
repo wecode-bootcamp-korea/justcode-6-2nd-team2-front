@@ -1,0 +1,40 @@
+.phoneContainer {
+  width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  .top {
+    display: flex;
+    padding: 15px 20px 10px 20px;
+    justify-content: space-between;
+    background-color: #036635;
+    p {
+      font-size: 1.1em;
+      color: #fff;
+    }
+    button {
+      background-color: #036635;
+      border: 0;
+      font-size: 1.3em;
+    }
+  }
+  .contentBox {
+    padding: 30px;
+    .inputBox {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      .title {
+        width: 100%;
+        text-align: start;
+        display: block;
+        line-height: 30px;
+      }
+      input {
+        width: 100%;
+        line-height: 30px;
+        &::placeholder {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+}

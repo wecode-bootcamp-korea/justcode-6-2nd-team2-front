@@ -5,7 +5,6 @@ import styles from './index.module.scss';
 import { BsShare, BsShareFill, BsFillQuestionCircleFill } from 'react-icons/bs';
 import { RiCheckboxMultipleLine } from 'react-icons/ri';
 import { IoTicketOutline, IoPeopleOutline } from 'react-icons/io5';
-import Likes from '../../components/MovieBtn/Like';
 
 function MovieDetailContent({ movieList }) {
   const [share, setShare] = useState(false);
@@ -22,14 +21,7 @@ function MovieDetailContent({ movieList }) {
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.titleEng}>{item.eng_title}</p>
                 <div className={styles.btnUtil}>
-                  <Likes
-                    width='100px'
-                    hoverBackground='#fff'
-                    background='transparent'
-                    fontColor='#fff'
-                    hoverColor='#000'
-                    iconColor='#006633'
-                  />
+                  {/* 좋아요 */}
                   <button
                     className={styles.shareBtn}
                     onMouseOver={() => setShare(true)}

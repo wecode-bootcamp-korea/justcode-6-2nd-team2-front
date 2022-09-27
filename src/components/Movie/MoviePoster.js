@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function MoviePoster() {
+function MoviePoster({ data }) {
   return (
     <>
       <Div>
         <div className='wrap'>
           <div className='poster'>
-            <Rank>1</Rank>
-            <Poster alt='포스터 이미지' src={require('../../assets/poster.png')} />
+            <Rank>{data.id}</Rank>
+            <Poster alt='포스터 이미지' src={data.poster_img} />
           </div>
           <div className='posterHover'>
             <DetailLink to='moviedetail'>
               <div className='content'>
-                <div className='summary'>늑댓안양 내용 어쩌구 저쩌구</div>
-                <div className='reviewRate'>9.1</div>
+                <div className='summary'>{data.detail_content}</div>
+                <div className='reviewScore'>
+                  <div className='review'>
+                    <span>관람평</span>
+                  </div>
+                  <div className='score'>{data.reviews_rate}</div>
+                </div>
               </div>
             </DetailLink>
           </div>
@@ -31,7 +36,8 @@ const Div = styled.div`
   }
 
   .poster {
-    width: 100%;
+    width: 230px;
+    height: 331px;
   }
 
   .wrap:hover > .posterHover {
@@ -39,24 +45,50 @@ const Div = styled.div`
     overflow: hidden;
   }
 
-  .content {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    color: #fff;
-  }
-
   .posterHover {
-    display: none;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
     position: absolute;
+    display: none;
+    width: 230px;
+    height: 331px;
     top: 0;
     left: 0;
 
+    background: rgba(0, 0, 0, 0.7);
+
     &:hover {
       cursor: pointer;
+    }
+
+    .content {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      color: #fff;
+
+      .summary {
+        width: 100%;
+        height: 155px;
+        overflow: hidden;
+        text-align: justify;
+        line-height: 130%;
+      }
+
+      .reviewScore {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .score {
+          margin-left: 10px;
+          font-size: 25px;
+          color: #008833;
+        }
+      }
     }
   }
 `;

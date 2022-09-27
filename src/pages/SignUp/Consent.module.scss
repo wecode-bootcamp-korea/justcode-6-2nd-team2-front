@@ -23,14 +23,23 @@
     }
     div > .consentBox {
       .contentBox {
+        position: relative;
+        overflow: scroll;
+        height: 180px;
         padding: 6px;
         margin-top: 10px;
         margin-bottom: 20px;
         border: 1px solid #dedede;
-
-        .boxText {
-          font-size: 0.9em;
-          padding: 15px;
+        .borderBox {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          .boxText {
+            font-size: 0.9em;
+            padding: 15px;
+          }
         }
       }
     }

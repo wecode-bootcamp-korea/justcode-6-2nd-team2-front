@@ -18,12 +18,7 @@ function MovieInfo() {
             <div className={styles.summary}>
               <div>
                 <div className={styles.detailTitle}>{item.detail_title}</div>
-                {/* <div className={styles.detailContent}>{item.detail_content.split('\n')}</div> */}
-                <div className={styles.detailContent}>
-                  {item.detail_content}
-                  {/* {item.detail_content.replace('/\n/g', `<br>`)} */}
-                  {/* {item.detail_content.replace('/\n/g', `<br>`)} */}
-                </div>
+                <div className={styles.detailContent}>{item.detail_content}</div>
               </div>
             </div>
             <div className={styles.movieInfo}>

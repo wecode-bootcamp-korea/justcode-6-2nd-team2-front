@@ -14,22 +14,24 @@
         width: 40%;
         padding-top: 40px;
         .leftBottom {
-          width: 100%;
           display: flex;
           justify-content: space-between;
           .leftIcon {
             display: flex;
+            .iconPadding {
+              margin-right: 10px;
+            }
           }
           .mainMenuContainer {
-            margin: 0 auto;
+            width: 100%;
             .mainMenu {
-              margin: 0 auto;
               display: flex;
-              justify-content: space-between;
-              .mainMenuList {
-                padding-left: 34px;
-                padding-right: 34px;
+              justify-content: space-around;
+              .linkText {
+                color: #444;
+                text-decoration: none;
               }
+
               .mouseoverTab {
                 position: absolute;
                 top: 0;
@@ -61,6 +63,10 @@
           height: 50%;
           display: flex;
           justify-content: space-between;
+          .linkTextR {
+            color: #444;
+            text-decoration: none;
+          }
           .rightIcon {
             display: flex;
           }
@@ -131,21 +137,22 @@
         width: 40%;
         padding-top: 40px;
         .leftBottom {
-          width: 100%;
           display: flex;
           justify-content: space-between;
           .leftIcon {
             display: flex;
+            .iconPadding {
+              margin-right: 10px;
+            }
           }
           .mainMenuContainer {
-            margin: 0 auto;
+            width: 100%;
             .mainMenu {
-              margin: 0 auto;
               display: flex;
-              justify-content: space-between;
-              .mainMenuList {
-                padding-left: 34px;
-                padding-right: 34px;
+              justify-content: space-around;
+              .mainlinkText {
+                color: #fff;
+                text-decoration: none;
               }
               .mouseoverTab {
                 position: absolute;
@@ -178,6 +185,10 @@
           height: 50%;
           display: flex;
           justify-content: space-between;
+          .mainTextR {
+            color: #fff;
+            text-decoration: none;
+          }
           .rightIcon {
             display: flex;
           }

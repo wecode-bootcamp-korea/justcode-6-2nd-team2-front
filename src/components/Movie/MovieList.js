@@ -2,19 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import ListViewMore from './ListViewMore';
 
-function MovieList({ cardList }) {
+function MovieList({ movieList, onLoadMore, likeLoader, alertModal, setAlertModal }) {
   return (
     <>
       <CardList>
-        {cardList.map(card => {
+        {movieList.map(card => {
           return (
             <li key={card.id}>
-              <MovieCard />
+              <MovieCard
+                data={card}
+                likeLoader={likeLoader}
+                alertModal={alertModal}
+                setAlertModal={setAlertModal}
+              />
             </li>
           );
         })}
       </CardList>
+      <ListViewMore onLoadMore={onLoadMore} />
     </>
   );
 }

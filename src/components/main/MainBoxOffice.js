@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -5,10 +6,10 @@ import MoviePoster from '../Movie/MoviePoster';
 import MovieLike from '../Movie/MovieLike';
 import MovieBook from '../Movie/MovieBook';
 
-function MainBoxOffice({ cardList }) {
+function MainBoxOffice({ movieList }) {
   return (
     <BoxOffice>
-      {cardList.map(card => {
+      {movieList.map(card => {
         return (
           <li key={card.id}>
             <List>

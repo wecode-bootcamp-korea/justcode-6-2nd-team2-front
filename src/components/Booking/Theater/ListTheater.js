@@ -159,6 +159,44 @@ function ListMovie({ type }) {
     setSelect(direct);
   };
 
+  // useEffect(() => {
+  //   fetch('http://localhost:10010/booking/schedule', {
+  //     method: 'get',
+  //   })
+  //     .then(res => res.json())
+  //     .then(mock => {
+  //       let areaName;
+  //       let theaterName;
+  //       let mockData = mock.data;
+  //       let test = [];
+  //       let newTest = [];
+
+  //       for (let j = 0; j < mock.length; j++) {
+  //         test.push([mock[j].area_id, mock[j].area_name]);
+  //         let set = new Set(test);
+  //         newTest = [...set];
+  //       }
+
+  //       console.log();
+
+  //       // for(let j=0; j<mock.length; j++){
+  //       //   for(let i=0; i<data.length; i++){
+  //       //     if(data[i].areaName === mock[j].area_name){
+
+  //       //     }
+  //       //   }
+  //       // }
+
+  //       // let area = {
+  //       //   areaId: '',
+  //       //   areaName: '',
+  //       //   theaterId: [],
+  //       //   theaterName: [],
+  //       // }
+  //       // setData([...data, area]);
+  //     });
+  // }, []);
+
   useEffect(() => {
     fetch('./data/booking/theater.json', {
       method: 'get',
