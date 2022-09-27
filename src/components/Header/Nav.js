@@ -3,7 +3,20 @@ import { AiFillCloseCircle, AiOutlineSearch, AiOutlineMenu, AiOutlineUser } from
 import { BsCalendar4Week } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, logout, mainLogo }) {
+function Nav({
+  Logo,
+  subNavMenu,
+  openModal,
+  tabClick,
+  location,
+  setLoginModal,
+  logout,
+  mainLogo,
+  setSubNavMenu,
+}) {
+  const tabClose = () => {
+    setSubNavMenu(false);
+  };
   return (
     <>
       <ul className={styles.navBox}>
@@ -25,7 +38,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
               <ul className={styles.mainMenu}>
                 <li>
                   <Link
-                    to={'/movie'}
+                    to='/movie'
+                    onClick={tabClose}
                     className={
                       location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
                     }
@@ -35,7 +49,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
                 </li>
                 <li>
                   <Link
-                    to={'/Booking'}
+                    to='/Booking'
+                    onClick={tabClose}
                     className={
                       location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
                     }
@@ -45,7 +60,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
                 </li>
                 <li>
                   <Link
-                    to={'/cinema'}
+                    to='/cinema'
+                    onClick={tabClose}
                     className={
                       location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
                     }
@@ -58,7 +74,7 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
           </ul>
         </li>
         <li>
-          <Link to='/'>
+          <Link to='/' onClick={tabClose}>
             <img
               src={location.pathname === '/' ? `${mainLogo}` : `${Logo}`}
               className={styles.navLogo}
@@ -67,7 +83,7 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
         </li>
         <li className={styles.right}>
           <ul className={styles.rightTop}>
-            <li setLoginModal={setLoginModal}>
+            <li setLoginModal={setLoginModal} onClick={tabClose}>
               {localStorage.getItem('token') ? (
                 <span onClick={logout}>로그아웃</span>
               ) : (
@@ -77,6 +93,7 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
             <li>
               <Link
                 to='/signup'
+                onClick={tabClose}
                 style={
                   location.pathname === '/'
                     ? { textDecoration: 'none', color: '#fff' }
@@ -89,6 +106,7 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
             <li>
               <Link
                 to='/Booking'
+                onClick={tabClose}
                 style={
                   location.pathname === '/'
                     ? { textDecoration: 'none', color: '#fff' }
@@ -102,7 +120,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
           <ul className={styles.rightBottom}>
             <li>
               <Link
-                to={'/event'}
+                to='/event'
+                onClick={tabClose}
                 className={
                   location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
                 }
@@ -112,7 +131,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
             </li>
             <li>
               <Link
-                to={'/store'}
+                to='/store'
+                onClick={tabClose}
                 className={
                   location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
                 }
@@ -122,7 +142,8 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
             </li>
             <li>
               <Link
-                to={'/benefit'}
+                to='/benefit'
+                onClick={tabClose}
                 className={
                   location.pathname === '/' ? `${styles.mainTextR}` : `${styles.linkTextR}`
                 }
@@ -131,10 +152,10 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
               </Link>
             </li>
             <li className={styles.rightIcon}>
-              <div>
+              <div onClick={tabClose}>
                 <BsCalendar4Week className={styles.iconSize} size='26' />
               </div>
-              <div>
+              <div onClick={tabClose}>
                 <AiOutlineUser className={styles.iconSize} size='26' />
               </div>
             </li>
