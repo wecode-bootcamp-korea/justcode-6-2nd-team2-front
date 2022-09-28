@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import styles from './Login.module.scss';
 import Kakao from './Kakao';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -15,6 +13,10 @@ function Login({ setModal, modal }) {
   const [isValid, setIsValid] = useState(false);
 
   const [btnCol, setBtnCol] = useState(`${styles.loginBtn}`);
+
+  const closeBtn = () => {
+    setModal(false);
+  };
 
   //onChange=> e.target.value
   const idHandler = e => {
@@ -70,7 +72,7 @@ function Login({ setModal, modal }) {
             <dt className={styles.loginHeader}>
               <p>로그인</p>
               <button
-                onClick={() => setModal(false)}
+                onClick={closeBtn}
                 style={{
                   border: 'none',
                   backgroundColor: '#036635',
