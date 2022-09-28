@@ -16,11 +16,14 @@ function MainBoxOffice({ movieList }) {
               <MovieLike
                 data={card}
                 background='rgba(0,0,0,0.2)'
-                color='#fff'
+                color='#ebebeb'
                 fontSize='15px'
                 fontWeight='400'
-                hoverBackground='#ebebeb'
-                iconColor='#006633'
+                hoverBackground='transparent'
+                offLogoColor='#ebebeb'
+                offLogoSize='20px'
+                onLogoColor='#006633'
+                onLogoSize='20px'
               />
               <MovieBook />
             </Button>
@@ -33,13 +36,13 @@ function MainBoxOffice({ movieList }) {
 
 const BoxOffice = styled.ol`
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
 `;
 
 const List = styled.li`
   margin: 0 20px;
-  padding: 0;
 `;
 
 const Button = styled.div`

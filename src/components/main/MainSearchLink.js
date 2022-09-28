@@ -56,7 +56,8 @@ const SearchLink = styled.div`
   height: 75px;
   margin: 50px 0 0 0;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
 
   li {
     list-style: none;

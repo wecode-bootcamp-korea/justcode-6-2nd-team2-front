@@ -30,7 +30,7 @@ function MovieContent() {
           category: 'domestic',
         };
       }
-      case '/movie/international': {
+      case '/movie/abroad': {
         return {
           category: 'international',
         };
