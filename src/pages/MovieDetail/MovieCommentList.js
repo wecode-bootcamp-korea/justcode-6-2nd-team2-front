@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { TbThumbUp } from 'react-icons/tb';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import SelectBox from '../../components/Moviedetail/SelectBox';
+import SelectBox from '../../components/moviedetail/SelectBox';
 
 function MovieCommentList() {
   const [movieList, setMovieList] = useState();
