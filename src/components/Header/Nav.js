@@ -36,8 +36,8 @@ function Nav({
                 <AiOutlineSearch size='26' className={styles.iconPadding} />
               </div>
             </li>
-            <li className={styles.mainMenuContainer}>
-              <CategoryL location={location} tabClose={tabClose} />
+            <li className={styles.mainMenuContainer} onClick={tabClose}>
+              <CategoryL location={location} />
             </li>
           </ul>
         </li>
@@ -59,9 +59,13 @@ function Nav({
               }
             >
               {localStorage.getItem('token') ? (
-                <span onClick={logout}>로그아웃</span>
+                <span onClick={logout} className={styles.mouseStyle}>
+                  로그아웃
+                </span>
               ) : (
-                <span onClick={openModal}>로그인</span>
+                <span onClick={openModal} className={styles.mouseStyle}>
+                  로그인
+                </span>
               )}
             </li>
             <li>
@@ -92,15 +96,19 @@ function Nav({
             </li>
           </ul>
           <ul className={styles.rightBottom}>
-            <li className={styles.mainMenuContainerR}>
-              <CategoryR location={location} tabClose={tabClose} />
+            <li className={styles.mainMenuContainerR} onClick={tabClose}>
+              <CategoryR location={location} />
             </li>
             <li className={styles.rightIcon}>
               <div onClick={tabClose}>
-                <BsCalendar4Week className={styles.iconSize} size='26' />
+                <NavLink to='/TimeTable'>
+                  <BsCalendar4Week className={styles.iconSize} size='26' />
+                </NavLink>
               </div>
               <div onClick={tabClose}>
-                <AiOutlineUser className={styles.iconSize} size='26' />
+                <NavLink to='/mypage'>
+                  <AiOutlineUser className={styles.iconSize} size='26' />
+                </NavLink>
               </div>
             </li>
           </ul>

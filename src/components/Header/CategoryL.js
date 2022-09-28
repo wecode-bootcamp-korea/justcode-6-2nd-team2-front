@@ -1,35 +1,34 @@
 import { NavLink } from 'react-router-dom';
 import styles from './CategoryL.module.scss';
 
-function CategoryL({ tabClose, location }) {
+function CategoryL({ location }) {
   return (
     <div className={location.pathname === '/' ? `${styles.mainCategoryL}` : `${styles.CategoryL}`}>
       <div className={styles.categoryBox}>
         <div className={styles.subMenuView}></div>
         <div className={styles.navBox}>
+          <div className={styles.hoverNavActive}>
+            <div className={styles.subMenuBox}>
+              <NavLink to='/movie' className={styles.menuText}>
+                전체영화
+              </NavLink>
+              <NavLink to='/movie/now' className={styles.menuText}>
+                현재상영작
+              </NavLink>
+              <NavLink to='/movie/upcoming' className={styles.menuText}>
+                개봉예정작
+              </NavLink>
+            </div>
+          </div>
           <div className={styles.menuBox}>
             <NavLink
               to='/movie'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
               }
             >
               영화
             </NavLink>
-          </div>
-          <div className={styles.hoverNavActive}>
-            <div className={styles.subMenuBox}>
-              <NavLink to='/movie' className={styles.menuText}>
-                전체영화
-              </NavLink>
-              <NavLink to='/movie/domestic' className={styles.menuText}>
-                국내영화
-              </NavLink>
-              <NavLink to='/movie/abroad' className={styles.menuText}>
-                해외영화
-              </NavLink>
-            </div>
           </div>
         </div>
       </div>
@@ -39,7 +38,6 @@ function CategoryL({ tabClose, location }) {
           <div className={styles.menuBox}>
             <NavLink
               to='/Booking'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
               }
@@ -65,7 +63,6 @@ function CategoryL({ tabClose, location }) {
           <div className={styles.menuBox}>
             <NavLink
               to='/cinema'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkText}` : `${styles.linkText}`
               }

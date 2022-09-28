@@ -14,6 +14,10 @@ function Login({ setModal, modal }) {
 
   const [btnCol, setBtnCol] = useState(`${styles.loginBtn}`);
 
+  const closeBtn = () => {
+    setModal(false);
+  };
+
   //onChange=> e.target.value
   const idHandler = e => {
     const idValue = e.target.value;
@@ -68,7 +72,7 @@ function Login({ setModal, modal }) {
             <dt className={styles.loginHeader}>
               <p>로그인</p>
               <button
-                onClick={() => setModal(false)}
+                onClick={closeBtn}
                 style={{
                   border: 'none',
                   backgroundColor: '#036635',

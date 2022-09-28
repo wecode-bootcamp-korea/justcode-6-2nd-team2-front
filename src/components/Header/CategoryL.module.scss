@@ -32,12 +32,11 @@
         width: 300px;
         height: 80px;
         position: absolute;
-        top: 0;
+        top: 30px;
         left: 0;
-        padding-top: 70px;
-        // padding-left: -80px;
-        // background-color: aquamarine;
+        padding-top: 40px;
         display: none;
+        z-index: 1;
         .subMenuBox {
           text-align: start;
           .menuText {

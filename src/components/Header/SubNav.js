@@ -4,30 +4,22 @@ import styles from './SubNav.module.scss';
 import TabNav from './TabNav';
 
 function SubNav({ setSubNavMenu }) {
-  // const [subArr, setSubArr] = useState([]);
+  const [subArr, setSubArr] = useState([]);
   const remove = () => {
     setSubNavMenu(false);
   };
-  // useEffect(() => {
-  //   fetch('data/subNavData.json')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setSubArr(data.subNavData);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch('/data/subNavData.json')
+      .then(res => res.json())
+      .then(data => {
+        setSubArr(data.subNavData);
+      });
+  }, []);
 
   return (
     <div className={styles.subNavContainer}>
       <div className={styles.sitemap}>SITEMAP</div>
-      {/* <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p>
-      <p>list</p> */}
+
       {subArr.map(data => {
         return (
           <div key={data.id} className={styles.subNavBox}>
@@ -43,116 +35,3 @@ function SubNav({ setSubNavMenu }) {
 }
 
 export default SubNav;
-
-const subArr = [
-  {
-    id: 1,
-    title: '영화',
-    url: '/movie',
-    content: [
-      { contentId: 1, url: '/movie', list: '전체영화' },
-      { contentId: 2, url: '/movie', list: '큐레이션' },
-      { contentId: 3, url: '/movie', list: '영화제' },
-      { contentId: 4, url: '/movie', list: '무비포스트' },
-    ],
-  },
-  {
-    id: 2,
-    title: '예매',
-    url: '/Booking',
-    content: [
-      { contentId: 1, url: '/Booking', list: '빠른예매' },
-      { contentId: 2, url: '/Booking/TimeTable', list: '상영시간표' },
-      { contentId: 3, url: '/Booking', list: '더 부티크 프라이빗 예매' },
-    ],
-  },
-  {
-    id: 3,
-    title: '극장',
-    url: '/cinema',
-    content: [
-      { contentId: 1, url: '/cinema', list: '전체극장' },
-      { contentId: 2, url: '/cinema', list: '특별관' },
-    ],
-  },
-  {
-    id: 4,
-    title: '이벤트',
-    url: '/event',
-    content: [
-      { contentId: 1, url: '/event', list: '진행중 이벤트' },
-      { contentId: 2, url: '/event', list: '지난 이벤트' },
-      { contentId: 3, url: '/event', list: '당첨자발표' },
-    ],
-  },
-  {
-    id: 5,
-    title: '스토어',
-    url: '/store',
-    content: [
-      { contentId: 1, url: '/store', list: '새로운 상품' },
-      { contentId: 2, url: '/store', list: '메가티켓' },
-      { contentId: 3, url: '/store', list: '메가찬스' },
-      { contentId: 4, url: '/store', list: '팝콘/음료/굿즈' },
-    ],
-  },
-  {
-    id: 6,
-    title: '나의 메가박스',
-    url: '/mypage',
-    content: [
-      { contentId: 1, url: '/mypage', list: '나의 메가박스홈' },
-      { contentId: 2, url: '/mypage', list: '예매/구매내역' },
-      { contentId: 6, url: '/mypage', list: '멤버십포인트' },
-      { contentId: 7, url: '/mypage', list: '나의 무비스토리' },
-      { contentId: 10, url: '/mypage', list: '회원정보' },
-    ],
-  },
-  {
-    id: 7,
-    title: '혜택',
-    url: 'benefit',
-    content: [
-      { contentId: 1, url: 'benefit', list: '멤버십 안내' },
-      { contentId: 2, url: 'benefit', list: 'VIP LOUNGE' },
-      { contentId: 3, url: 'benefit', list: '제휴/할인' },
-    ],
-  },
-  {
-    id: 8,
-    title: '고객센터',
-    content: [
-      { contentId: 1, list: '고객센터 홈' },
-      { contentId: 2, list: '자주묻는 질문' },
-      { contentId: 3, list: '공지사항' },
-      { contentId: 4, list: '1:1문의' },
-      { contentId: 5, list: '단체/대관문의' },
-      { contentId: 6, list: '분실물문의' },
-    ],
-  },
-  {
-    id: 9,
-    title: '회사소개',
-    content: [
-      { contentId: 1, list: '메가박스 소개' },
-      { contentId: 2, list: '사회공헌' },
-      { contentId: 3, list: '홍보자료' },
-      { contentId: 4, list: '1:1문의' },
-      { contentId: 5, list: '제휴/부대사업문의' },
-      { contentId: 6, list: '온라인제보센터' },
-      { contentId: 7, list: 'IR자료' },
-      { contentId: 8, list: '인재채용' },
-      { contentId: 9, list: '윤리경영' },
-    ],
-  },
-  {
-    id: 10,
-    title: '이용정책',
-    content: [
-      { contentId: 1, list: '이용약관' },
-      { contentId: 2, list: '위치기반서비스 이용약관' },
-      { contentId: 3, list: '개인정보처리방침' },
-      { contentId: 4, list: '스크린수배정관한기준' },
-    ],
-  },
-];

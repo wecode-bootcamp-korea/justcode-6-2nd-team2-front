@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './CategoryR.module.scss';
 
-function CategoryR({ tabClose, location }) {
+function CategoryR({ location }) {
   return (
     <div className={location.pathname === '/' ? `${styles.mainCategoryR}` : `${styles.CategoryR}`}>
       <div className={styles.categoryRBox}>
@@ -10,7 +10,6 @@ function CategoryR({ tabClose, location }) {
           <div className={styles.menuBoxR}>
             <NavLink
               to='/event'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkTextR}` : `${styles.linkTextR}`
               }
@@ -33,7 +32,6 @@ function CategoryR({ tabClose, location }) {
           <div className={styles.menuBoxR}>
             <NavLink
               to='/store'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkTextR}` : `${styles.linkTextR}`
               }
@@ -49,7 +47,6 @@ function CategoryR({ tabClose, location }) {
           <div className={styles.menuBoxR}>
             <NavLink
               to='/benefit'
-              onClick={tabClose}
               className={
                 location.pathname === '/' ? `${styles.mainlinkTextR}` : `${styles.linkTextR}`
               }
