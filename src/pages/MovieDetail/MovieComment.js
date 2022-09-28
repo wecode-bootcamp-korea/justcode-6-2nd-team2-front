@@ -1,11 +1,10 @@
 import React from 'react';
-import Comment from '../../components/moviedetail/Comment';
+import MovieCommentList from './MovieCommentList';
 
 function MovieComment() {
   return (
     <>
-      MovieComment
-      <Comment />
+      <MovieCommentList />
     </>
   );
 }

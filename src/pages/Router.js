@@ -16,13 +16,14 @@ import SignUp from './SignUp/SignUp';
 import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
 import MovieInfo from './MovieDetail/MovieInfo';
-import MovieComment from './MovieDetail/MovieComment';
+// import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
-import MovieTrailer from './MovieDetail/MovieTrailer';
+import MovieTrailers from './MovieDetail/MovieTrailers';
 import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
 import ListTheater from '../components/Booking/Theater/ListTheater';
+import MovieComment from './MovieDetail/MovieComment';
 
 function Router() {
   return (
@@ -44,11 +45,19 @@ function Router() {
 
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
+<<<<<<< HEAD
             {/* <Route index element={<MovieInfo />} /> */}
             <Route path='movieinfo' element={<MovieInfo />} />
             <Route path='comment' element={<MovieComment />} />
             <Route path='moviepost' element={<MoviePost />} />
             <Route path='trailer' element={<MovieTrailer />} />
+=======
+            <Route index element={<MovieInfo />} />
+            <Route index path='movieinfo' element={<MovieInfo />} />
+            <Route path='comment' element={<MovieComment />} />
+            <Route path='moviepost' element={<MoviePost />} />
+            <Route path='trailers' element={<MovieTrailers />} />
+>>>>>>> main
           </Route>
           {/* <Route path='/theater' element={<ListTheater />} /> */}
 
