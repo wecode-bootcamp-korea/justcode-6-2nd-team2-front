@@ -41,13 +41,7 @@ function Router() {
             <Route path='domestic' element={<MovieContent />} />
             <Route path='abroad' element={<MovieContent />} />
           </Route>
-          {/* 영화 상세페이지 */}
-          <Route path='/moviedetail' end element={<MovieDetail />}>
-            <Route index element={<MovieInfo />} />
-            <Route path='comment' element={<MovieComment />} />
-            <Route path='moviepost' element={<MoviePost />} />
-            <Route path='trailer' element={<MovieTrailer />} />
-          </Route>
+
           {/* 영화 상세페이지 */}
           <Route path='/moviedetail' end element={<MovieDetail />}>
             {/* <Route index element={<MovieInfo />} /> */}

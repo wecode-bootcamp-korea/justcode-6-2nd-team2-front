@@ -305,32 +305,7 @@ const locationArr = [
       },
     ],
   },
-  {
-    id: 13,
-    url: '/moviedetail/comment',
-    location: [
-      {
-        id: 1,
-        url: '/',
-        link: <AiTwotoneHome color='#999' />,
-      },
-      {
-        id: 2,
-        url: '/movie',
-        link: '영화',
-      },
-      {
-        id: 3,
-        url: '/moviedetail',
-        link: ' > 상세페이지',
-      },
-      {
-        id: 4,
-        url: '/moviedetail/comment',
-        link: ' > 기대평',
-      },
-    ],
-  },
+
   {
     id: 14,
     url: '/moviedetail/moviepost',
