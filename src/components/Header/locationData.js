@@ -24,7 +24,7 @@ const locationArr = [
   },
   {
     id: 2,
-    url: '/movie/domestic',
+    url: '/movie/now',
     location: [
       {
         id: 1,
@@ -38,14 +38,14 @@ const locationArr = [
       },
       {
         id: 3,
-        url: '/movie/domestic',
-        link: ' > 국내영화',
+        url: '/movie/now',
+        link: ' > 현재상영작',
       },
     ],
   },
   {
     id: 3,
-    url: '/movie/abroad',
+    url: '/movie/upcoming',
     location: [
       {
         id: 1,
@@ -59,8 +59,8 @@ const locationArr = [
       },
       {
         id: 3,
-        url: '/movie/abroad',
-        link: ' > 해외영화 ',
+        url: '/movie/upcoming',
+        link: ' > 개봉예정작 ',
       },
     ],
   },
@@ -355,6 +355,69 @@ const locationArr = [
         id: 4,
         url: '/moviedetail/trailer',
         link: ' > 예고편',
+      },
+    ],
+  },
+  {
+    id: 16,
+    url: '/movie/domestic',
+    location: [
+      {
+        id: 1,
+        url: '/',
+        link: <AiTwotoneHome color='#999' />,
+      },
+      {
+        id: 2,
+        url: '/movie',
+        link: '영화',
+      },
+      {
+        id: 3,
+        url: '/movie/domestic',
+        link: ' > 국내영화 ',
+      },
+    ],
+  },
+  {
+    id: 17,
+    url: '/movie/abroad',
+    location: [
+      {
+        id: 1,
+        url: '/',
+        link: <AiTwotoneHome color='#999' />,
+      },
+      {
+        id: 2,
+        url: '/movie',
+        link: '영화',
+      },
+      {
+        id: 3,
+        url: '/movie/abroad',
+        link: ' > 해외영화 ',
+      },
+    ],
+  },
+  {
+    id: 18,
+    url: '/TimeTable',
+    location: [
+      {
+        id: 1,
+        url: '/',
+        link: <AiTwotoneHome color='#999' />,
+      },
+      {
+        id: 2,
+        url: '/Booking',
+        link: '예매',
+      },
+      {
+        id: 3,
+        url: '/TimeTable',
+        link: ' > 상영시간표 ',
       },
     ],
   },

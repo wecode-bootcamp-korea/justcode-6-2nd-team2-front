@@ -7,22 +7,34 @@ import { useNavigate } from 'react-router-dom';
 function Info() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  const [user, setUser] = useState('');
-  // const [user, setUser] = useState('');ㄴ
-  // const [birth, setBirth] = useState('');
+
   const email = useRef();
   const idValue = useRef();
   const password = useRef();
   const pwConfirm = useRef();
 
   //id validation
-  const Validation = () => {
-    const account_id = 'roy_oh0910';
-    if (idValue.current.value === account_id) {
-      alert('사용할수 없는 아이디입니다.');
-    } else {
-      alert('사용할수 있는 아이디입니다.');
-    }
+  const Validation = e => {
+    e.preventDefault();
+    fetch('http://localhost:10010/user/idcheck', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        account_id: idValue.current.value,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        if (result.message === 'USER_ALREADY_EXISTS') {
+          alert('실패');
+          idValue.current.value = '';
+        } else {
+          alert('성공');
+        }
+      });
   };
 
   const openModal = () => {
@@ -62,13 +74,12 @@ function Info() {
       .then(res => res.json())
       .then(res => {
         if (res.message === 'USER_CREATED') {
-          // console.log(res);
           alert('성공');
           navigate('/signup/complete');
         } else {
           alert('가입실패');
-          // navigate('');
-          // window.localStorage.clear();
+          navigate('');
+          window.localStorage.clear();
         }
       });
   };
@@ -98,13 +109,15 @@ function Info() {
             <div>
               <input
                 type='text'
-                id='id'
+                id='userId'
                 ref={idValue}
+                name='userId'
                 minLength='8'
                 maxLength='12'
+                // errorMessage='영문,숫자 조합 8~12자 이상 입력하세요.'
                 placeholder='영문, 숫자 조합(8~12자)'
               />
-              <span className={styles.validationMsg}>message</span>
+              {/* <span className={styles.validationMsg}>message</span> */}
             </div>
             <span className={styles.checkBtn} onClick={Validation}>
               중복확인
@@ -120,6 +133,7 @@ function Info() {
               id='text'
               ref={password}
               maxLength='20'
+              // errorMessage='영문,숫자 특수기호 중 2가지 이상 조합으로 입력하세요.'
               placeholder='영문, 숫자, 특수기호 중 2가지 이상 조합'
             />
           </div>
@@ -132,6 +146,7 @@ function Info() {
               ref={pwConfirm}
               id='text'
               maxLength='20'
+              // errorMessage='비밀번호가 일치하지 않습니다.'
               placeholder='영문, 숫자, 특수기호 중 2가지 이상 조합'
             />
           </div>
@@ -139,7 +154,13 @@ function Info() {
             <label for='email' className={styles.title}>
               이메일 주소
             </label>
-            <input type='text' id='email' ref={email} placeholder='이메일 주소를 입력해 주세요' />
+            <input
+              type='text'
+              id='email'
+              ref={email}
+              // errorMessage='이메일 주소를 확인하세요'
+              placeholder='이메일 주소를 입력해 주세요'
+            />
           </div>
           <div className={styles.inputKiosk}>
             <p className={styles.kioskTitle}>
