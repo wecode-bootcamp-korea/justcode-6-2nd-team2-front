@@ -9,11 +9,23 @@ import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     axios.get('http://localhost:10010/movie').then(response => {
       setMovieList(response.data.data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:10010/movie/movie/list?search').then(response => {
+  //     console.log(response.data);
+  //   });
+  // });
+
+  // const onSearch = value => {
+  //   setSearch(value);
+  // }
 
   return (
     <MainPage>
@@ -30,7 +42,7 @@ function Main() {
           <section>
             <MainBoxOffice movieList={movieList} />
           </section>
-          <MainSearchLink />
+          <MainSearchLink search={search} setSearch={setSearch} />
         </Div>
       </div>
     </MainPage>
