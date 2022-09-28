@@ -31,7 +31,13 @@ function MainSearchLink() {
   ]);
   return (
     <SearchLink>
-      <MovieSearch />
+      <MovieSearch
+        border='none'
+        borderBottom='1px solid #ebebeb'
+        borderRadius='0px'
+        color='#fff'
+        caretColor='#fff'
+      />
       {link.map(el => {
         return (
           <li key={el.id}>

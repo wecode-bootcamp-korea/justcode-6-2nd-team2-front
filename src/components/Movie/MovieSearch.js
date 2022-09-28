@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { CgSearch } from 'react-icons/cg';
 
-function MovieSearch({ search, onSearch }) {
+function MovieSearch({ search, onSearch, border, borderRadius, borderBottom, color, caretColor }) {
   return (
-    <Search>
+    <Search border={border} borderBottom={borderBottom} borderRadius={borderRadius}>
       <Input
+        color={color}
+        caretColor={caretColor}
         type='search'
         placeholder='영화명 검색'
         onKeyPress={e => {
@@ -34,8 +36,9 @@ const Search = styled.div`
   height: 36px;
   margin: 0;
 
-  border: 1px solid #d8d9db;
-  border-radius: 3px;
+  border: ${props => props.border};
+  border-bottom: ${props => props.borderBottom};
+  border-radius: ${props => props.borderRadius};
 `;
 
 const Input = styled.input`
@@ -46,7 +49,9 @@ const Input = styled.input`
   background-color: transparent;
   border: 0;
   outline: none;
-  caret-color: #000;
+
+  color: ${props => props.color};
+  caret-color: ${props => props.caretColor};
 `;
 
 const Button = styled.button`

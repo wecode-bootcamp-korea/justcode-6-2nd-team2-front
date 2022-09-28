@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { HiHeart } from 'react-icons/hi';
+// import { HiHeart } from 'react-icons/hi';
 import { HiOutlineHeart } from 'react-icons/hi';
 
 import AlertModal from '../AlertModal/AlertModal';

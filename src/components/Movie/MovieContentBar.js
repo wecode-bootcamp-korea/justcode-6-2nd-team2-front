@@ -13,7 +13,14 @@ function MovieContentBar({ sort, setSort, totalCount, search, onSearch }) {
           개의 영화가 검색되었습니다.
         </MovieCount>
       </Div>
-      <MovieSearch search={search} onSearch={onSearch} />
+      <MovieSearch
+        search={search}
+        onSearch={onSearch}
+        border='1px solid #ebebeb'
+        borderRadius='4px'
+        color='#000'
+        caretColor='#000'
+      />
     </ListNav>
   );
 }

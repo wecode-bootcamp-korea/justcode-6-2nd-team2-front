@@ -17,15 +17,29 @@ function Main() {
     });
   }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
+    axios
+      .get('http://localhost:10010/movie/movie/list?search')
+      .then(response => console.log(response));
+  }, []);
+
+  // const loader = params => {
   //   axios.get('http://localhost:10010/movie/movie/list?search').then(response => {
   //     console.log(response.data);
   //   });
-  // });
+  // };
 
   // const onSearch = value => {
+  //   getLoader({
+  //     page: 1,
+  //     pathname: location.pathname,
+  //     sort,
+  //     ...(value && {
+  //       search: value,
+  //     }),
+  //   });
   //   setSearch(value);
-  // }
+  // };
 
   return (
     <MainPage>
@@ -54,55 +68,6 @@ const MainPage = styled.div`
   position: relative;
   min-height: 880px;
   padding: 0 0 80px 0;
-
-  .background {
-    /* ::before {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: -2;
-      width: 100%;
-      height: 100%;
-      background: -moz-linear-gradient(
-        left,
-        rgba(85, 63, 5, 1) 0%,
-        rgba(23, 17, 1, 0) 50%,
-        rgba(85, 63, 5, 1) 100%
-      );
-      background: -o-linear-gradient(
-        left,
-        rgba(85, 63, 5, 1) 0%,
-        rgba(23, 17, 1, 0) 50%,
-        rgba(85, 63, 5, 1) 100%
-      );
-      background: -ms-linear-gradient(
-        left,
-        rgba(85, 63, 5, 1) 0%,
-        rgba(23, 17, 1, 0) 50%,
-        rgba(85, 63, 5, 1) 100%
-      );
-      background: linear-gradient(
-        to right,
-        rgba(85, 63, 5, 1) 0%,
-        rgba(23, 17, 1, 0) 50%,
-        rgba(85, 63, 5, 1) 100%
-      );
-    }
-
-    ::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -2;
-      background-color: rgba(3, 1, 21, 0.7);
-    } */
-  }
 
   .backgroundImg {
     overflow: hidden;
