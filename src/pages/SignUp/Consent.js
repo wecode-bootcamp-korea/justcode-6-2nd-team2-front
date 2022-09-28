@@ -1,9 +1,7 @@
 import styles from './Consent.module.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Consent() {
-  // const [next, setNext] = useState();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const nextClick = () => {
     navigate('/signup' + '/info');
