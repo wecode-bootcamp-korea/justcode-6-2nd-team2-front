@@ -1,0 +1,12 @@
+.container {
+  .locationList {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .locationData {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #444;
+    }
+  }
+}

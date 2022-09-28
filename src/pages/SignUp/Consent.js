@@ -67,7 +67,7 @@ function Consent() {
             </div>
           </div>
           <div className={styles.consentBox}>
-            <input type='checkbox' />{' '}
+            <input type='checkbox' />
             <span className={styles.boxTitle} style={{ color: '#036635' }}>
               마케팅 활용을 위한 개인정보 수집 이용 안내(선택)
             </span>

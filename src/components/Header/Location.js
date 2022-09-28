@@ -1,47 +1,27 @@
-import { useState } from 'react';
-import { AiTwotoneHome } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import styles from './Header.module.scss';
+import { NavLink } from 'react-router-dom';
+import styles from './Location.module.scss';
+import locationArr from './locationData';
 
-function Location() {
+function Location({ location }) {
   return (
-    <div>
-      {locationArr.map((list, id) => {
-        // console.log(list.content);
-
+    <div className={styles.container}>
+      {locationArr.map(list => {
         return (
-          <ul key={list.id}>
-            <li>
-              <AiTwotoneHome color='#999' />
-            </li>
-            {list.content.map((title, id) => {
-              console.log(title);
-              return <li>{title.title}</li>;
-            })}
-            {/* <li>{location.path === '/movie' ? `${list.content.title}` : null}</li> */}
-          </ul>
+          <div key={list.id} className={styles.locationList}>
+            {location === list.url &&
+              list.location.map(link => {
+                return (
+                  <div key={link.id}>
+                    <NavLink to={link.url} className={styles.locationData}>
+                      {link.link}
+                    </NavLink>
+                  </div>
+                );
+              })}
+          </div>
         );
       })}
     </div>
   );
 }
 export default Location;
-
-const locationArr = [
-  {
-    id: 1,
-    url: '/movie',
-    content: [
-      { title: <Link to={'/movie'}>'영화'</Link> },
-      { title: <Link to={'/movie'}>'전체영화'</Link> },
-    ],
-  },
-  {
-    id: 2,
-    url: '/Booking',
-    content: [
-      { title: <Link to={'/Booking'}>'예매'</Link> },
-      { secondTitle: <Link to={'/Booking'}>'빠른예매'</Link> },
-    ],
-  },
-];

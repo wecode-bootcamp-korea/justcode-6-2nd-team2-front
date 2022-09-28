@@ -61,14 +61,14 @@ function Info() {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.message === 'userCreated') {
+        if (res.message === 'USER_CREATED') {
           // console.log(res);
           alert('성공');
           navigate('/signup/complete');
         } else {
           alert('가입실패');
-          navigate('');
-          window.localStorage.clear();
+          // navigate('');
+          // window.localStorage.clear();
         }
       });
   };

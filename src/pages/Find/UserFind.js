@@ -1,8 +1,35 @@
 import { Link } from 'react-router-dom';
 import styles from './Find.module.scss';
 import Logo from '../../assets/starbox.png';
+import { useRef } from 'react';
 
 function UserFind() {
+  const userName = useRef();
+  const userBirth = useRef();
+  const userPhone = useRef();
+
+  const findClick = () => {
+    fetch('http://localhost:10010/user/find/id', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: userName.current.value, // "name" : "오인환",
+        birth: userBirth.current.value, // birth: '660910',
+        phone: userPhone.current.value, //phone: '01098451345',
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res) {
+          alert(res.body.account_id);
+        } else {
+          alert('정보를 다시 확인하세요!');
+        }
+      });
+  };
+
   return (
     <div className={styles.containerBackground}>
       <div className={styles.container}>
@@ -38,7 +65,13 @@ function UserFind() {
                 <label for='name'>이름</label>
               </dt>
               <dd>
-                <input id='name' type='text' placeholder='이름' className={styles.inputText} />
+                <input
+                  id='name'
+                  ref={userName}
+                  type='text'
+                  placeholder='이름'
+                  className={styles.inputText}
+                />
               </dd>
             </dl>
             <dl className={styles.inputBox}>
@@ -48,7 +81,8 @@ function UserFind() {
               <dd>
                 <input
                   id='birth'
-                  type='text'
+                  ref={userBirth}
+                  type='number'
                   placeholder='생년월일 앞8자리'
                   className={styles.inputText}
                 />
@@ -61,7 +95,8 @@ function UserFind() {
               <dd>
                 <input
                   id='phone'
-                  type='text'
+                  type='tel'
+                  ref={userPhone}
                   placeholder='"-" 없이 입력'
                   className={styles.inputText}
                 />
@@ -71,7 +106,9 @@ function UserFind() {
           <p style={{ fontSize: '14px', marginBottom: '30px' }}>
             ※ 휴대폰 번호가 변경된 경우 본인인증 찾기를 통하여 아이디찾기를 진행해주시기 바랍니다.
           </p>
-          <button className={styles.findBtn}> 아이디 찾기 </button>
+          <button onClick={findClick} className={styles.findBtn}>
+            아이디 찾기
+          </button>
         </div>
       </div>
     </div>

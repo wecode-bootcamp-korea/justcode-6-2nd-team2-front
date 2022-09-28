@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import MoviePostList from '../../components/moviedetail/MoviePostList';
+=======
+import MoviePostList from '../../components/moviedetail/MovieDetailTab';
+>>>>>>> be3d9fdc20e10dc23eaf40d2220a935816135ad2
 function MoviePost() {
   return (
     <>
