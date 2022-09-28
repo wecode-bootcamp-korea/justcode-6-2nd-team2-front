@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MovieDetailTab from '../../components/moviedetail/MovieDetailTab';
+import MovieDetailTab from '../../components/Moviedetail/MovieDetailTab';
 import MovieDetailContent from './MovieDetailContent';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -22,7 +22,7 @@ function MovieDetail() {
       <MovieDetailContent movieList={movieList} />
       <Wrapper>
         <MovieDetailTab />
-        <Outlet />
+        <Outlet movieList={movieList} setMovieList={setMovieList} />
       </Wrapper>
     </>
   );
