@@ -1,0 +1,27 @@
+.container {
+  .icons {
+    font-size: 180px;
+    padding-top: 60px;
+    margin-bottom: 30px;
+    color: #036635;
+  }
+  h1 {
+    color: #036635;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  p {
+    color: #444;
+    margin-bottom: 60px;
+  }
+  button {
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    font-size: 1.1em;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    background-color: #036635;
+  }
+}

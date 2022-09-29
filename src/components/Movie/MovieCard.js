@@ -1,24 +1,32 @@
+import styled from 'styled-components';
+
 import MoviePoster from './MoviePoster';
 import MovieBook from './MovieBook';
 import MovieLike from './MovieLike';
 
-import styled from 'styled-components';
-
-function MovieCard() {
+function MovieCard({ data }) {
   return (
     <>
       <Card>
-        <MoviePoster />
+        <MoviePoster data={data} height='330.82px' />
         <Div>
-          <Grade alt='등급' src={require('../../assets/age_19.png')} />
-          <Title>늑댓안양</Title>
+          <Grade alt='등급' src={data.grade_image} />
+          <Title>{data.title}</Title>
         </Div>
-        <Div>
-          <Rate>예매율 18.7%</Rate>
-          <Date>개봉일 2022.09.21</Date>
-        </Div>
+        <div>
+          <Rate>예매율 {data.book_rate}</Rate>
+          <Date>개봉일 {data.open_date}</Date>
+        </div>
         <Button>
-          <MovieLike />
+          <MovieLike
+            data={data}
+            background='transparent'
+            color='#000'
+            fontSize='15px'
+            fontWeight='400'
+            hoverBackground='#ebebeb'
+            iconColor='#006633'
+          />
           <MovieBook />
         </Button>
       </Card>
@@ -28,12 +36,15 @@ function MovieCard() {
 
 const Card = styled.li`
   width: 230px;
-  /* height: 450px; */
-  margin: 0 0 0 60px;
+  margin: 0 0 60px 60px;
   padding: 0;
-  margin-bottom: 60px;
 
   background-color: transparent;
+
+  div {
+    display: flex;
+    flex-direction: space-between;
+  }
 `;
 
 const Div = styled.div`
@@ -54,20 +65,22 @@ const Grade = styled.img`
 const Title = styled.p`
   width: 100%;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 5px;
   padding: 2px 0 0 1px;
+
   font-size: 1.3333em;
   font-weight: 400;
 `;
 
 const Rate = styled.span`
-  margin: 0 6px 0 0;
+  font-size: 14px;
 `;
 
 const Date = styled(Rate)`
+  font-size: 14px;
   padding-left: 6px;
-  border-left: 1px solid lightgray;
 `;
 
 const Button = styled.div`

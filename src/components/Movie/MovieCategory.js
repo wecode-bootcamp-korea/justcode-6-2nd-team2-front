@@ -11,23 +11,23 @@ function MovieCategory() {
     },
     {
       id: 2,
+      link: 'now',
+      title: '현재 상영작',
+    },
+    {
+      id: 3,
+      link: 'upcoming',
+      title: '개봉 예정작',
+    },
+    {
+      id: 4,
       link: 'domestic',
       title: '국내 영화',
     },
     {
-      id: 3,
+      id: 5,
       link: 'abroad',
       title: '해외 영화',
-    },
-    {
-      id: 4,
-      link: 'special',
-      title: '특별 상영',
-    },
-    {
-      id: 5,
-      link: 'film',
-      title: '필름 소사이어티',
     },
   ]);
 
@@ -36,28 +36,17 @@ function MovieCategory() {
       <Category>
         <CategoryBox>
           {category.map(link => {
-            switch (link.id) {
-              case 1: {
-                return (
-                  <CategoryTitle key={link.id}>
-                    <CategoryLink
-                      to={link.link}
-                      end
-                      className={({ isActive }) => (isActive ? 'active' : '')}
-                    >
-                      {link.title}
-                    </CategoryLink>
-                  </CategoryTitle>
-                );
-              }
-              default: {
-                return (
-                  <CategoryTitle key={link.id}>
-                    <CategoryLink to={link.link}>{link.title}</CategoryLink>
-                  </CategoryTitle>
-                );
-              }
-            }
+            return (
+              <CategoryTitle key={link.id}>
+                <CategoryLink
+                  to={link.link}
+                  end={link.id === 1}
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  {link.title}
+                </CategoryLink>
+              </CategoryTitle>
+            );
           })}
         </CategoryBox>
       </Category>

@@ -1,24 +1,37 @@
 import styled from 'styled-components';
-import { MdToggleOn } from 'react-icons/md';
-import { MdToggleOff } from 'react-icons/md';
 
-function MovieFilter({ filter, setFilter }) {
+function MovieFilter({ sort, setSort }) {
   return (
-    <Filter
-      type='button'
-      onClick={() => {
-        setFilter(!filter);
-      }}
-    >
-      {filter ? <MdToggleOn className='onLogo' /> : <MdToggleOff className='offLogo' />}
-      &nbsp;개봉작만
-    </Filter>
+    <>
+      <Filter
+        onClick={() => {
+          setSort(null);
+        }}
+      >
+        <span className={sort === null ? 'onLogo' : 'offLogo'}>전체</span>
+      </Filter>
+      <Filter
+        onClick={() => {
+          setSort('date');
+        }}
+      >
+        <span className={sort === 'date' ? 'onLogo' : 'offLogo'}>개봉일순</span>
+      </Filter>
+      <Filter
+        onClick={() => {
+          setSort('title');
+        }}
+      >
+        <span className={sort === 'title' ? 'onLogo' : 'offLogo'}>가나다순</span>
+      </Filter>
+    </>
   );
 }
 
 const Filter = styled.button`
   display: flex;
   align-items: center;
+  padding: 0 6px 0 0;
 
   background-color: transparent;
   border: none;
@@ -26,15 +39,11 @@ const Filter = styled.button`
   font-size: 15px;
 
   .onLogo {
-    position: relative;
-    font-size: 30px;
-    color: lightblue;
+    color: #006633;
   }
 
   .offLogo {
-    position: relative;
-    font-size: 30px;
-    color: lightgray;
+    font-weight: 400;
   }
 
   &:hover {
