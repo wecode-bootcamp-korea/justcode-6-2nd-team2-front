@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+// import axios from 'axios';
 import { HiHeart } from 'react-icons/hi';
+import { HiOutlineHeart } from 'react-icons/hi';
 
 import AlertModal from '../AlertModal/AlertModal';
 
@@ -15,17 +17,21 @@ function MovieLike({
   fontWeight,
   hoverColor,
   hoverBackground,
-  iconColor,
+  offLogoColor,
+  offLogoSize,
+  onLogoColor,
+  onLogoSize,
 }) {
   // const [like, setLike] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
 
   // const activeLike = () => {
-  // const token = localStorage.getItem('login_token');
-  // if (!token) {
-  //   setAlertModal(true);
-  //   return;
-  // }
+  //   const token = localStorage.getItem('login_token');
+  //   if (!token) {
+  //     setAlertModal(true);
+  //     return false;
+  //   }
+  //   //   return true;
   // };
 
   return (
@@ -39,15 +45,20 @@ function MovieLike({
         fontWeight={fontWeight}
         hoverColor={hoverColor}
         hoverBackground={hoverBackground}
-        iconColor={iconColor}
-        onClick={() => {
-          // activeLike();
-          likeLoader();
-        }}
+        offLogoColor={offLogoColor}
+        offLogoSize={offLogoSize}
+        onLogoColor={onLogoColor}
+        onLogoSize={onLogoSize}
+        // onClick={() => {
+        //   if (data.liked) {
+        //     onUnLike();
+        //   } else {
+        //     onLike();
+        //   }
+        // }}
       >
-        <HiHeart className='iconColor' />
+        <HiOutlineHeart className='offLogo' />
         &nbsp;&nbsp;{data.likes}
-        15
       </Like>
       <AlertModal
         visible={alertModal}
@@ -83,6 +94,16 @@ const Like = styled.button`
   line-height: 36px;
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
+
+  .offLogo {
+    font-size: ${props => props.offLogoSize};
+    color: ${props => props.offLogoColor};
+  }
+
+  .onLogo {
+    font-size: ${props => props.onLogoSize};
+    color: ${props => props.onLogoColor};
+  }
 
   &:hover {
     cursor: pointer;
