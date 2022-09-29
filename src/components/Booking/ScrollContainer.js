@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ListMovie from './Movie/ListMovie';
 import ListTheater from './Theater/ListTheater';
@@ -80,6 +80,8 @@ const Icon = styled.p`
 `;
 
 function ScrollContainer({ type }) {
+  const [select, setSelect] = useState('');
+
   return (
     <>
       <MovieChoice img={type}>
@@ -105,8 +107,8 @@ function ScrollContainer({ type }) {
         </TitleArea>
         {type === 'movie' && <ListMovie type={type} />}
         {type === 'theater' && <ListTheater type={type} />}
-        {type === 'time' && <ListTime type={type} />}
-        {type === 'time' && <MovieSchedule type={type} />}
+        {type === 'time' && <ListTime type={type} select={select} setSelect={setSelect} />}
+        {type === 'time' && <MovieSchedule type={type} select={select} />}
       </MovieChoice>
     </>
   );

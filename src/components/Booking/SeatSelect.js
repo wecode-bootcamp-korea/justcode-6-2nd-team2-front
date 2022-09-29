@@ -1,5 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+
+import { CountContext, AllContext } from '../../pages/Booking/Booking';
+import { ScheduleContext } from '../../pages/Router';
 
 import NavTitle from './Nav/NavTitle';
 import Title from './Seat/Title';
@@ -44,6 +47,20 @@ const Context = createContext({
 function SeatSelect() {
   const [initial, setInitial] = useState(false);
 
+  const { scheduleId, setScheduleId } = useContext(ScheduleContext);
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:10010/booking/schedule/${scheduleId}`, {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(mock => {
+        setData(mock.data[0]);
+      });
+  }, [scheduleId]);
+
   return (
     <>
       <Context.Provider value={{ initial, setInitial }}>
@@ -53,10 +70,10 @@ function SeatSelect() {
             <SectionInner>
               <Title />
               <Count />
-              <Screen />
+              <Screen data={data} />
             </SectionInner>
             <SectionInner2>
-              <Result />
+              <Result data={data} />
             </SectionInner2>
           </Section>
         </ContainerWrapper>
