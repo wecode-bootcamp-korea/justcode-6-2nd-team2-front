@@ -15,17 +15,17 @@ import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
 import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
-import MovieInfo from './MovieDetail/MovieInfo';
+import MovieInfo from '../components/moviedetail/MovieDetailTabContent/MovieInfo';
 // import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
-import MovieTrailer from './MovieDetail/MovieTrailers';
+import MovieTrailers from './MovieDetail/MovieTrailers';
 import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
 import Footer from '../components/Footer/Footer';
 import TimeTable from './TimeTable/TimeTable';
 import ListTheater from '../components/Booking/Theater/ListTheater';
-import MovieComment from './MovieDetail/MovieComment';
+import MovieComment from '../components/moviedetail/MovieDetailTabContent/MovieComment';
 
 const Context10 = createContext({
   scheduleId: '',
@@ -55,12 +55,12 @@ function Router() {
             </Route>
 
             {/* 영화 상세페이지 */}
-            <Route path='/moviedetail' end element={<MovieDetail />}>
+            <Route path='/moviedetail/1' end element={<MovieDetail />}>
               {/* <Route index element={<MovieInfo />} /> */}
-              <Route path='movieinfo' element={<MovieInfo />} />
+              <Route path='movieinfo' index element={<MovieInfo />} />
               <Route path='comment' element={<MovieComment />} />
               <Route path='moviepost' element={<MoviePost />} />
-              <Route path='trailer' element={<MovieTrailer />} />
+              <Route path='trailers' element={<MovieTrailers />} />
             </Route>
             {/* <Route path='/theater' element={<ListTheater />} /> */}
 
