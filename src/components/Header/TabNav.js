@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styles from './SubNav.module.scss';
 
 function TabNav({ list }) {
@@ -5,8 +6,14 @@ function TabNav({ list }) {
   return (
     <div className={styles.subNavContent}>
       {list &&
-        list.map((data, index) => {
-          return <p key={index}>{data.list}</p>;
+        list.map(data => {
+          return (
+            <div key={data.id}>
+              <NavLink to={data.url} className={styles.linkText}>
+                {data.list}
+              </NavLink>
+            </div>
+          );
         })}
     </div>
   );

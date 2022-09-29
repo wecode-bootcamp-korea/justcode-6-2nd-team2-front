@@ -12,19 +12,16 @@
   }
   p {
     color: #444;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
   }
   button {
+    cursor: pointer;
     width: 200px;
     height: 40px;
     font-size: 1.1em;
-    background-color: #036635;
-    opacity: 0.8;
     color: #fff;
     border: 0;
     border-radius: 10px;
-    &:hover {
-      opacity: 1;
-    }
+    background-color: #036635;
   }
 }
