@@ -35,7 +35,7 @@ function Login({ setModal, modal }) {
   //login Btn
   const body = {
     account_id: id, //roy_oh0910 , mark_kim0106
-    password: password, // qwerty12! , markzzang1!
+    password: password, // roy_oh0910qwerty12! , markzzang1!
   };
   const loginSuccess = e => {
     // POST 'http://localhost:10010/user/login'
@@ -50,7 +50,7 @@ function Login({ setModal, modal }) {
       .then(res => res.json())
       .then(result => {
         if (result.message === 'LOGIN_SUCCESS') {
-          localStorage.setItem('token', JSON.stringify(result.token));
+          localStorage.setItem('token', JSON.stringify(result.token.accessToken));
           navigate('/');
           setModal(false);
           setId('');
