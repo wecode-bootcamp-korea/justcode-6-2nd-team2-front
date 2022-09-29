@@ -184,6 +184,8 @@ function TheaterList() {
 
   const [tab, setTab] = useState('서울');
 
+  const [screen, setScreen] = useState([]);
+
   useEffect(() => {
     let test = [];
     let test2 = [];
@@ -193,12 +195,17 @@ function TheaterList() {
         setTimeTableData(resultData.data.timeTables);
 
         for (let i = 0; i < resultData.data.timeTables.length; i++) {
-          test2.push(resultData.data.timeTables[i].screen_name);
+          let imsi = {
+            id: i,
+            theater_name: resultData.data.timeTables[i].theater_name,
+            screen_name: resultData.data.timeTables[i].screen_name,
+          };
+          test2.push(imsi);
         }
 
         const set = new Set(test2);
-        const newArr = [...set];
-
+        console.log([...set]);
+        setScreen([...set]);
         for (let i = 0; i < resultData.data.theaters.length; i++) {
           for (let j = 0; j < resultData.data.timeTables.length; j++) {
             if (
@@ -253,24 +260,34 @@ function TheaterList() {
                     <AreaName>
                       <a>{ele.theater_name}</a>
                     </AreaName>
-                    <Box>
-                      <Type>
-                        <TheaterName>5관</TheaterName>
-                        <Chair>총 100석</Chair>
-                      </Type>
-                      <Time>
-                        <TypeArea>2D</TypeArea>
-                        <Timebox>
-                          <table>
-                            <tbody>
-                              <tr style={{ display: 'flex' }}>
-                                <TheaterOne ele={ele.theater_name} timeTableData={timeTableData} />
-                              </tr>
-                            </tbody>
-                          </table>
-                        </Timebox>
-                      </Time>
-                    </Box>
+                    {screen.map(el => {
+                      if (ele.theater_name === el.theater_name) {
+                        return (
+                          <Box key={el.id}>
+                            <Type>
+                              <TheaterName>{el.screen_name}</TheaterName>
+                              <Chair>총 100석</Chair>
+                            </Type>
+                            <Time>
+                              <TypeArea>2D</TypeArea>
+                              <Timebox>
+                                <table>
+                                  <tbody>
+                                    <tr style={{ display: 'flex' }}>
+                                      <TheaterOne
+                                        ele={ele.theater_name}
+                                        timeTableData={timeTableData}
+                                        screenName={el.screen_name}
+                                      />
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </Timebox>
+                            </Time>
+                          </Box>
+                        );
+                      }
+                    })}
                   </Theater>
                 );
               })}

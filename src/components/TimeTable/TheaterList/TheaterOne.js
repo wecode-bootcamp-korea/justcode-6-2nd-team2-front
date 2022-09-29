@@ -45,7 +45,7 @@ const Center = styled.div`
   }
 `;
 
-function TheaterOne({ ele, timeTableData }) {
+function TheaterOne({ ele, timeTableData, screenName }) {
   const [hover, setHover] = useState('');
 
   const { resultData, setResultData } = useContext(ResultContext);
@@ -64,7 +64,7 @@ function TheaterOne({ ele, timeTableData }) {
       {timeTableData && (
         <>
           {timeTableData.map(el => {
-            if (ele === el.theater_name) {
+            if (ele === el.theater_name && screenName === el.screen_name) {
               return (
                 <td key={el.schedule_id}>
                   <TdAb>

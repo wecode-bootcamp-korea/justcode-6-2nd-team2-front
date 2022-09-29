@@ -239,7 +239,6 @@ function Result() {
   }, []);
 
   const body = {
-    movie_id: 1,
     scheduleId: scheduleId,
     adultNumber: adultNum,
     teenagerNumber: teenNum,
@@ -279,10 +278,10 @@ function Result() {
       merchant_uid: `mid_${new window.Date().getTime()}`, // 주문번호
       amount: 100, // 결제금액
       name: '메가박스 티켓', // 주문명
-      buyer_name: '이동호', // 구매자 이름
+      buyer_name: '스타호', // 구매자 이름
       buyer_tel: '01030003000', // 구매자 전화번호
-      buyer_email: 'ldoh92@gmail.com', // 구매자 이메일
-      buyer_addr: '이동호', // 구매자 주소
+      buyer_email: 'starbox@gmail.com', // 구매자 이메일
+      buyer_addr: '스타시', // 구매자 주소
       buyer_postcode: '06018', // 구매자 우편번호
     };
 
@@ -298,7 +297,8 @@ function Result() {
       fetch('http://localhost:10010/booking/ticket', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          token: localStorage.getItem('token').accessToken,
+          'Content-type': 'application/json',
         },
         body: JSON.stringify(body),
       })
