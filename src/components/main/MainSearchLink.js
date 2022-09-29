@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FiFilm } from 'react-icons/fi';
 import { HiOutlineTicket } from 'react-icons/hi';
 
 import MovieSearch from '../Movie/MovieSearch';
 
-function MainSearchLink() {
+function MainSearchLink({ search, onSearch }) {
   const [link] = useState([
     {
       id: 1,
-      //수정 필요
       link: '/timetable',
       title: '상영시간표',
       icon: <FaRegCalendarAlt className='icon' />,
@@ -24,7 +24,7 @@ function MainSearchLink() {
     },
     {
       id: 3,
-      link: '/booking',
+      link: `/booking`,
       title: '빠른예매',
       icon: <HiOutlineTicket className='icon' />,
     },
@@ -37,6 +37,8 @@ function MainSearchLink() {
         borderRadius='0px'
         color='#fff'
         caretColor='#fff'
+        search={search}
+        onSearch={onSearch}
       />
       {link.map(el => {
         return (

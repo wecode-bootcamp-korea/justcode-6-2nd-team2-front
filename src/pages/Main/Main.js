@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -9,37 +9,14 @@ import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:10010/movie').then(response => {
       setMovieList(response.data.data);
     });
   }, []);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:10010/movie/movie/list?search')
-      .then(response => console.log(response));
-  }, []);
-
-  // const loader = params => {
-  //   axios.get('http://localhost:10010/movie/movie/list?search').then(response => {
-  //     console.log(response.data);
-  //   });
-  // };
-
-  // const onSearch = value => {
-  //   getLoader({
-  //     page: 1,
-  //     pathname: location.pathname,
-  //     sort,
-  //     ...(value && {
-  //       search: value,
-  //     }),
-  //   });
-  //   setSearch(value);
-  // };
 
   return (
     <MainPage>
@@ -56,7 +33,15 @@ function Main() {
           <section>
             <MainBoxOffice movieList={movieList} />
           </section>
-          <MainSearchLink search={search} setSearch={setSearch} />
+          <MainSearchLink
+            search={search}
+            onSearch={value => {
+              console.log(value);
+              //   if (value !== '') {
+              navigate(`/movie?q=${value}`);
+              //   }
+            }}
+          />
         </Div>
       </div>
     </MainPage>

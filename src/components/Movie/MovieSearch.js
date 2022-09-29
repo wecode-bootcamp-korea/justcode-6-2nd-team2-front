@@ -5,6 +5,7 @@ function MovieSearch({ search, onSearch, border, borderRadius, borderBottom, col
   return (
     <Search border={border} borderBottom={borderBottom} borderRadius={borderRadius}>
       <Input
+        value={search}
         color={color}
         caretColor={caretColor}
         type='search'
@@ -14,6 +15,7 @@ function MovieSearch({ search, onSearch, border, borderRadius, borderBottom, col
             onSearch(e.target.value);
           }
         }}
+        // onChange={e => onSearch(e.target.value)}
       />
       <Button
         type='button'

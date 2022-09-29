@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { HiHeart } from 'react-icons/hi';
+// import axios from 'axios';
+import { HiHeart } from 'react-icons/hi';
 import { HiOutlineHeart } from 'react-icons/hi';
 
 import AlertModal from '../AlertModal/AlertModal';
@@ -25,11 +26,38 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   // const activeLike = () => {
-  // const token = localStorage.getItem('login_token');
-  // if (!token) {
-  //   setAlertModal(true);
-  //   return;
-  // }
+  //   const token = localStorage.getItem('login_token');
+  //   if (!token) {
+  //     setAlertModal(true);
+  //     return false;
+  //   }
+  //   return true;
+  // };
+
+  // const onLike = async () => {
+  //   if (!activeLike()) return;
+  //   const resp = await axios.post(
+  //     `http://localhost:10010/movie/${data.id}/like`,
+  //     {},
+  //     {
+  //       headers: {
+  //         Authorization: localStorage.getItem('login_token'),
+  //       },
+  //     },
+  //   );
+  //   const data = resp.data;
+  //   likeLoader();
+  // };
+
+  // const onUnLike = async () => {
+  //   if (!activeLike()) return;
+  //   const resp = await axios.delete(`http://localhost:10010/movie/${data.id}/like`, {
+  //     headers: {
+  //       Authorization: localStorage.getItem('login_token'),
+  //     },
+  //   });
+  //   const data = resp.data;
+  //   likeLoader();
   // };
 
   return (
@@ -47,10 +75,13 @@ function MovieLike({
         offLogoSize={offLogoSize}
         onLogoColor={onLogoColor}
         onLogoSize={onLogoSize}
-        onClick={() => {
-          // activeLike();
-          likeLoader();
-        }}
+        // onClick={() => {
+        //   if (data.liked) {
+        //     onUnLike();
+        //   } else {
+        //     onLike();
+        //   }
+        // }}
       >
         <HiOutlineHeart className='offLogo' />
         &nbsp;&nbsp;{data.likes}
