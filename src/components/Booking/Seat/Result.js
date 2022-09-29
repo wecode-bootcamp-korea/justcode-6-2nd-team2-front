@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CountContext, AllContext } from '../../../pages/Booking/Booking';
+import { ScheduleContext } from '../../../pages/Router';
 
 const Container = styled.div`
   position: relative;
@@ -215,18 +216,26 @@ const ButtonArea = styled.div`
   }
 `;
 
-function Result() {
+function Result({ data }) {
   const { adultNum, setAdultNum, teenNum, setTeenNum } = useContext(CountContext);
   const { allSelectArray, setAllSelectArray } = useContext(AllContext);
 
   const [all, setAll] = useState([]);
   const [totalPay, setTotalPay] = useState(0);
 
+  const [dummy, setDummy] = useState('');
+
   const clickHandler = event => {
     if (!(allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0)) {
       event.preventDefault();
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      setDummy(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     let test = new Array(allSelectArray);
@@ -251,16 +260,18 @@ function Result() {
       <Container>
         <TitleArea>
           <span />
-          <Title>공조2: 인터내셔날</Title>
+          <Title>{dummy.title}</Title>
           <Cate>2D</Cate>
         </TitleArea>
         <InfoArea>
-          <Theater>동대문</Theater>
-          <TheaterDetail>컴포트1관</TheaterDetail>
-          <Date>2022.09.23(금)</Date>
-          <Time>12:10 ~ 14:29</Time>
+          <Theater>{dummy.theater_name}</Theater>
+          <TheaterDetail>{dummy.screen_name}</TheaterDetail>
+          <Date>{dummy.watch_date}(금)</Date>
+          <Time>
+            {dummy.start_time} ~ {dummy.end_time}
+          </Time>
           <Poster>
-            <img src='https://www.megabox.co.kr/SharedImg/2022/08/29/oUQrNQTflUqvHUQG6kvlzF8SEhJSomfh_150.jpg'></img>
+            <img src='https://www.megabox.co.kr/SharedImg/2022/08/29/oUQrNQTflUqvHUQG6kvlzF8SEhJSomfh_150.jpg' />
           </Poster>
         </InfoArea>
         <SeatArea>
@@ -324,7 +335,9 @@ function Result() {
           </p>
         </PayArea>
         <ButtonArea>
-          <button style={{ borderRadius: '0px 0px 0px 4px' }}>이전</button>
+          <Link to='../' style={{ borderRadius: '0px 0px 0px 4px', textDecoration: 'none' }}>
+            이전
+          </Link>
           <Link
             style={{
               borderRadius: '0px 0px 4px 0px',

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Tit = styled.div`
-  padding: 8px 0 7px 0;
+  padding: 8px 0 35px 0;
   margin-top: 40px !important;
 `;
 
@@ -38,12 +38,25 @@ const Right = styled.div`
   }
 `;
 
+const In = styled.input`
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.15;
+  margin-right: 5px;
+`;
+
 function Title2() {
   return (
     <>
       <Tit>
         <Left>결제수단선택</Left>
-        <Right></Right>
+        <Right>
+          <In type='checkbox' />
+          다음에도 이 결제수단 사용
+        </Right>
       </Tit>
     </>
   );

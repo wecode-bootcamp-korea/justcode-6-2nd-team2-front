@@ -16,6 +16,8 @@ function Login({ setModal, modal }) {
 
   const closeBtn = () => {
     setModal(false);
+    setPassword('');
+    setId('');
   };
 
   //onChange=> e.target.value

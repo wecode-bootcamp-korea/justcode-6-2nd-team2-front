@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -22,10 +22,19 @@ import MovieTrailers from './MovieDetail/MovieTrailers';
 import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
+import Footer from '../components/Footer/Footer';
+import TimeTable from './TimeTable/TimeTable';
+
+const Context10 = createContext({
+  scheduleId: '',
+  setScheduleId: () => {},
+});
 import ListTheater from '../components/Booking/Theater/ListTheater';
 import MovieComment from '../components/moviedetail/MovieDetailTabContent/MovieComment';
 
 function Router() {
+  const [scheduleId, setScheduleId] = useState();
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -34,6 +43,7 @@ function Router() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/Booking/*' element={<Booking />} />
+          <Route path='/TimeTable/*' element={<TimeTable />} />
           {/* 영화페이지 */}
           <Route path='/movie' element={<Movie />}>
             <Route index element={<MovieContent />} />
@@ -53,18 +63,21 @@ function Router() {
           </Route>
           {/* <Route path='/theater' element={<ListTheater />} /> */}
 
-          <Route path='/user-find' element={<UserFind />} />
-          <Route path='/pass-find' element={<PassFind />} />
-          <Route path='/signup' element={<SignUp />}>
-            <Route path='consent' element={<Consent />} />
-            <Route path='info' element={<Info />} />
-            <Route path='complete' element={<Complete />} />
-          </Route>
-          <Route path='/cinema' element={<Cinema />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+            <Route path='/user-find' element={<UserFind />} />
+            <Route path='/pass-find' element={<PassFind />} />
+            <Route path='/signup' element={<SignUp />}>
+              <Route path='consent' element={<Consent />} />
+              <Route path='info' element={<Info />} />
+              <Route path='complete' element={<Complete />} />
+            </Route>
+            <Route path='/cinema' element={<Cinema />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Context10.Provider>
   );
 }
 
 export default Router;
+export const ScheduleContext = Context10;

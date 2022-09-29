@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+
+import { CountContext, AllContext } from '../../../pages/Booking/Booking';
+import { ScheduleContext } from '../../../pages/Router';
 
 import ScreenRow from './ScreenRow';
 
@@ -34,18 +37,21 @@ const ExitImage = styled.img`
   height: 16px;
 `;
 
-function Screen() {
-  const [total, setTotal] = useState(280);
+function Screen({ data }) {
+  const [total, setTotal] = useState(0);
   const [row, setRow] = useState([]);
 
   useEffect(() => {
-    let alpha = [];
-    for (let i = 65; i < 65 + Math.ceil(total / 20); i++) {
-      alpha.push(String.fromCharCode(i));
+    if (data) {
+      let alpha = [];
+      for (let i = 65; i < 65 + Math.ceil(data.total_seat / 20); i++) {
+        alpha.push(String.fromCharCode(i));
+      }
+      console.log(data);
+      setRow(row.concat(alpha));
+      setTotal(data.total_seat);
     }
-    setRow(row.concat(alpha));
-  }, []);
-
+  }, [data]);
   return (
     <>
       <Container>
@@ -54,24 +60,45 @@ function Screen() {
             <TopImage src='https://www.megabox.co.kr/static/pc/images/reserve/img-theater-screen.png' />
             <ExitImage src='https://www.megabox.co.kr/static/pc/images/reserve/img-door-left.png' />
             <div>
-              {row.map((el, index) => {
-                if (row.length - 1 === index) {
-                  return (
-                    <ScreenRow
-                      key={el}
-                      alpha={el}
-                      index={index + 2}
-                      last={total % 20 === 0 ? 20 : total % 20}
-                    />
-                  );
-                }
+              {total !== 0 && (
+                <>
+                  {row.map((el, index) => {
+                    if (row.length - 1 === index) {
+                      return (
+                        <ScreenRow
+                          key={el}
+                          alpha={el}
+                          index={index + 2}
+                          last={total % 20 === 0 ? 20 : total % 20}
+                          booked={data.booked_seat_list}
+                        />
+                      );
+                    }
 
-                if (index < 4) {
-                  return <ScreenRow key={el} alpha={el} index={index} last={-1} />;
-                } else {
-                  return <ScreenRow key={el} alpha={el} index={index + 1} last={-1} />;
-                }
-              })}
+                    if (index < 4) {
+                      return (
+                        <ScreenRow
+                          key={el}
+                          alpha={el}
+                          index={index}
+                          last={-1}
+                          booked={data.booked_seat_list}
+                        />
+                      );
+                    } else {
+                      return (
+                        <ScreenRow
+                          key={el}
+                          alpha={el}
+                          index={index + 1}
+                          last={-1}
+                          booked={data.booked_seat_list}
+                        />
+                      );
+                    }
+                  })}
+                </>
+              )}
             </div>
           </LayoutInner>
         </Layout>

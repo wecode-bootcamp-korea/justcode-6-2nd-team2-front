@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { ScheduleContext } from '../../../pages/Router';
 
 const Li = styled.li`
   border-top: 0;
@@ -36,7 +38,7 @@ const Legend = styled.div`
 const Time = styled.span`
   display: table-cell;
   width: 60px;
-  padding: 10px 0;
+  padding: 0;
   text-align: left;
   vertical-align: top;
   letter-spacing: -1px;
@@ -59,7 +61,7 @@ const Em1 = styled.em`
 const Title = styled.span`
   display: table-cell;
   width: 275px;
-  padding: 10px 0;
+  padding: 0;
   text-align: left;
 `;
 const Strong2 = styled.span`
@@ -76,7 +78,7 @@ const Em2 = styled.em`
   letter-spacing: 0px;
 `;
 
-const Info = styled.div`
+const InfoMovie = styled.div`
   display: table-cell;
   width: 110px;
   padding: 0 5px 0 0;
@@ -132,33 +134,44 @@ const Em3 = styled.em`
   font-style: normal;
 `;
 
-function MovieScheduleOne() {
+function MovieScheduleOne({
+  title,
+  theaterName,
+  screenName,
+  startTime,
+  endTime,
+  totalSeat,
+  bookedSeat,
+  id,
+}) {
+  const { scheduleId, setScheduleId } = useContext(ScheduleContext);
+
   return (
     <>
-      <Link to='Seat' style={{ textDecoration: 'none' }}>
+      <Link to='Seat' style={{ textDecoration: 'none' }} onClick={() => setScheduleId(id)}>
         <Li>
+          <Legend />
           <LiButton>
-            <Legend />
             <Time>
-              <Strong1>20:00</Strong1>
-              <Em1>~22:11</Em1>
+              <Strong1>{startTime}</Strong1>
+              <Em1>~{endTime}</Em1>
             </Time>
             <Title>
-              <Strong2>늑대사냥</Strong2>
+              <Strong2>{title}</Strong2>
               <Em2>2D</Em2>
             </Title>
-            <Info>
+            <InfoMovie>
               <Theater>
-                강남
+                {theaterName}
                 <br />
-                3관
+                {screenName}
               </Theater>
               <Seat>
-                <Strong3>194</Strong3>
+                <Strong3>{Number(totalSeat) - Number(bookedSeat)}</Strong3>
                 <Span>/</Span>
-                <Em3>232</Em3>
+                <Em3>{totalSeat}</Em3>
               </Seat>
-            </Info>
+            </InfoMovie>
           </LiButton>
         </Li>
       </Link>
