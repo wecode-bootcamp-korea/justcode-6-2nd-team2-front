@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MoviePostList from '../../components/moviedetail/MovieDetailTab';
+
+import MoviePostList from '../../components/moviedetail/MoviePostList';
 function MoviePost() {
   return (
     <>
