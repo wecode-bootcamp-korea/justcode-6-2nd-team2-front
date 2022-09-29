@@ -4,7 +4,6 @@ import { BsCalendar4Week } from 'react-icons/bs';
 import { Link, NavLink } from 'react-router-dom';
 import CategoryL from './CategoryL';
 import CategoryR from './CategoryR';
-import Mypage from './Mypage';
 
 function Nav({
   Logo,
@@ -114,7 +113,7 @@ function Nav({
                 </NavLink>
               </div>
               <div onClick={mypageTab}>
-                <NavLink to='/mypage'>
+                <NavLink>
                   {mypage === true ? (
                     <AiFillCloseCircle
                       size='26'
