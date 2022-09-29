@@ -50,7 +50,7 @@ function Login({ setModal, modal }) {
       .then(res => res.json())
       .then(result => {
         if (result.message === 'LOGIN_SUCCESS') {
-          localStorage.setItem('token', result.token);
+          localStorage.setItem('token', JSON.stringify(result.token));
           navigate('/');
           setModal(false);
           setId('');
