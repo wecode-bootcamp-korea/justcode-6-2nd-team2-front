@@ -7,11 +7,19 @@ import { useNavigate } from 'react-router-dom';
 function Info() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const [error, setError] = useState('');
 
   const email = useRef();
   const idValue = useRef();
   const password = useRef();
   const pwConfirm = useRef();
+
+  // const errorMsg = e => {
+  //   const idCurrent = idValue.current.value;
+  //   if (idCurrent.length < 7) {
+  //     setError('영문, 숫자 조합(8~12자)');
+  //   }
+  // };
 
   //id validation
   const Validation = e => {
@@ -114,10 +122,12 @@ function Info() {
                 name='userId'
                 minLength='8'
                 maxLength='12'
-                // errorMessage='영문,숫자 조합 8~12자 이상 입력하세요.'
                 placeholder='영문, 숫자 조합(8~12자)'
+                onChange={e =>
+                  idValue.current.value.length < 7 ? setError('영문, 숫자 조합(8~12자)') : null
+                }
               />
-              {/* <span className={styles.validationMsg}>message</span> */}
+              <span className={styles.validationMsg}>{error}</span>
             </div>
             <span className={styles.checkBtn} onClick={Validation}>
               중복확인
