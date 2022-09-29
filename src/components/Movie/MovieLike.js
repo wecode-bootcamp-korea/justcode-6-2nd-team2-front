@@ -25,15 +25,14 @@ function MovieLike({
   // const [like, setLike] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
 
-  const activeLike = () => {
-    const token = localStorage.getItem('login_token');
-    if (!token) {
-      setAlertModal(true);
-      return
-    //    false;
-    // }
-    // return true;
-  };
+  // const activeLike = () => {
+  //   const token = localStorage.getItem('login_token');
+  //   if (!token) {
+  //     setAlertModal(true);
+  //     return false;
+  //   }
+  //   //   return true;
+  // };
 
   return (
     <>

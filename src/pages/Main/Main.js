@@ -36,7 +36,7 @@ function Main() {
           <MainSearchLink
             search={search}
             onSearch={value => {
-              console.log(value);
+              // console.log(value);
               //   if (value !== '') {
               navigate(`/movie?q=${value}`);
               //   }
