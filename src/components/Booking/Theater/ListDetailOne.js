@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+
+import {
+  AreaContext,
+  ResultContext,
+  TheaterContext,
+  MovieContext,
+  DateContext,
+} from '../../../pages/Booking/Booking';
 
 import Modal from '../Modal';
 
@@ -41,15 +49,25 @@ const Movie = styled.button`
   }}
 `;
 
-function ListDetailOne({ direct, plus, minus, count, name, setName, theaterOne }) {
+function ListDetailOne({ plus, minus, count, name, setName, theaterOne, id }) {
   const [select, setSelect] = useState(false);
 
   const [modalup, setModalup] = useState(false);
   const [modalMessage, setModalMessage] = useState('극장은 최대 3개까지 선택이 가능합니다.');
 
+  const { theaterIdArray, setTheaterIdArray } = useContext(TheaterContext);
+
+  const { movieIdArray, setMovieIdArray } = useContext(MovieContext);
+  const { selectDate, setSelectDate } = useContext(DateContext);
+  const { areaIdArray, setAreaIdArray } = useContext(AreaContext);
+
   const modalUpBtn = () => {
     setModalup(!modalup);
   };
+
+  useEffect(() => {
+    setTheaterIdArray([]);
+  }, [movieIdArray, selectDate]);
 
   return (
     <>
@@ -61,15 +79,26 @@ function ListDetailOne({ direct, plus, minus, count, name, setName, theaterOne }
                 modalUpBtn();
                 return;
               }
-              name.pop();
+
+              for (let i = 0; i < name.length; i++) {
+                if (name[i] === theaterOne) {
+                  name.splice(i, 1);
+                  theaterIdArray.splice(i, 1);
+                  break;
+                }
+              }
+              setTheaterIdArray([...theaterIdArray]);
               setName(name);
+
               minus();
             } else {
               if (count + 1 > 3) {
                 modalUpBtn();
                 return;
               }
+              setTheaterIdArray([...theaterIdArray, id]);
               setName([...name, theaterOne]);
+
               plus();
             }
             if (count > 3) {
@@ -80,7 +109,7 @@ function ListDetailOne({ direct, plus, minus, count, name, setName, theaterOne }
           }}
           img={select}
         >
-          {theaterOne}도
+          {theaterOne}
         </Movie>
         {modalup && <Modal modalMessage={modalMessage} modalUpBtn={modalUpBtn} />}
       </Ll>

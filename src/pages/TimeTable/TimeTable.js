@@ -2,13 +2,11 @@ import React, { useState, createContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
-import MovieSelect from '../../components/Booking/MovieSelect';
-import SeatSelect from '../../components/Booking/SeatSelect';
-import Payment from '../../components/Booking/Payment';
+import TimeSelect from '../../components/TimeTable/TimeSelect';
 
 const InnerWrap = styled.div`
   position: relative;
-  height: 800px;
+  height: 100%;
   width: 1100px;
   margin: 0 auto;
   padding-top: 40px;
@@ -57,17 +55,37 @@ const Context10 = createContext({
   setTheaterSelect: () => {},
 });
 
-function Booking() {
+const Context11 = createContext({
+  navOn: 'movie',
+  setNavOn: () => {},
+});
+
+const Context12 = createContext({
+  movieName: '',
+  setMovieName: () => {},
+});
+
+const Context13 = createContext({
+  theaterNames: '',
+  setTheaterNames: () => {},
+});
+
+function TimeTable() {
   const [adultNum, setAdultNum] = useState(0);
   const [teenNum, setTeenNum] = useState(0);
   const [allSelectArray, setAllSelectArray] = useState([]);
 
   const [movieIdArray, setMovieIdArray] = useState([]);
   const [theaterIdArray, setTheaterIdArray] = useState([]);
-  const [areaIdArray, setAreaIdArray] = useState('');
+  const [areaIdArray, setAreaIdArray] = useState(1);
   const [selectDate, setSelectDate] = useState(new window.Date());
   const [resultData, setResultData] = useState();
   const [theaterSelect, setTheaterSelect] = useState();
+
+  const [navOn, setNavOn] = useState('movie');
+
+  const [movieName, setMovieName] = useState('');
+  const [theaterNames, setTheaterNames] = useState('');
 
   useEffect(() => {
     let year = String(selectDate.getFullYear()).substring(2);
@@ -99,6 +117,9 @@ function Booking() {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(url);
+        console.log(data);
+        console.log(theaterIdArray);
         setResultData(data);
       });
   }, [movieIdArray, theaterIdArray, areaIdArray, selectDate]);
@@ -113,13 +134,17 @@ function Booking() {
                 <Context7.Provider value={{ areaIdArray, setAreaIdArray }}>
                   <Context8.Provider value={{ resultData, setResultData }}>
                     <Context10.Provider value={{ theaterSelect, setTheaterSelect }}>
-                      <InnerWrap>
-                        <Routes>
-                          <Route path='/' element={<MovieSelect />} />
-                          <Route path='Seat' element={<SeatSelect />} />
-                          <Route path='Payment' element={<Payment />} />
-                        </Routes>
-                      </InnerWrap>
+                      <Context11.Provider value={{ navOn, setNavOn }}>
+                        <Context12.Provider value={{ movieName, setMovieName }}>
+                          <Context13.Provider value={{ theaterNames, setTheaterNames }}>
+                            <InnerWrap>
+                              <Routes>
+                                <Route path='/' element={<TimeSelect />} />
+                              </Routes>
+                            </InnerWrap>
+                          </Context13.Provider>
+                        </Context12.Provider>
+                      </Context11.Provider>
                     </Context10.Provider>
                   </Context8.Provider>
                 </Context7.Provider>
@@ -132,7 +157,7 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default TimeTable;
 export const CountContext = Context2;
 export const AllContext = Context3;
 
@@ -142,3 +167,6 @@ export const DateContext = Context6;
 export const AreaContext = Context7;
 export const ResultContext = Context8;
 export const TheaterSelectContext = Context10;
+export const OnOffContext = Context11;
+export const MovieNameContext = Context12;
+export const TheaterNameContext = Context13;
