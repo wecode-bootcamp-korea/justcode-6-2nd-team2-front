@@ -10,9 +10,9 @@ function MovieDetailContent({ movieList }) {
   const [share, setShare] = useState(false);
   return (
     <>
-      {movieList.map((item, idx) => {
+      {movieList.map(item => {
         return (
-          <div key={idx}>
+          <div key={item.id}>
             <div className={styles.container}>
               <BgImg backgroundImg={item.background_img} />
 
@@ -21,7 +21,6 @@ function MovieDetailContent({ movieList }) {
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.titleEng}>{item.eng_title}</p>
                 <div className={styles.btnUtil}>
-                  {/* 좋아요 */}
                   <button
                     className={styles.shareBtn}
                     onMouseOver={() => setShare(true)}
@@ -37,7 +36,7 @@ function MovieDetailContent({ movieList }) {
                 </div>
                 <div className={styles.info}>
                   <div className={styles.score}>
-                    <p className={styles.tit}>실관람 평점</p>
+                    <p className={styles.tit}>기대평 평점</p>
                     <div className={styles.flex}>
                       <RiCheckboxMultipleLine size='22' />
                       <p className={styles.number}>
@@ -56,7 +55,6 @@ function MovieDetailContent({ movieList }) {
                     </div>
                   </div>
                   <div className={styles.score}>
-                    {/* <p className={`${styles.tit} ${styles.flexCenter}`}> */}
                     <div className={`${styles.tit} ${styles.flexCenter}`}>
                       <div>누적관객수</div>
                       <div className={styles.toolTip}>

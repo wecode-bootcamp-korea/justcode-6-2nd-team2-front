@@ -4,7 +4,7 @@ import MoviePoster from './MoviePoster';
 import MovieBook from './MovieBook';
 import MovieLike from './MovieLike';
 
-function MovieCard({ data }) {
+function MovieCard({ data, likeLoader }) {
   return (
     <>
       <Card>
@@ -20,6 +20,7 @@ function MovieCard({ data }) {
         <Button>
           <MovieLike
             data={data}
+            likeLoader={likeLoader}
             background='transparent'
             color='#000'
             fontSize='15px'
@@ -27,7 +28,7 @@ function MovieCard({ data }) {
             hoverBackground='#ebebeb'
             offLogoColor='lightgray'
             offLogoSize='20px'
-            onLogoColor='#fff'
+            onLogoColor='#006633'
             onLogoSize='20px'
           />
           <MovieBook />
@@ -46,7 +47,7 @@ const Card = styled.li`
 
   div {
     display: flex;
-    flex-direction: space-between;
+    justify-content: space-between;
   }
 `;
 
@@ -78,12 +79,12 @@ const Title = styled.p`
 `;
 
 const Rate = styled.span`
-  font-size: 14px;
+  font-size: 15px;
 `;
 
 const Date = styled(Rate)`
-  font-size: 14px;
-  padding-left: 6px;
+  font-size: 15px;
+  /* padding-left: 6px; */
 `;
 
 const Button = styled.div`

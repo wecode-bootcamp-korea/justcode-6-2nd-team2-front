@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function SelectBox({ items, placeholder, value }) {
+function SelectBox({ items, setValue }) {
   const handleChange = e => {
-    // event handler
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    setValue(e.target.value);
   };
+  // console.log(items);
   return (
     <>
-      <Select required onChange={handleChange}>
-        <option disabled value={placeholder}>
-          {placeholder}
-        </option>
-        {items.map((item, idx) => {
+      <Select onChange={handleChange}>
+        {items.map(item => {
           return (
-            <option key={idx} value={item.value}>
+            <option key={item.id} value={item.value}>
               {item.label}
             </option>
           );

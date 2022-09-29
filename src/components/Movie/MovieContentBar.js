@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MovieFilter from './MovieFilter';
 import MovieSearch from './MovieSearch';
 
-function MovieContentBar({ sort, setSort, totalCount, search, onSearch }) {
+function MovieContentBar({ sort, setSort, totalCount, search, onSearch, onChangeSearch }) {
   return (
     <ListNav>
       <Div>
@@ -16,6 +16,7 @@ function MovieContentBar({ sort, setSort, totalCount, search, onSearch }) {
       <MovieSearch
         search={search}
         onSearch={onSearch}
+        onChangeSearch={onChangeSearch}
         border='1px solid #ebebeb'
         borderRadius='4px'
         color='#000'
