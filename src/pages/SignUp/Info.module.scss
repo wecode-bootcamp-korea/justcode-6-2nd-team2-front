@@ -17,44 +17,64 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #dedede;
-        .title {
-          width: 140px;
-          line-height: 80px;
-          margin-right: 10px;
-          color: #222;
-          display: block;
-          text-align: center;
-          background-color: #f8f8fa;
-        }
-        input {
-          width: 300px;
-          height: 30px;
+        .flexLayout {
           display: flex;
-          border: 1px solid #dedede;
-          margin-right: 10px;
-          &::placeholder {
+          .title {
+            width: 140px;
+            line-height: 80px;
+            margin-right: 10px;
+            color: #222;
+            display: block;
+            text-align: center;
+            background-color: #f8f8fa;
+          }
+          .inputBlock {
+            width: 300px;
+            padding-top: 24px;
+          }
+          input {
+            width: 300px;
+            height: 30px;
+            border: 1px solid #dedede;
+            margin-right: 10px;
+            &::placeholder {
+              padding-left: 10px;
+            }
+          }
+          .checkBtn {
+            width: 80px;
+            height: 36px;
+            margin-top: 20px;
+            margin-left: 10px;
+            color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #dedede;
+            border-radius: 5px;
+            font-size: 0.9em;
+          }
+          .activeCheckBtn {
+            width: 80px;
+            height: 36px;
+            margin-top: 20px;
+            margin-left: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #036635;
+            border-radius: 5px;
+            font-size: 0.9em;
+            cursor: pointer;
+          }
+          .validationMsg {
+            display: block;
+            color: red;
+            font-size: 0.9em;
+            text-align: start;
             padding-left: 10px;
           }
-        }
-        .validationMsg {
-          color: red;
-          font-size: 0.9em;
-          text-align: start;
-          padding-left: 10px;
-          padding-top: 6px;
-        }
-        .checkBtn {
-          width: 80px;
-          height: 36px;
-          color: #444;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #dedede;
-          border-radius: 5px;
-        }
-        .validationMsg {
-          display: block;
         }
       }
       .inputKiosk {
@@ -77,23 +97,42 @@
           padding-right: 10px;
         }
       }
-      .addTheater {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #dedede;
-        .title {
-          width: 140px;
-          height: 80px;
-          background-color: #f8f8fa;
+      .infoConsent {
+        margin-top: 40px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        .consetComponent {
+          width: 100%;
         }
       }
     }
-    .infoConsent {
-      width: 550px;
-      padding-top: 40px;
-      width: 100%;
-    }
+  }
+  .cencleBtn {
+    width: 80px;
+    height: 36px;
+    margin: 60px 0 0 20px;
+    color: #444;
+    background-color: #dedede;
+    border-radius: 5px;
+    border: 0;
+  }
+  .completeBtn {
+    width: 80px;
+    height: 36px;
+    margin: 60px 0 0 20px;
+    color: #444;
+    background-color: #dedede;
+    border-radius: 5px;
+    border: 0;
+  }
+  .nextCompleteBtn {
+    width: 80px;
+    height: 36px;
+    margin: 60px 0 0 20px;
+    color: #fff;
+    background-color: #036635;
+    border-radius: 5px;
+    border: 0;
   }
   .modalContainer {
     width: 100%;
