@@ -12,8 +12,8 @@ function Phone({ setModal }) {
   const [toggle, setToggle] = useState(false);
 
   //e.target.value
-  const [phoneValue, setPhoneValue] = useState('');
-  const [validation, setValidation] = useState('');
+  // const [phoneValue, setPhoneValue] = useState('');
+  // const [validation, setValidation] = useState('');
 
   const closeBtn = () => {
     setModal(false);
@@ -25,31 +25,30 @@ function Phone({ setModal }) {
   const birthValue = useRef();
 
   //phone Num
-  // const phoneHandler = e => {
-  //   const value = phoneRef.current.value.replace(/\D+/g, '');
-  //   const numberLenth = 11;
+  const phoneHandler = e => {
+    const value = phoneRef.current.value.replace(/\D+/g, '');
+    const numberLenth = 11;
 
-  //   let result;
-  //   result = '';
+    let result;
+    result = '';
 
-  //   for (let i = 0; i < value.length && i < numberLenth; i++) {
-  //     switch (i) {
-  //       case 3:
-  //         result += '-';
-  //         break;
-  //       case 7:
-  //         result += '-';
-  //         break;
+    for (let i = 0; i < value.length && i < numberLenth; i++) {
+      switch (i) {
+        case 3:
+          result += '-';
+          break;
+        case 7:
+          result += '-';
+          break;
 
-  //       default:
-  //         break;
-  //     }
-  //     result += value[i];
-  //   }
-  //   phoneRef.current.value = result;
-  //   setNum(e.target.value);
-  //   setIsValid('nextPhoneBoxBtn');
-  // };
+        default:
+          break;
+      }
+      result += value[i];
+    }
+    phoneRef.current.value = result;
+    setNum(e.target.value);
+  };
 
   //휴대폰번호 발송
   const phoneSend = e => {
@@ -70,7 +69,7 @@ function Phone({ setModal }) {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-        // localStorage.setItem('token', res.data.jwt);
+        localStorage.setItem('token', res.data.jwt);
       });
     e.preventDefault();
   };
@@ -144,19 +143,20 @@ function Phone({ setModal }) {
           </label>
           <input
             id='phone'
-            value={num}
+            // value={num}
             ref={phoneRef}
             // onChange={phoneHandler}
             type='tel'
             placeholder='" - " 없이 입력해주세요.'
             className={styles.inputBorder}
-            onChange={e => {
-              setPhoneValue(e.target.value);
-            }}
+            // onChange={e => {
+            //   setPhoneValue(e.target.value);
+            // }}
           />
           <button
             onClick={phoneSend}
-            className={phoneValue ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+            // className={phoneValue ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+            className={styles.phoneBoxBtn}
           >
             확인
           </button>
@@ -186,13 +186,14 @@ function Phone({ setModal }) {
                 type='text'
                 placeholder='6자리 번호 입력'
                 className={styles.inputBorder}
-                onChange={e => {
-                  setValidation(e.target.value);
-                }}
+                // onChange={e => {
+                //   setValidation(e.target.value);
+                // }}
               />
               <button
                 onClick={verifyCode}
-                className={validation ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+                // className={validation ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+                className={styles.phoneBoxBtn}
               >
                 인증확인
               </button>
