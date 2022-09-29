@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -293,12 +294,19 @@ function Result() {
   function callback(response) {
     const { success } = response;
 
+    // const test = {
+    //   token: JSON.parse(localStorage.getItem('token')).accessToken,
+    //   'Content-type': 'application/json',
+    // };
+
+    const test = JSON.parse(localStorage.getItem('token')).accessToken;
+
     if (success) {
       fetch('http://localhost:10010/booking/ticket', {
         method: 'POST',
         headers: {
-          token: localStorage.getItem('token').accessToken,
           'Content-type': 'application/json',
+          Authorization: test,
         },
         body: JSON.stringify(body),
       })

@@ -170,6 +170,19 @@ const Timebox = styled.div`
   }
 `;
 
+const NoLocation = styled.div`
+  display: block;
+  padding: 100px 0 0 0;
+  margin-top: 68px;
+  text-align: center;
+  background: url(https://img.megabox.co.kr/static/pc/images/reserve/bg-re-img-film.png) top center
+    no-repeat;
+`;
+
+const NoLocationInner = styled.div`
+  text-align: center;
+`;
+
 function TheaterList() {
   const [hover, setHover] = useState('');
 
@@ -194,7 +207,15 @@ function TheaterList() {
       if (resultData.data.timeTables) {
         setTimeTableData(resultData.data.timeTables);
 
-        for (let i = 0; i < resultData.data.timeTables.length; i++) {
+        outer: for (let i = 0; i < resultData.data.timeTables.length; i++) {
+          inner: for (let j = 0; j < test2.length; j++) {
+            if (
+              test2[j].theater_name === resultData.data.timeTables[i].theater_name &&
+              test2[j].screen_name === resultData.data.timeTables[i].screen_name
+            ) {
+              continue outer;
+            }
+          }
           let imsi = {
             id: i,
             theater_name: resultData.data.timeTables[i].theater_name,
@@ -204,8 +225,23 @@ function TheaterList() {
         }
 
         const set = new Set(test2);
-        console.log([...set]);
-        setScreen([...set]);
+        const arr = [...set];
+
+        outer2: for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i].theater_name === arr[j].theater_name) {
+              if (Number(arr[i].screen_name.slice(0, 1)) > Number(arr[j].screen_name.slice(0, 1))) {
+                let imsi2 = arr[i];
+                arr[i] = arr[j];
+                arr[j] = imsi2;
+              }
+              continue outer2;
+            }
+          }
+        }
+
+        console.log(arr);
+        setScreen(arr);
         for (let i = 0; i < resultData.data.theaters.length; i++) {
           for (let j = 0; j < resultData.data.timeTables.length; j++) {
             if (
@@ -252,6 +288,12 @@ function TheaterList() {
               })}
             </ul>
           </Container>
+          {timeTableData.length === 0 && (
+            <NoLocation>
+              <NoLocationInner />
+              해당 지역에 상영 시간표가 없습니다. 다른지역을 선택해 주세요.
+            </NoLocation>
+          )}
           {timeTableData.length !== 0 && (
             <>
               {theaterData.map(ele => {

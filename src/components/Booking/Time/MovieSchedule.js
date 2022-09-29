@@ -96,7 +96,11 @@ function MovieSchedule({ type, select }) {
 
   useEffect(() => {
     if (resultData) {
-      setArray(resultData.data.timeTables);
+      if (resultData.data.timeTables) {
+        setArray(resultData.data.timeTables);
+      } else {
+        setArray([]);
+      }
     }
   }, [resultData, theaterIdArray, movieIdArray]);
 

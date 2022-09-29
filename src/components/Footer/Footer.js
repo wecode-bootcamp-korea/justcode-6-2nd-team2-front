@@ -73,7 +73,7 @@ const Info = styled.div`
 
 const FooterSns = styled.div`
   float: right;
-  width: 171px;
+  width: 185px;
   margin-top: 34px;
   a {
     display: block;
