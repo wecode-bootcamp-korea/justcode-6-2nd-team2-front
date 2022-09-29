@@ -56,7 +56,6 @@ function ScreenRow({ alpha, index, last, booked }) {
   const [bookedIndex, setBookedIndex] = useState([]);
 
   useEffect(() => {
-    console.log(booked);
     let test = [];
     for (let i = 1; i < last + 1; i++) {
       test.push(i);
@@ -70,19 +69,6 @@ function ScreenRow({ alpha, index, last, booked }) {
       setHoverArray([]);
     }
   }, [adultNum, teenNum]);
-
-  useEffect(() => {
-    // const allSelect = new Array(allSelectArray);
-    // for (let i = 0; i < allSelect.length; i++) {
-    //   if (allSelect[i].includes('Z')) {
-    //     allSelect[i] = allSelect[i].splice(0, 1, alpha);
-    //   } else {
-    //     allSelect[i] = alpha + allSelect[i];
-    //   }
-    // }
-    // setAllSelectArray([...allSelectArray, allSelect]);
-    // console.log(allSelectArray);
-  }, [allSelectArray]);
 
   return (
     <>

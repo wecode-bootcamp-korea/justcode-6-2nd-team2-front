@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import Modal from '../Modal';
 
-import { MovieContext, ResultContext, DateContext } from '../../../pages/Booking/Booking';
+import { DateContext } from '../../../pages/Booking/Booking';
 
 const Ll = styled.li`
   list-style-type: none;

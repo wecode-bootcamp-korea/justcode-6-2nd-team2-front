@@ -2,8 +2,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
-
 import TheaterOne from './TheaterOne';
 
 import { ResultContext, MovieContext, AreaContext } from '../../../pages/TimeTable/TimeTable';
@@ -172,13 +170,6 @@ const Timebox = styled.div`
   }
 `;
 
-const TdAb = styled.div`
-  width: 100%;
-  height: 69px;
-  display: table;
-  text-align: center;
-`;
-
 function TheaterList() {
   const [hover, setHover] = useState('');
 
@@ -194,15 +185,36 @@ function TheaterList() {
   const [tab, setTab] = useState('서울');
 
   useEffect(() => {
+    let test = [];
+    let test2 = [];
     if (resultData) {
       setData(resultData.data.areas);
       if (resultData.data.timeTables) {
         setTimeTableData(resultData.data.timeTables);
+
+        for (let i = 0; i < resultData.data.timeTables.length; i++) {
+          test2.push(resultData.data.timeTables[i].screen_name);
+        }
+
+        const set = new Set(test2);
+        const newArr = [...set];
+
+        for (let i = 0; i < resultData.data.theaters.length; i++) {
+          for (let j = 0; j < resultData.data.timeTables.length; j++) {
+            if (
+              resultData.data.theaters[i].theater_name ===
+              resultData.data.timeTables[j].theater_name
+            ) {
+              test.push(resultData.data.theaters[i]);
+              break;
+            }
+          }
+        }
       } else {
         setTimeTableData([]);
       }
 
-      setTheaterData(resultData.data.theaters);
+      setTheaterData(test);
     }
   }, [resultData]);
 
@@ -253,54 +265,6 @@ function TheaterList() {
                             <tbody>
                               <tr style={{ display: 'flex' }}>
                                 <TheaterOne ele={ele.theater_name} timeTableData={timeTableData} />
-                                {/* {timeTableData.map(el => {
-                                  if (ele.theater_name === el.theater_name) {
-                                    return (
-                                      <td key={el.schedule_id}>
-                                        <TdAb>
-                                          <Center>
-                                            <Link
-                                              to='Seat'
-                                              id={el.schedule_id}
-                                              style={{
-                                                marginLeft: '10px',
-                                                backgroundColor:
-                                                  el === hover ? '#503396' : 'transparent',
-                                              }}
-                                              onMouseOver={event => setHover(el.schedule_id)}
-                                              onMouseOut={() => setHover('')}
-                                              onClick={() => setScheduleId(el.schedule_id)}
-                                            >
-                                              <Time
-                                                style={{
-                                                  marginLeft: '0px',
-                                                  color:
-                                                    el.schedule_id === hover ? 'white' : '#444',
-                                                }}
-                                              >
-                                                {el.schedule_id === hover
-                                                  ? `${el.start_time}~${el.end_time}`
-                                                  : el.start_time}
-                                              </Time>
-                                              <Chair
-                                                style={{
-                                                  color:
-                                                    el.schedule_id === hover ? 'white' : '#444',
-                                                }}
-                                              >
-                                                {el.schedule_id === hover
-                                                  ? `${
-                                                      Number(el.total_seat) - Number(el.booked_seat)
-                                                    }/${el.total_seat}석`
-                                                  : `${el.total_seat}석`}
-                                              </Chair>
-                                            </Link>
-                                          </Center>
-                                        </TdAb>
-                                      </td>
-                                    );
-                                  }
-                                })} */}
                               </tr>
                             </tbody>
                           </table>
@@ -312,66 +276,6 @@ function TheaterList() {
               })}
             </>
           )}
-
-          {/* <Theater>
-          <AreaName>
-            <a href=''>강남</a>
-          </AreaName>
-          <Box>
-            <Type>
-              <TheaterName>1관</TheaterName>
-              <Chair>총 223석</Chair>
-            </Type>
-            <Time>
-              <TypeArea>3D(자막)</TypeArea>
-              <Timebox>
-                <table>
-                  <tbody>
-                    <tr style={{ display: 'flex' }}>
-                      {[4, 5, 6].map(el => {
-                        return (
-                          <td>
-                            <TdAb>
-                              <Center>
-                                <a
-                                  key={el}
-                                  href=''
-                                  id={el}
-                                  style={{
-                                    marginLeft: '10px',
-                                    backgroundColor: el === hover ? '#503396' : 'transparent',
-                                  }}
-                                  onMouseOver={event => setHover(el)}
-                                  onMouseOut={() => setHover('')}
-                                >
-                                  <Time
-                                    style={{
-                                      marginLeft: '0px',
-                                      color: el === hover ? 'white' : '#444',
-                                    }}
-                                  >
-                                    {el === hover ? '11:30~14:57' : '11:30'}
-                                  </Time>
-                                  <Chair
-                                    style={{
-                                      color: el === hover ? 'white' : '#444',
-                                    }}
-                                  >
-                                    {el === hover ? '200/225석' : '225석'}
-                                  </Chair>
-                                </a>
-                              </Center>
-                            </TdAb>
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  </tbody>
-                </table>
-              </Timebox>
-            </Time>
-          </Box>
-        </Theater> */}
         </ContainerWrapper>
       )}
     </>

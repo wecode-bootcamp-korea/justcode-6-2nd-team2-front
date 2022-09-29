@@ -143,7 +143,6 @@ function RightTheater() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.data.areas);
         setStaticArea(data.data.areas);
       });
   }, []);

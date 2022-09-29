@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Modal2({ modalMessage, modalUpBtn, adultNum, teenNum, allSelectArray, totalPay }) {
   const navigate = useNavigate();

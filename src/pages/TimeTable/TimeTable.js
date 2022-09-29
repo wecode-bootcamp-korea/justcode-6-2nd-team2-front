@@ -50,11 +50,6 @@ const Context8 = createContext({
   setResultData: () => {},
 });
 
-const Context9 = createContext({
-  scheduleId: '',
-  setScheduleId: () => {},
-});
-
 const Context10 = createContext({
   theaterSelect: '',
   setTheaterSelect: () => {},
@@ -138,7 +133,6 @@ function TimeTable() {
               <Context6.Provider value={{ selectDate, setSelectDate }}>
                 <Context7.Provider value={{ areaIdArray, setAreaIdArray }}>
                   <Context8.Provider value={{ resultData, setResultData }}>
-                    {/* <Context9.Provider value={{ scheduleId, setScheduleId }}> */}
                     <Context10.Provider value={{ theaterSelect, setTheaterSelect }}>
                       <Context11.Provider value={{ navOn, setNavOn }}>
                         <Context12.Provider value={{ movieName, setMovieName }}>
@@ -152,7 +146,6 @@ function TimeTable() {
                         </Context12.Provider>
                       </Context11.Provider>
                     </Context10.Provider>
-                    {/* </Context9.Provider> */}
                   </Context8.Provider>
                 </Context7.Provider>
               </Context6.Provider>
@@ -173,7 +166,6 @@ export const TheaterContext = Context5;
 export const DateContext = Context6;
 export const AreaContext = Context7;
 export const ResultContext = Context8;
-// export const ScheduleContext = Context9;
 export const TheaterSelectContext = Context10;
 export const OnOffContext = Context11;
 export const MovieNameContext = Context12;

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import DiscountOne from './DiscountOne';
-import Title2 from './Title2.js';
 
 const Container = styled.div`
   display: block;

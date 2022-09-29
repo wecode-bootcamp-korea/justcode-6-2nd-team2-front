@@ -52,11 +52,6 @@ const Context8 = createContext({
   setResultData: () => {},
 });
 
-const Context9 = createContext({
-  scheduleId: '',
-  setScheduleId: () => {},
-});
-
 const Context10 = createContext({
   theaterSelect: '',
   setTheaterSelect: () => {},
@@ -72,7 +67,6 @@ function Booking() {
   const [areaIdArray, setAreaIdArray] = useState('');
   const [selectDate, setSelectDate] = useState(new window.Date());
   const [resultData, setResultData] = useState();
-  const [scheduleId, setScheduleId] = useState();
   const [theaterSelect, setTheaterSelect] = useState();
 
   useEffect(() => {
@@ -105,8 +99,6 @@ function Booking() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(url);
-        // console.log(data);
         setResultData(data);
       });
   }, [movieIdArray, theaterIdArray, areaIdArray, selectDate]);
@@ -120,7 +112,6 @@ function Booking() {
               <Context6.Provider value={{ selectDate, setSelectDate }}>
                 <Context7.Provider value={{ areaIdArray, setAreaIdArray }}>
                   <Context8.Provider value={{ resultData, setResultData }}>
-                    {/* <Context9.Provider value={{ scheduleId, setScheduleId }}> */}
                     <Context10.Provider value={{ theaterSelect, setTheaterSelect }}>
                       <InnerWrap>
                         <Routes>
@@ -130,7 +121,6 @@ function Booking() {
                         </Routes>
                       </InnerWrap>
                     </Context10.Provider>
-                    {/* </Context9.Provider> */}
                   </Context8.Provider>
                 </Context7.Provider>
               </Context6.Provider>
@@ -151,5 +141,4 @@ export const TheaterContext = Context5;
 export const DateContext = Context6;
 export const AreaContext = Context7;
 export const ResultContext = Context8;
-// export const ScheduleContext = Context9;
 export const TheaterSelectContext = Context10;

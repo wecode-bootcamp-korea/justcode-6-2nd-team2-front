@@ -145,10 +145,6 @@ function Schedule() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(selectDate);
-  }, [selectDate]);
-
   return (
     <>
       <ScheduleWrapper>

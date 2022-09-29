@@ -145,13 +145,6 @@ function RightMovie() {
 
   const { movieName, setMovieName } = useContext(MovieNameContext);
 
-  // useEffect(() => {
-  //   if (resultData) {
-  //     console.log(resultData);
-  //     setData(resultData.data.movies);
-  //   }
-  // }, [resultData]);
-
   useEffect(() => {
     fetch(`http://localhost:10010/movie/list`, {
       method: 'get',

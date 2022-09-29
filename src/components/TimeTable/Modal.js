@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React from 'react';
 import './Modal.scss';
 
 function Modal({ modalMessage, modalUpBtn }) {

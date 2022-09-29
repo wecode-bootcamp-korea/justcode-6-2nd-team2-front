@@ -1,8 +1,5 @@
-// /* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-
-import { Link } from 'react-router-dom';
 
 import MovieOne from './MovieOne';
 
@@ -217,63 +214,31 @@ function MovieList() {
 
   const [tab, setTab] = useState('서울');
 
-  //   useEffect(() => {
-  //     fetch(
-  //       `http://localhost:10010/booking/schedule/type?areaId=${areaIdArray}&theater=${theaterIdArray}&date=${selectDate}`,
-  //       {
-  //         method: 'get',
-  //       },
-  //     )
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         console.log(data);
-  //         setMovieData(data.data.movies);
-  //         if (data.data.timeTables) {
-  //           setTimeTableData(data.data.timeTables);
-  //         } else {
-  //           setTimeTableData([]);
-  //         }
-  //       });
-  //   }, [theaterIdArray, areaIdArray, selectDate]);
-
   useEffect(() => {
+    let test = [];
     if (resultData) {
       console.log(resultData);
       if (resultData.data.timeTables) {
         setTimeTableData(resultData.data.timeTables);
+        for (let i = 0; i < resultData.data.movies.length; i++) {
+          for (let j = 0; j < resultData.data.timeTables.length; j++) {
+            if (resultData.data.movies[i].title === resultData.data.timeTables[j].title) {
+              test.push(resultData.data.movies[i]);
+              break;
+            }
+          }
+        }
       } else {
         setTimeTableData([]);
       }
-      setMovieData(resultData.data.movies);
+
+      setMovieData(test);
     }
   }, [resultData]);
 
   return (
     <>
       <ContainerWrapper>
-        {/* <Container>
-            <ul>
-              {data.map(el => {
-                return (
-                  <li key={el.id}>
-                    <a
-                      id={el.id}
-                      onClick={() => {
-                        setTab(el.area_name);
-                        setAreaIdArray(el.id);
-                      }}
-                      style={{
-                        backgroundColor: el.area_name === tab ? '#555' : 'transparent',
-                        color: el.area_name === tab ? 'white' : '#666',
-                      }}
-                    >
-                      {el.area_name}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </Container> */}
         {timeTableData.length !== 0 && (
           <>
             {movieData.map(ele => {
