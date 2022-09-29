@@ -11,6 +11,10 @@ function Phone({ setModal }) {
   const [birth, setBirth] = useState('');
   const [toggle, setToggle] = useState(false);
 
+  //e.target.value
+  const [phoneValue, setPhoneValue] = useState('');
+  const [validation, setValidation] = useState('');
+
   const closeBtn = () => {
     setModal(false);
   };
@@ -21,30 +25,31 @@ function Phone({ setModal }) {
   const birthValue = useRef();
 
   //phone Num
-  const phoneHandler = e => {
-    const value = phoneRef.current.value.replace(/\D+/g, '');
-    const numberLenth = 11;
+  // const phoneHandler = e => {
+  //   const value = phoneRef.current.value.replace(/\D+/g, '');
+  //   const numberLenth = 11;
 
-    let result;
-    result = '';
+  //   let result;
+  //   result = '';
 
-    for (let i = 0; i < value.length && i < numberLenth; i++) {
-      switch (i) {
-        case 3:
-          result += '-';
-          break;
-        case 7:
-          result += '-';
-          break;
+  //   for (let i = 0; i < value.length && i < numberLenth; i++) {
+  //     switch (i) {
+  //       case 3:
+  //         result += '-';
+  //         break;
+  //       case 7:
+  //         result += '-';
+  //         break;
 
-        default:
-          break;
-      }
-      result += value[i];
-    }
-    phoneRef.current.value = result;
-    setNum(e.target.value);
-  };
+  //       default:
+  //         break;
+  //     }
+  //     result += value[i];
+  //   }
+  //   phoneRef.current.value = result;
+  //   setNum(e.target.value);
+  //   setIsValid('nextPhoneBoxBtn');
+  // };
 
   //휴대폰번호 발송
   const phoneSend = e => {
@@ -113,13 +118,25 @@ function Phone({ setModal }) {
           <label className={styles.title} for='name'>
             이름
           </label>
-          <input id='name' ref={userName} type='text' placeholder='성명입력' />
+          <input
+            id='name'
+            ref={userName}
+            type='text'
+            placeholder='성명입력'
+            className={styles.inputBorder}
+          />
         </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='birth'>
             생년월일
           </label>
-          <input id='birth' ref={birthValue} type='text' placeholder='생년월일' />
+          <input
+            id='birth'
+            ref={birthValue}
+            type='text'
+            placeholder='생년월일'
+            className={styles.inputBorder}
+          />
         </div>
         <div className={styles.inputBox}>
           <label className={styles.title} for='phone'>
@@ -129,11 +146,20 @@ function Phone({ setModal }) {
             id='phone'
             value={num}
             ref={phoneRef}
-            onChange={phoneHandler}
+            // onChange={phoneHandler}
             type='tel'
             placeholder='" - " 없이 입력해주세요.'
+            className={styles.inputBorder}
+            onChange={e => {
+              setPhoneValue(e.target.value);
+            }}
           />
-          <button onClick={phoneSend}>확인</button>
+          <button
+            onClick={phoneSend}
+            className={phoneValue ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+          >
+            확인
+          </button>
         </div>
         {toggle === true ? (
           <div className={styles.toggle}>
@@ -147,13 +173,30 @@ function Phone({ setModal }) {
                 value={phoneRef.current.value}
                 onChange={phoneHandler}
                 type='tel'
+                className={styles.inputBorder}
               />
             </div>
-            <label className={styles.title} for='auth'>
-              인증번호
-            </label>
-            <input id='auth' ref={verifyRef} type='text' placeholder='6자리 번호 입력' />
-            <button onClick={verifyCode}>인증확인</button>
+            <div className={styles.inputBox}>
+              <label className={styles.title} for='auth'>
+                인증번호
+              </label>
+              <input
+                id='auth'
+                ref={verifyRef}
+                type='text'
+                placeholder='6자리 번호 입력'
+                className={styles.inputBorder}
+                onChange={e => {
+                  setValidation(e.target.value);
+                }}
+              />
+              <button
+                onClick={verifyCode}
+                className={validation ? `${styles.nextPhoneBoxBtn}` : `${styles.phoneBoxBtn}`}
+              >
+                인증확인
+              </button>
+            </div>
           </div>
         ) : null}
       </div>
