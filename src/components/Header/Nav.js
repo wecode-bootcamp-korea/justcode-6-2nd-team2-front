@@ -4,6 +4,7 @@ import { BsCalendar4Week } from 'react-icons/bs';
 import { Link, NavLink } from 'react-router-dom';
 import CategoryL from './CategoryL';
 import CategoryR from './CategoryR';
+import Mypage from './Mypage';
 
 function Nav({
   Logo,
@@ -15,6 +16,8 @@ function Nav({
   logout,
   mainLogo,
   setSubNavMenu,
+  mypageTab,
+  mypage,
 }) {
   const tabClose = () => {
     setSubNavMenu(false);
@@ -110,14 +113,23 @@ function Nav({
                   />
                 </NavLink>
               </div>
-              <div onClick={tabClose}>
+              <div onClick={mypageTab}>
                 <NavLink to='/mypage'>
-                  <AiOutlineUser
-                    className={
-                      location.pathname === '/' ? `${styles.mainIconSize}` : `${styles.iconSize}`
-                    }
-                    size='26'
-                  />
+                  {mypage === true ? (
+                    <AiFillCloseCircle
+                      size='26'
+                      className={
+                        location.pathname === '/' ? `${styles.mainIconSize}` : `${styles.iconSize}`
+                      }
+                    />
+                  ) : (
+                    <AiOutlineUser
+                      className={
+                        location.pathname === '/' ? `${styles.mainIconSize}` : `${styles.iconSize}`
+                      }
+                      size='26'
+                    />
+                  )}
                 </NavLink>
               </div>
             </li>

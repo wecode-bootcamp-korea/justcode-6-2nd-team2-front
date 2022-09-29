@@ -8,6 +8,7 @@ import Logo from '../../assets/starbox.png';
 import Login from '../Login/Login';
 import Nav from './Nav';
 import Location from './Location';
+import Mypage from './Mypage';
 
 function Header() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Header() {
   // console.log(location.pathname);
   const [subNavMenu, setSubNavMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  const [mouseHover, setMouseHover] = useState(false);
+  const [mypage, setMypage] = useState(false);
 
   //login modal
   const openModal = () => {
@@ -35,9 +36,9 @@ function Header() {
     setSubNavMenu(prev => !prev);
   };
 
-  //hover navlist
-  const hoverEvent = () => {
-    setMouseHover(true);
+  //mypage
+  const mypageTab = () => {
+    setMypage(prev => !prev);
   };
 
   return (
@@ -60,6 +61,8 @@ function Header() {
             setLoginModal={setLoginModal}
             logout={logout}
             setSubNavMenu={setSubNavMenu}
+            mypageTab={mypageTab}
+            mypage={mypage}
           />
           <div className={styles.bgColor}></div>
         </div>
@@ -77,6 +80,15 @@ function Header() {
         </div>
         <div className={loginModal === true && `${styles.openModal}`}>
           {openModal && <Login setModal={setLoginModal} modal={loginModal} logo={Logo} />}
+        </div>
+        <div className={styles.mypageTabContainer}>
+          {mypage && (
+            <Mypage
+              location={location.pathname}
+              setSubNavMenu={setSubNavMenu}
+              setMypage={setMypage}
+            />
+          )}
         </div>
       </div>
     </div>
