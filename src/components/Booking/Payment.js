@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import styled from 'styled-components';
 
 import NavTitle from './Nav/NavTitle';
@@ -39,25 +39,35 @@ const SectionInner2 = styled.div`
   border-radius: 10px;
 `;
 
+const Context4 = createContext({
+  means: 'credit',
+  setMeans: () => {},
+});
+
 function Payment() {
+  const [means, setMeans] = useState('credit');
+
   return (
     <>
-      <NavTitle />
-      <ContainerWrapper>
-        <Section>
-          <SectionInner1>
-            <Title />
-            <DiscountList />
-            <Credit />
-            <Title2 />
-          </SectionInner1>
-          <SectionInner2>
-            <Result />
-          </SectionInner2>
-        </Section>
-      </ContainerWrapper>
+      <Context4.Provider value={{ means, setMeans }}>
+        <NavTitle />
+        <ContainerWrapper>
+          <Section>
+            <SectionInner1>
+              <Title />
+              <DiscountList />
+              <Title2 />
+              <Credit />
+            </SectionInner1>
+            <SectionInner2>
+              <Result />
+            </SectionInner2>
+          </Section>
+        </ContainerWrapper>
+      </Context4.Provider>
     </>
   );
 }
 
 export default Payment;
+export const CreditContext = Context4;

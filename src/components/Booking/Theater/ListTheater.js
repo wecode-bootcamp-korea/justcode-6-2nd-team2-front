@@ -1,6 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import ListTheaterOne from './ListTheaterOne';
+
+import {
+  AreaContext,
+  ResultContext,
+  TheaterContext,
+  TheaterSelectContext,
+  MovieContext,
+  DateContext,
+} from '../../../pages/Booking/Booking';
 
 const BtnTab = styled.button`
   display: block;
@@ -150,62 +159,34 @@ const NoStrong = styled.strong`
 const NoSpan = styled.span``;
 
 function ListMovie({ type }) {
-  const [select, setSelect] = useState('');
+  // const [select, setSelect] = useState('');
   const [count, setCount] = useState(0);
   const [name, setName] = useState([]);
   const [data, setData] = useState([]);
 
+  const { resultData, setResultData } = useContext(ResultContext);
+  const { theaterSelect, setTheaterSelect } = useContext(TheaterSelectContext);
+
+  const { movieIdArray, setMovieIdArray } = useContext(MovieContext);
+  const { selectDate, setSelectDate } = useContext(DateContext);
+  const { areaIdArray, setAreaIdArray } = useContext(AreaContext);
+
   const reset = direct => {
-    setSelect(direct);
+    setTheaterSelect(direct);
   };
 
-  // useEffect(() => {
-  //   fetch('http://localhost:10010/booking/schedule', {
-  //     method: 'get',
-  //   })
-  //     .then(res => res.json())
-  //     .then(mock => {
-  //       let areaName;
-  //       let theaterName;
-  //       let mockData = mock.data;
-  //       let test = [];
-  //       let newTest = [];
-
-  //       for (let j = 0; j < mock.length; j++) {
-  //         test.push([mock[j].area_id, mock[j].area_name]);
-  //         let set = new Set(test);
-  //         newTest = [...set];
-  //       }
-
-  //       console.log();
-
-  //       // for(let j=0; j<mock.length; j++){
-  //       //   for(let i=0; i<data.length; i++){
-  //       //     if(data[i].areaName === mock[j].area_name){
-
-  //       //     }
-  //       //   }
-  //       // }
-
-  //       // let area = {
-  //       //   areaId: '',
-  //       //   areaName: '',
-  //       //   theaterId: [],
-  //       //   theaterName: [],
-  //       // }
-  //       // setData([...data, area]);
-  //     });
-  // }, []);
+  useEffect(() => {
+    if (resultData) {
+      setData(resultData.data.areas);
+    }
+  }, [resultData]);
 
   useEffect(() => {
-    fetch('./data/booking/theater.json', {
-      method: 'get',
-    })
-      .then(res => res.json())
-      .then(mock => {
-        setData(mock.data);
-      });
-  }, []);
+    setTheaterSelect('');
+    setData([]);
+    setName([]);
+    setCount(0);
+  }, [movieIdArray, selectDate]);
 
   return (
     <>
@@ -217,41 +198,45 @@ function ListMovie({ type }) {
         <List>
           <ListWrapper>
             <InnerWrapper tabindex='0'>
-              <Ul>
-                {data.map(el => {
-                  if (el === select) {
-                    return (
-                      <ListTheaterOne
-                        key={el}
-                        direct={el}
-                        reset={reset}
-                        select={true}
-                        count={count}
-                        setCount={setCount}
-                        name={name}
-                        setName={setName}
-                        areaName={el.area_name}
-                        theaterName={el.theater_name}
-                      />
-                    );
-                  } else {
-                    return (
-                      <ListTheaterOne
-                        key={el}
-                        direct={el}
-                        reset={reset}
-                        select={false}
-                        count={count}
-                        setCount={setCount}
-                        name={name}
-                        setName={setName}
-                        areaName={el.area_name}
-                        theaterName={el.theater_name}
-                      />
-                    );
-                  }
-                })}
-              </Ul>
+              {resultData && (
+                <Ul>
+                  {data.map(el => {
+                    if (el.id === theaterSelect) {
+                      return (
+                        <ListTheaterOne
+                          key={el.id}
+                          direct={el.id}
+                          reset={reset}
+                          select={true}
+                          count={count}
+                          setCount={setCount}
+                          name={name}
+                          setName={setName}
+                          areaName={el.area_name}
+                          areaCount={el.area_count}
+                          id={el.id}
+                        />
+                      );
+                    } else {
+                      return (
+                        <ListTheaterOne
+                          key={el.id}
+                          direct={el.id}
+                          reset={reset}
+                          select={false}
+                          count={count}
+                          setCount={setCount}
+                          name={name}
+                          setName={setName}
+                          areaName={el.area_name}
+                          areaCount={el.area_count}
+                          id={el.id}
+                        />
+                      );
+                    }
+                  })}
+                </Ul>
+              )}
             </InnerWrapper>
           </ListWrapper>
         </List>

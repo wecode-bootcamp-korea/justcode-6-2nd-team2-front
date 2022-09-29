@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import ListOne from './ListMovieOne';
+
+import { MovieContext, ResultContext, DateContext } from '../../../pages/Booking/Booking';
 
 const BtnTab = styled.button`
   display: block;
@@ -182,6 +184,10 @@ function ListMovie({ type }) {
     '21',
   ];
 
+  const { movieIdArray, setMovieIdArray } = useContext(MovieContext);
+  const { resultData, setResultData } = useContext(ResultContext);
+  const { selectDate, setSelectDate } = useContext(DateContext);
+
   const [count, setCount] = useState(0);
   const [movieURL, setMovieURL] = useState([]);
   const [data, setData] = useState([]);
@@ -195,14 +201,15 @@ function ListMovie({ type }) {
   };
 
   useEffect(() => {
-    fetch('http://localhost:10010/movie/list', {
-      method: 'get',
-    })
-      .then(res => res.json())
-      .then(mock => {
-        setData(mock.data);
-      });
-  }, []);
+    if (resultData) {
+      setData(resultData.data.movies);
+    }
+  }, [resultData]);
+
+  useEffect(() => {
+    setMovieURL([]);
+    setCount(0);
+  }, [selectDate]);
 
   return (
     <>
@@ -219,7 +226,7 @@ function ListMovie({ type }) {
                   {data.map(el => {
                     return (
                       <ListOne
-                        key={el}
+                        key={el.movie_id}
                         array={weekArr}
                         type={type}
                         plus={plus}
@@ -229,8 +236,11 @@ function ListMovie({ type }) {
                         setMovieURL={setMovieURL}
                         title={el.title}
                         grade={el.grade_image}
-                        img={el.img}
-                        id={el.id}
+                        img={el.poster_img}
+                        id={el.movie_id}
+                        movieIdArray={movieIdArray}
+                        setMovieIdArray={setMovieIdArray}
+                        index={el.movie_id}
                       />
                     );
                   })}

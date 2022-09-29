@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import DiscountOne from './DiscountOne';
-
 const Li = styled.li`
   list-style-type: none;
   display: list-item;

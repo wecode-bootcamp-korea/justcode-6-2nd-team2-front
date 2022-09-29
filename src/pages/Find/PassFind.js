@@ -1,8 +1,51 @@
 import { Link } from 'react-router-dom';
 import styles from './Find.module.scss';
 import Logo from '../../assets/starbox.png';
+import { useRef, useState } from 'react';
 
 function PassFind() {
+  const pwFindName = useRef();
+  const pwFindBirth = useRef();
+  const pwFindPhone = useRef();
+  const pwFindId = useRef();
+  const [isValid, setIsValid] = useState(false);
+
+  //disabled
+  const onChane = e => {
+    pwFindName.current.value.length > 0 &&
+    pwFindBirth.current.value.length > 0 &&
+    pwFindPhone.current.value.length > 0 &&
+    pwFindId.current.value.length > 0
+      ? setIsValid(true)
+      : setIsValid(false);
+  };
+
+  const pwFind = e => {
+    e.preventDefault();
+    fetch('http://localhost:10010/user/find/password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: pwFindName.current.value, // "name" : "오인환",
+        birth: pwFindBirth.current.value, // "birth": "660910",
+        phone: pwFindPhone.current.value, // "01098451345",
+        account_id: pwFindId.current.value, // "account_id" : "yunoroy09"
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        if (result) {
+          alert(`${pwFindName.current.value} 님 임시 비밀번호는 ${result.password} 입니다.`);
+          pwFindName.current.value = '';
+          pwFindBirth.current.value = '';
+          pwFindPhone.current.value = '';
+          pwFindId.current.value = '';
+        }
+      });
+  };
   return (
     <div className={styles.containerBackground}>
       <div className={styles.container}>
@@ -39,7 +82,14 @@ function PassFind() {
                 <label for='name'>이름</label>
               </dt>
               <dd>
-                <input id='name' type='text' placeholder='이름' className={styles.inputText} />
+                <input
+                  id='name'
+                  ref={pwFindName}
+                  type='text'
+                  placeholder='이름을 입력하세요.'
+                  className={styles.inputText}
+                  onChange={onChane}
+                />
               </dd>
             </dl>
             <dl className={styles.inputBox}>
@@ -49,9 +99,11 @@ function PassFind() {
               <dd>
                 <input
                   id='birth'
+                  ref={pwFindBirth}
                   type='text'
                   placeholder='생년월일 앞8자리'
                   className={styles.inputText}
+                  onChange={onChane}
                 />
               </dd>
             </dl>
@@ -62,30 +114,39 @@ function PassFind() {
               <dd>
                 <input
                   id='phone'
-                  type='text'
+                  ref={pwFindPhone}
+                  type='tel'
                   placeholder='"-" 없이 입력'
                   className={styles.inputText}
+                  onChange={onChane}
                 />
-                <input type='submit' value='인증요청' className={styles.inputBtn} />
               </dd>
             </dl>
             <dl className={styles.inputBox}>
               <dt className={styles.inputTitle}>
-                <label for='phone'>인증번호</label>
+                <label for='id'>아이디</label>
               </dt>
               <dd>
-                <input id='phone' type='text' className={styles.inputText} />
-                <span style={{ position: 'absolute', top: '14px', left: '320px', color: 'red' }}>
-                  3:00
-                </span>
-                <input type='submit' value='인증확인' className={styles.inputBtn} />
+                <input
+                  id='id'
+                  type='text'
+                  ref={pwFindId}
+                  placeholder='아이디를 입력하세요.'
+                  className={styles.inputText}
+                  onChange={onChane}
+                />
               </dd>
             </dl>
           </div>
           <p style={{ fontSize: '14px', marginBottom: '30px' }}>
             ※ 휴대폰 번호가 변경된 경우 본인인증 찾기를 통하여 아이디찾기를 진행해주시기 바랍니다.
           </p>
-          <button className={styles.findBtn}> 비밀번호 찾기 </button>
+          <button
+            className={isValid ? `${styles.activeFindBtn}` : `${styles.findBtn}`}
+            onClick={pwFind}
+          >
+            비밀번호 찾기
+          </button>
         </div>
       </div>
     </div>

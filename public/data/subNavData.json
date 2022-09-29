@@ -17,7 +17,7 @@
       "url": "/Booking",
       "content": [
         { "contentId": 1, "url": "/Booking", "list": "빠른예매" },
-        { "contentId": 2, "url": "/Booking/TimeTable", "list": "상영시간표" },
+        { "contentId": 2, "url": "/TimeTable", "list": "상영시간표" },
         { "contentId": 3, "url": "/Booking", "list": "더 부티크 프라이빗 예매" }
       ]
     },
