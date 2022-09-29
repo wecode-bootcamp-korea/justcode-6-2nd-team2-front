@@ -8,6 +8,7 @@ import MovieList from './MovieList';
 
 function MovieContent() {
   const location = useLocation();
+
   const [movieList, setMovieList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [sort, setSort] = useState(null); // null, title, date
@@ -30,7 +31,7 @@ function MovieContent() {
           category: 'domestic',
         };
       }
-      case '/movie/international': {
+      case '/movie/abroad': {
         return {
           category: 'international',
         };
@@ -121,11 +122,19 @@ function MovieContent() {
   };
 
   useEffect(() => {
+    let q = null;
+    if (location.search) {
+      q = new URLSearchParams(location.search).get('q');
+      setSearch(q);
+    }
     getLoader({
       page: 1,
       pathname: location.pathname,
+      ...(q && {
+        search: q,
+      }),
     });
-  }, [location.pathname]);
+  }, [location]);
 
   const onSearch = value => {
     getLoader({
