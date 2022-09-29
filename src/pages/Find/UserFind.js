@@ -1,14 +1,25 @@
 import { Link } from 'react-router-dom';
 import styles from './Find.module.scss';
 import Logo from '../../assets/starbox.png';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 function UserFind() {
   const userName = useRef();
   const userBirth = useRef();
   const userPhone = useRef();
+  const [isValid, setIsValid] = useState(false);
 
-  const findClick = () => {
+  //disabled
+  const onChane = e => {
+    userPhone.current.value.length > 0 &&
+    userBirth.current.value.length > 0 &&
+    userPhone.current.value.length > 0
+      ? setIsValid(true)
+      : setIsValid(false);
+  };
+
+  const findClick = e => {
+    e.preventDefault();
     fetch('http://localhost:10010/user/find/id', {
       method: 'POST',
       headers: {
@@ -21,11 +32,15 @@ function UserFind() {
       }),
     })
       .then(res => res.json())
-      .then(res => {
-        if (res) {
-          alert(res.body.account_id);
+      .then(result => {
+        console.log(result);
+        if (result.account_id) {
+          alert(`${userName.current.value} 님의 아이디는 ${result.account_id} 입니다.`);
+          userName.current.value = '';
+          userBirth.current.value = '';
+          userPhone.current.value = '';
         } else {
-          alert('정보를 다시 확인하세요!');
+          alert('입력정보를 확인하세요!');
         }
       });
   };
@@ -71,6 +86,7 @@ function UserFind() {
                   type='text'
                   placeholder='이름'
                   className={styles.inputText}
+                  onChange={onChane}
                 />
               </dd>
             </dl>
@@ -82,9 +98,10 @@ function UserFind() {
                 <input
                   id='birth'
                   ref={userBirth}
-                  type='number'
+                  type='password'
                   placeholder='생년월일 앞8자리'
                   className={styles.inputText}
+                  onChange={onChane}
                 />
               </dd>
             </dl>
@@ -99,6 +116,7 @@ function UserFind() {
                   ref={userPhone}
                   placeholder='"-" 없이 입력'
                   className={styles.inputText}
+                  onChange={onChane}
                 />
               </dd>
             </dl>
@@ -106,7 +124,11 @@ function UserFind() {
           <p style={{ fontSize: '14px', marginBottom: '30px' }}>
             ※ 휴대폰 번호가 변경된 경우 본인인증 찾기를 통하여 아이디찾기를 진행해주시기 바랍니다.
           </p>
-          <button onClick={findClick} className={styles.findBtn}>
+
+          <button
+            onClick={findClick}
+            className={isValid ? `${styles.activeFindBtn}` : `${styles.findBtn}`}
+          >
             아이디 찾기
           </button>
         </div>

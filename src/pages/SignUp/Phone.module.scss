@@ -1,6 +1,6 @@
 .phoneContainer {
   width: 500px;
-  padding: 20px;
+  // padding: 20px;
   background-color: #fff;
   .top {
     display: flex;
@@ -22,18 +22,40 @@
     .inputBox {
       padding-top: 10px;
       padding-bottom: 10px;
+      .inputBorder {
+        border: 1px solid lightgray;
+        width: 100%;
+        line-height: 30px;
+        &::placeholder {
+          padding-left: 10px;
+        }
+      }
       .title {
         width: 100%;
         text-align: start;
         display: block;
         line-height: 30px;
       }
-      input {
-        width: 100%;
-        line-height: 30px;
-        &::placeholder {
-          padding-left: 10px;
-        }
+      .phoneBoxBtn {
+        width: 180px;
+        line-height: 40px;
+        margin-top: 30px;
+        font-size: 20px;
+        color: #444;
+        border: 0;
+        font-size: 1.1em;
+        border-radius: 10px;
+      }
+      .nextPhoneBoxBtn {
+        width: 180px;
+        line-height: 40px;
+        margin-top: 30px;
+        font-size: 20px;
+        background-color: #036635;
+        color: #fff;
+        border: 0;
+        font-size: 1.1em;
+        border-radius: 10px;
       }
     }
   }

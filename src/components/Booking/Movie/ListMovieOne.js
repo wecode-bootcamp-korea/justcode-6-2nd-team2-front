@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import Modal from '../Modal';
+
+import { DateContext } from '../../../pages/Booking/Booking';
 
 const Ll = styled.li`
   list-style-type: none;
@@ -120,14 +122,24 @@ function ListOne({
   grade,
   img,
   id,
+  movieIdArray,
+  setMovieIdArray,
+  index,
 }) {
   const [select, setSelect] = useState(false);
   const [modalup, setModalup] = useState(false);
   const [modalMessage, setModalMessage] = useState('영화는 최대 3개까지 선택이 가능합니다.');
 
+  const { selectDate, setSelectDate } = useContext(DateContext);
+
   const modalUpBtn = () => {
     setModalup(!modalup);
   };
+
+  useEffect(() => {
+    setSelect(false);
+    setMovieIdArray([]);
+  }, [selectDate]);
 
   return (
     <>
@@ -139,7 +151,16 @@ function ListOne({
                 modalUpBtn();
                 return;
               }
-              movieURL.pop();
+              for (let i = 0; i < movieURL.length; i++) {
+                if (movieURL[i] === img) {
+                  movieURL.splice(i, 1);
+                  movieIdArray.splice(i, 1);
+                  break;
+                }
+              }
+
+              setMovieIdArray([...movieIdArray]);
+
               setMovieURL(movieURL);
               minus();
             } else {
@@ -147,6 +168,7 @@ function ListOne({
                 modalUpBtn();
                 return;
               }
+              setMovieIdArray([...movieIdArray, id]);
               setMovieURL([...movieURL, img]);
               plus();
             }

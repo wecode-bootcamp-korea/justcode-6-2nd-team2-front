@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+
+import { DateContext } from '../../../pages/Booking/Booking';
 
 import Modal from '../Modal';
 
@@ -97,10 +99,16 @@ function Schedule() {
   const [modalup, setModalup] = useState(false);
   const [modalMessage, setModalMessage] = useState('예매가능한 날짜가 아닙니다.');
 
+  const [day, setDay] = useState([new window.Date().getDay()]);
+
+  const [sendDay, setSendDay] = useState([new window.Date()]);
+
   let dateTime = new window.Date();
   const [startDate, setStartDate] = useState(dateTime);
 
   const [swiper, setSwiper] = useState(null);
+
+  const { selectDate, setSelectDate } = useContext(DateContext);
 
   const modalUpBtn = () => {
     setModalup(!modalup);
@@ -112,9 +120,19 @@ function Schedule() {
 
   useEffect(() => {
     for (let i = 1; i < 19; i++) {
+      setSendDay(sendDay => [...sendDay, addDays(new window.Date(), i)]);
+      setDay(day => [...day, addDays(new window.Date(), i).getDay()]);
       setWeekArr(weekArr => [...weekArr, addDays(new window.Date(), i).getDate()]);
       if (addDays(new window.Date(), i).getDate() === 1) {
         setIndex(i);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    for (let i = 1; i < 19; i++) {
+      if (i < 18) {
+        setOrignDay(originDay => [...originDay, addDays(new window.Date(), i + 1)]);
       }
     }
   }, []);
@@ -169,6 +187,7 @@ function Schedule() {
                         <SwiperSlide
                           key={element}
                           onClick={() => {
+                            setSelectDate(sendDay[index]);
                             setSelect(element);
                             for (let i = 1; i < 19; i++) {
                               if (addDays(new window.Date(), i).getDate() === element) {
@@ -186,7 +205,14 @@ function Schedule() {
                               {dateTime.getMonth() + 2 < 10 && `2022.0${dateTime.getMonth() + 2}`}
                             </Year>
                           )}
-                          {element} 토
+                          {element}ㆍ{index === 0 && '오늘'}
+                          {day[index] === 0 && index > 0 && '일'}
+                          {day[index] === 1 && index > 0 && '월'}
+                          {day[index] === 2 && index > 0 && '화'}
+                          {day[index] === 3 && index > 0 && '수'}
+                          {day[index] === 4 && index > 0 && '목'}
+                          {day[index] === 5 && index > 0 && '금'}
+                          {day[index] === 6 && index > 0 && '토'}
                         </SwiperSlide>
                       </>
                     );
@@ -195,6 +221,7 @@ function Schedule() {
                       <SwiperSlide
                         key={element}
                         onClick={() => {
+                          setSelectDate(sendDay[index]);
                           setSelect(element);
                           for (let i = 1; i < 19; i++) {
                             if (addDays(new window.Date(), i).getDate() === element) {
@@ -206,7 +233,14 @@ function Schedule() {
                         id={element}
                         className={element === select ? 'set-active' : 'set-all'}
                       >
-                        {element} 토
+                        {element}ㆍ{index === 0 && '오늘'}
+                        {day[index] === 0 && index > 0 && '일'}
+                        {day[index] === 1 && index > 0 && '월'}
+                        {day[index] === 2 && index > 0 && '화'}
+                        {day[index] === 3 && index > 0 && '수'}
+                        {day[index] === 4 && index > 0 && '목'}
+                        {day[index] === 5 && index > 0 && '금'}
+                        {day[index] === 6 && index > 0 && '토'}
                       </SwiperSlide>
                     );
                   }
@@ -233,6 +267,7 @@ function Schedule() {
                   }
                 }
                 setStartDate(date);
+                setSelectDate(date);
                 setSelect(date.getDate());
                 setCal(!cal);
               }}
