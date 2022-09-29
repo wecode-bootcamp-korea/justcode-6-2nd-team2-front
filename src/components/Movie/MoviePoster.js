@@ -14,12 +14,14 @@ function MoviePoster({ data }) {
             <DetailLink to='moviedetail'>
               <div className='content'>
                 <div className='summary'>{data.detail_content}</div>
-                <div className='reviewScore'>
-                  <div className='review'>
-                    <span>관람평</span>
+                {data.reviews_rate && (
+                  <div className='reviewScore'>
+                    <div className='review'>
+                      <span>관람평</span>
+                    </div>
+                    <div className='score'>{data.reviews_rate}</div>
                   </div>
-                  <div className='score'>{data.reviews_rate}</div>
-                </div>
+                )}
               </div>
             </DetailLink>
           </div>

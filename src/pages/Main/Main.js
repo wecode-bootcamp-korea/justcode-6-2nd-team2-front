@@ -1,45 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import MainBoxOffice from '../../components/Main/MainBoxOffice';
 import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
-  const [movieList] = useState([1, 1, 1, 1]);
+  const [movieList, setMovieList] = useState([]);
+  const [search] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('http://localhost:10010/movie').then(response => {
+      setMovieList(response.data.data);
+    });
+  }, []);
+
   return (
     <MainPage>
-      <Div>
-        <Title>
-          <span>박스오피스</span>
-        </Title>
-        <More>
-          더 많은 영화 보기
-          <AiOutlinePlus className='icon' />
-        </More>
-        <section>
-          <MainBoxOffice movieList={movieList} />
-        </section>
-        <MainSearchLink />
-      </Div>
+      <div className='background' />
+      <div className='backgroundImg'>
+        <Div>
+          <Title>
+            <span>박스오피스</span>
+          </Title>
+          <More to='/movie'>
+            더 많은 영화 보기
+            <AiOutlinePlus className='icon' />
+          </More>
+          <section>
+            <MainBoxOffice movieList={movieList} />
+          </section>
+          <MainSearchLink
+            search={search}
+            onSearch={value => {
+              // console.log(value);
+              //   if (value !== '') {
+              navigate(`/movie?q=${value}`);
+              //   }
+            }}
+          />
+        </Div>
+      </div>
     </MainPage>
   );
 }
 
 const MainPage = styled.div`
+  display: block;
   position: relative;
-  background-color: #002533;
+  min-height: 880px;
+  padding: 0 0 80px 0;
+
+  .backgroundImg {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    min-width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url('https://img.megabox.co.kr/SharedImg/2022/09/21/sUaMgi8aqcQ7PVmoi2Mie0qHrm8XpkKp_420.jpg')
+        no-repeat;
+    background-size: cover;
+    background-position: 0 -100px;
+  }
 `;
 
 const Div = styled.div`
   width: 1100px;
   height: auto;
   margin: 0 auto;
-  padding: 200px 0;
+  padding: 100px 0 200px 0;
 
-  section {
-    margin: 0 -15px;
-  }
+  background-color: transparent;
 `;
 
 const Title = styled.button`
@@ -63,12 +100,12 @@ const Title = styled.button`
       width: 95%;
       height: 2px;
       align-items: center;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
     }
   }
 `;
 
-const More = styled.div`
+const More = styled(Link)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -80,9 +117,11 @@ const More = styled.div`
   font-size: 15px;
   color: #aaa;
   line-height: 16px;
+  text-decoration: none;
 
   .icon {
     margin-left: 4px;
+
     font-size: 25px;
   }
 `;

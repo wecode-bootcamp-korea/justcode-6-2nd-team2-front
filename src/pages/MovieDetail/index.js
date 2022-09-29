@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
-import MovieDetailTabs from '../../components/Moviedetail/MovieDetailTabs';
+import MovieDetailTabs from '../../components/moviedetail/MovieDetailTabs';
 import MovieDetailContent from './MovieDetailContent';
 import styled from 'styled-components';
-import MovieDetailTabContent from '../../components/Moviedetail/MovieDetailTabContent/MovieDetailTabContent';
+import MovieDetailTabContent from '../../components/moviedetail/MovieDetailTabContent/MovieDetailTabContent';
 
 const Wrapper = styled.div`
   width: 1100px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MoviePostList from '../../components/Moviedetail/MoviePostList';
+import MoviePostList from '../../components/moviedetail/MoviePostList';
 function MoviePost() {
   return (
     <>
@@ -14,20 +14,7 @@ function MoviePost() {
     </>
   );
 }
-const PostTitle = styled.div`
-  font-size: 22px;
-  color: #006633;
-  margin-top: 40px;
-`;
-const PostSum = styled.div`
-  color: #444;
-  font-weight: 700;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  span {
-    color: #006633;
-  }
-`;
+
 const postList = [
   {
     id: 1,
@@ -75,4 +62,19 @@ const postList = [
     time: '1시간전',
   },
 ];
+const PostTitle = styled.div`
+  font-size: 22px;
+  color: #006633;
+  margin-top: 40px;
+`;
+const PostSum = styled.div`
+  color: #444;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  span {
+    color: #006633;
+  }
+`;
+
 export default MoviePost;

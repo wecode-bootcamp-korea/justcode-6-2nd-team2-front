@@ -8,7 +8,6 @@ import { IoTicketOutline, IoPeopleOutline } from 'react-icons/io5';
 
 function MovieDetailContent({ movieList }) {
   const [share, setShare] = useState(false);
-  // console.log('movieList', movieList);
   return (
     <>
       {movieList.map(item => {

@@ -15,7 +15,7 @@ import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
 import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
-import MovieInfo from '../components/Moviedetail/MovieDetailTabContent/MovieInfo';
+import MovieInfo from '../components/moviedetail/MovieDetailTabContent/MovieInfo';
 // import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
 import MovieTrailers from './MovieDetail/MovieTrailers';
@@ -23,7 +23,7 @@ import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
 import ListTheater from '../components/Booking/Theater/ListTheater';
-import MovieComment from '../components/Moviedetail/MovieDetailTabContent/MovieComment';
+import MovieComment from '../components/moviedetail/MovieDetailTabContent/MovieComment';
 
 function Router() {
   return (

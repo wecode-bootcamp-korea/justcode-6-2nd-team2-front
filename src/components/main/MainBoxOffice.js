@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,15 +10,24 @@ function MainBoxOffice({ movieList }) {
     <BoxOffice>
       {movieList.map(card => {
         return (
-          <li key={card.id}>
-            <List>
-              <MoviePoster />
-              <Button>
-                <MovieLike />
-                <MovieBook />
-              </Button>
-            </List>
-          </li>
+          <List key={card.id}>
+            <MoviePoster data={card} />
+            <Button>
+              <MovieLike
+                data={card}
+                background='rgba(0,0,0,0.2)'
+                color='#ebebeb'
+                fontSize='15px'
+                fontWeight='400'
+                hoverBackground='transparent'
+                offLogoColor='#ebebeb'
+                offLogoSize='20px'
+                onLogoColor='#006633'
+                onLogoSize='20px'
+              />
+              <MovieBook />
+            </Button>
+          </List>
         );
       })}
     </BoxOffice>
@@ -28,12 +36,13 @@ function MainBoxOffice({ movieList }) {
 
 const BoxOffice = styled.ol`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
 `;
 
 const List = styled.li`
   margin: 0 20px;
-  padding: 0;
 `;
 
 const Button = styled.div`
