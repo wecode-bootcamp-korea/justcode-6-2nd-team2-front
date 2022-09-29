@@ -1,10 +1,11 @@
 import React from 'react';
 import MovieCommentList from './MovieCommentList';
 
-function MovieComment() {
+function MovieComment({ movieList }) {
+  // console.log('MovieComment', movieList);
   return (
     <>
-      <MovieCommentList />
+      <MovieCommentList movieList={movieList} />
     </>
   );
 }

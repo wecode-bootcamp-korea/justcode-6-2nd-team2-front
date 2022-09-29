@@ -15,7 +15,7 @@ import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
 import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
-import MovieInfo from './MovieDetail/MovieInfo';
+import MovieInfo from '../components/Moviedetail/MovieDetailTabContent/MovieInfo';
 // import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
 import MovieTrailers from './MovieDetail/MovieTrailers';
@@ -23,7 +23,7 @@ import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
 import ListTheater from '../components/Booking/Theater/ListTheater';
-import MovieComment from './MovieDetail/MovieComment';
+import MovieComment from '../components/Moviedetail/MovieDetailTabContent/MovieComment';
 
 function Router() {
   return (
@@ -44,9 +44,9 @@ function Router() {
           </Route>
 
           {/* 영화 상세페이지 */}
-          <Route path='/moviedetail' end element={<MovieDetail />}>
-            <Route index element={<MovieInfo />} />
-            <Route index path='movieinfo' element={<MovieInfo />} />
+          <Route path='/moviedetail/1' end element={<MovieDetail />}>
+            {/* <Route index element={<MovieInfo />} /> */}
+            <Route path='movieinfo' index element={<MovieInfo />} />
             <Route path='comment' element={<MovieComment />} />
             <Route path='moviepost' element={<MoviePost />} />
             <Route path='trailers' element={<MovieTrailers />} />
