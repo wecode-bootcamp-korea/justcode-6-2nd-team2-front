@@ -102,12 +102,22 @@ function Nav({
             <li className={styles.rightIcon}>
               <div onClick={tabClose}>
                 <NavLink to='/TimeTable'>
-                  <BsCalendar4Week className={styles.iconSize} size='26' />
+                  <BsCalendar4Week
+                    className={
+                      location.pathname === '/' ? `${styles.mainIconSize}` : `${styles.iconSize}`
+                    }
+                    size='26'
+                  />
                 </NavLink>
               </div>
               <div onClick={tabClose}>
                 <NavLink to='/mypage'>
-                  <AiOutlineUser className={styles.iconSize} size='26' />
+                  <AiOutlineUser
+                    className={
+                      location.pathname === '/' ? `${styles.mainIconSize}` : `${styles.iconSize}`
+                    }
+                    size='26'
+                  />
                 </NavLink>
               </div>
             </li>
