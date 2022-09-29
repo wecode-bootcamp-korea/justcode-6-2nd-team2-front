@@ -25,7 +25,10 @@ function MovieCard({ data }) {
             fontSize='15px'
             fontWeight='400'
             hoverBackground='#ebebeb'
-            iconColor='#006633'
+            offLogoColor='lightgray'
+            offLogoSize='20px'
+            onLogoColor='#fff'
+            onLogoSize='20px'
           />
           <MovieBook />
         </Button>
