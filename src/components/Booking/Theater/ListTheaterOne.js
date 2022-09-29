@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 
 import ListDetailOne from './ListDetailOne';
+
+import { AreaContext, ResultContext, TheaterContext } from '../../../pages/Booking/Booking';
 
 import '../Nav/Schedule.scss';
 
@@ -114,7 +116,19 @@ const Line = styled.div`
   }
 `;
 
-function ListOne({ direct, reset, select, count, setCount, name, setName, areaName, theaterName }) {
+function ListOne({
+  direct,
+  reset,
+  select,
+  count,
+  setCount,
+  name,
+  setName,
+  areaName,
+  areaCount,
+  theaterName,
+  id,
+}) {
   const weekArr = [
     '1',
     '2',
@@ -139,10 +153,6 @@ function ListOne({ direct, reset, select, count, setCount, name, setName, areaNa
     '21',
   ];
 
-  // useEffect(() => {
-  //   setOneSelect(select);
-  // }, [select]);
-
   const plus = () => {
     setCount(count + 1);
   };
@@ -150,37 +160,55 @@ function ListOne({ direct, reset, select, count, setCount, name, setName, areaNa
   const minus = () => {
     setCount(count - 1);
   };
+
+  const { areaIdArray, setAreaIdArray } = useContext(AreaContext);
+  const { resultData, setResultData } = useContext(ResultContext);
+
+  const [test, setTest] = useState('');
+
+  useEffect(() => {
+    if (resultData.data.theaters) {
+      setTest(resultData.data.theaters);
+    }
+  }, [resultData]);
+
+  useEffect(() => {
+    setName([]);
+    setCount(0);
+  }, [areaIdArray]);
+
   return (
     <>
       <Ll>
         <Movie
           onClick={() => {
             reset(direct);
+            setAreaIdArray(id);
           }}
           className={select ? 'set-theater-active' : 'all'}
         >
           <Txt>
-            {areaName}({theaterName.length})
+            {areaName}({areaCount})
           </Txt>
         </Movie>
         <Line />
-        {select && (
+        {test && select && (
           <Depth>
             <DetailList>
               <DetailBox>
                 <BoxContainer>
                   <Ul>
-                    {theaterName.map(el => {
+                    {test.map(el => {
                       return (
                         <ListDetailOne
-                          key={el}
-                          direct={direct}
+                          key={el.theater_id}
                           plus={plus}
                           minus={minus}
                           count={count}
                           name={name}
                           setName={setName}
-                          theaterOne={el}
+                          theaterOne={el.theater_name}
+                          id={el.theater_id}
                         />
                       );
                     })}

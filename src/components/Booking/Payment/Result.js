@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CountContext, AllContext } from '../../../pages/Booking/Booking';
+import { ScheduleContext } from '../../../pages/Router';
 import { CreditContext } from '../Payment';
+
+import Modal2 from './Modal2';
 
 import './Result.scss';
 
@@ -45,7 +48,7 @@ const InfoArea = styled.div`
   position: relative;
   min-height: 50px;
   margin-left: 48px;
-  padding: 0 104px 0 0;
+  padding: 0 45px 0 0;
   font-size: 0.8667em;
 `;
 
@@ -211,6 +214,39 @@ function Result() {
   const [all, setAll] = useState([]);
   const [totalPay, setTotalPay] = useState(adultNum * 12000 + teenNum * 10000);
 
+  const navigate = useNavigate();
+
+  const { scheduleId, setScheduleId } = useContext(ScheduleContext);
+
+  const [data, setData] = useState('');
+
+  const [modalup, setModalup] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const modalUpBtn = () => {
+    setModalMessage(data);
+    setModalup(!modalup);
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:10010/booking/schedule/${scheduleId}`, {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(mock => {
+        setData(mock.data[0]);
+      });
+  }, []);
+
+  const body = {
+    movie_id: 1,
+    scheduleId: scheduleId,
+    adultNumber: adultNum,
+    teenagerNumber: teenNum,
+    kidNumber: 0,
+    seatsName: allSelectArray,
+  };
+
   function onClickPayment() {
     /* 1. 가맹점 식별하기 */
     const { IMP } = window;
@@ -259,7 +295,17 @@ function Result() {
     const { success } = response;
 
     if (success) {
-      alert(`결제 성공하였습니다.`);
+      fetch('http://localhost:10010/booking/ticket', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+        .then(res => res.json())
+        .then(mock => {
+          modalUpBtn();
+        });
     } else {
       alert(`결제 실패하였습니다.`);
     }
@@ -288,17 +334,17 @@ function Result() {
       <Container>
         <TitleArea>
           <span />
-          <Title>공조2: 인터내셔날</Title>
+          <Title>{data.title}</Title>
           <Cate>2D</Cate>
         </TitleArea>
         <InfoArea>
-          <Theater>동대문/컴포트1관</Theater>
+          <Theater>{data.screen_name}</Theater>
           {/* <TheaterDetail>컴포트1관</TheaterDetail> */}
           <Date>
-            2022.09.23(금)
+            {data.watch_date}
             <Time>
               <i />
-              15:20~17:39
+              {data.start_time}~{data.end_time}
             </Time>
           </Date>
         </InfoArea>
@@ -360,7 +406,9 @@ function Result() {
           </p>
         </PayArea>
         <ButtonArea>
-          <button style={{ borderRadius: '0px 0px 0px 4px' }}>이전</button>
+          <Link to='../Seat' style={{ borderRadius: '0px 0px 0px 4px', textDecoration: 'none' }}>
+            이전
+          </Link>
           <button
             style={{
               borderRadius: '0px 0px 4px 0px',
@@ -374,6 +422,16 @@ function Result() {
             결제
           </button>
         </ButtonArea>
+        {modalup && (
+          <Modal2
+            modalMessage={modalMessage}
+            modalUpBtn={modalUpBtn}
+            adultNum={adultNum}
+            teenNum={teenNum}
+            allSelectArray={allSelectArray}
+            totalPay={totalPay}
+          />
+        )}
       </Container>
     </>
   );

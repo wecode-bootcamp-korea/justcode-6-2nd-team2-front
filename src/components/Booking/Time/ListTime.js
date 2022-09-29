@@ -95,9 +95,7 @@ const Wrapper = styled.div`
   background-color: transparent;
 `;
 
-function ListTime({ type }) {
-  const [select, setSelect] = useState('');
-
+function ListTime({ type, select, setSelect }) {
   const [time, setTime] = useState([
     '00',
     '01',

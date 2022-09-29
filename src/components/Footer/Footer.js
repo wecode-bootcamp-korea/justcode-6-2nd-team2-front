@@ -64,7 +64,7 @@ const Info = styled.div`
   float: left;
   font-size: 0.8667em;
   letter-spacing: 0;
-  margin-top: 10px;
+  margin-top: 24px;
   p {
     display: inline-block;
     vertical-align: top;
@@ -74,7 +74,7 @@ const Info = styled.div`
 const FooterSns = styled.div`
   float: right;
   width: 171px;
-  margin-top: 20px;
+  margin-top: 34px;
   a {
     display: block;
     float: left;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 
-import { DateContext } from '../../../pages/Booking/Booking';
+import { DateContext } from '../../../pages/TimeTable/TimeTable';
 
 import Modal from '../Modal';
 
@@ -17,18 +17,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { addDays } from 'date-fns';
 
-import './Schedule.scss';
-
 const ScheduleWrapper = styled.div`
+  margin-top: 77px;
   width: 100%;
 `;
 
 const Wrap = styled.div`
   position: relative;
-  height: 40px;
-  border-top: 1px solid #555;
-  border-left: 1px solid #d8d9db;
-  border-right: 1px solid #d8d9db;
+  height: 66px;
+  border-top: 1px solid #d8d9db;
+  border-bottom: 1px solid #d8d9db;
 `;
 
 const List = styled.div`
@@ -46,16 +44,16 @@ const Year = styled.div`
   left: 38px;
   top: 0;
   width: 70px;
-  height: 20px;
-  line-height: 18px;
-  margin-top: -10px;
-  border-radius: 10px;
+  height: 28px;
+  line-height: 26px;
+  margin-top: -17px;
+  border-radius: 15px;
   border: 1px solid #d8d9db;
   text-align: center;
   background-color: #fff;
   font-family: Roboto;
   font-weight: 300;
-  font-size: 0.8667em;
+  font-size: 0.9em;
   overflow: visible;
 `;
 
@@ -108,8 +106,6 @@ function Schedule() {
 
   const [swiper, setSwiper] = useState(null);
 
-  const { selectDate, setSelectDate } = useContext(DateContext);
-
   const modalUpBtn = () => {
     setModalup(!modalup);
   };
@@ -117,6 +113,8 @@ function Schedule() {
   const slideTo = index => {
     swiper.slideTo(index);
   };
+
+  const { selectDate, setSelectDate } = useContext(DateContext);
 
   useEffect(() => {
     for (let i = 1; i < 19; i++) {
@@ -136,18 +134,6 @@ function Schedule() {
       }
     }
   }, []);
-
-  useEffect(() => {
-    for (let i = 1; i < 19; i++) {
-      if (i < 18) {
-        setOrignDay(originDay => [...originDay, addDays(new window.Date(), i + 1)]);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log(selectDate);
-  }, [selectDate]);
 
   return (
     <>
@@ -202,6 +188,9 @@ function Schedule() {
                           }}
                           id={element}
                           className={element === select ? 'set-active' : 'set-all'}
+                          style={{
+                            height: '65px',
+                          }}
                         >
                           {activeIndex <= index && (
                             <Year key={element} style={{ left: '-2px', overflow: 'visible' }}>
@@ -209,14 +198,18 @@ function Schedule() {
                               {dateTime.getMonth() + 2 < 10 && `2022.0${dateTime.getMonth() + 2}`}
                             </Year>
                           )}
-                          {element}ㆍ{index === 0 && '오늘'}
-                          {day[index] === 0 && index > 0 && '일'}
-                          {day[index] === 1 && index > 0 && '월'}
-                          {day[index] === 2 && index > 0 && '화'}
-                          {day[index] === 3 && index > 0 && '수'}
-                          {day[index] === 4 && index > 0 && '목'}
-                          {day[index] === 5 && index > 0 && '금'}
-                          {day[index] === 6 && index > 0 && '토'}
+                          <p>{element}</p>
+                          <p>
+                            {index === 0 && '오늘'}
+                            {index === 1 && '내일'}
+                            {day[index] === 0 && index > 1 && '일'}
+                            {day[index] === 1 && '월'}
+                            {day[index] === 2 && '화'}
+                            {day[index] === 3 && '수'}
+                            {day[index] === 4 && '목'}
+                            {day[index] === 5 && '금'}
+                            {day[index] === 6 && '토'}
+                          </p>
                         </SwiperSlide>
                       </>
                     );
@@ -236,15 +229,22 @@ function Schedule() {
                         }}
                         id={element}
                         className={element === select ? 'set-active' : 'set-all'}
+                        style={{
+                          height: '65px',
+                        }}
                       >
-                        {element}ㆍ{index === 0 && '오늘'}
-                        {day[index] === 0 && index > 0 && '일'}
-                        {day[index] === 1 && index > 0 && '월'}
-                        {day[index] === 2 && index > 0 && '화'}
-                        {day[index] === 3 && index > 0 && '수'}
-                        {day[index] === 4 && index > 0 && '목'}
-                        {day[index] === 5 && index > 0 && '금'}
-                        {day[index] === 6 && index > 0 && '토'}
+                        <p>{element}</p>
+                        <p>
+                          {index === 0 && '오늘'}
+                          {index === 1 && '내일'}
+                          {day[index] === 0 && index > 1 && '일'}
+                          {day[index] === 1 && index > 1 && '월'}
+                          {day[index] === 2 && index > 1 && '화'}
+                          {day[index] === 3 && index > 1 && '수'}
+                          {day[index] === 4 && index > 1 && '목'}
+                          {day[index] === 5 && index > 1 && '금'}
+                          {day[index] === 6 && index > 1 && '토'}
+                        </p>
                       </SwiperSlide>
                     );
                   }
@@ -253,7 +253,14 @@ function Schedule() {
             </Date>
           </List>
 
-          <div style={{ display: 'flex', verticalAlign: 'top', padding: '0 0 0 34px' }}>
+          <div
+            style={{
+              display: 'flex',
+              verticalAlign: 'top',
+              padding: '0 0 0 34px',
+              marginTop: '12px',
+            }}
+          >
             <BtnCalendar onClick={() => setCal(!cal)} />
           </div>
           <CalWrapper img={cal}>

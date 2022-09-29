@@ -132,7 +132,9 @@ function Nav({ Logo, subNavMenu, openModal, tabClick, location, setLoginModal, l
             </li>
             <li className={styles.rightIcon}>
               <div>
-                <BsCalendar4Week className={styles.iconSize} size='26' />
+                <Link to={'/TimeTable'}>
+                  <BsCalendar4Week className={styles.iconSize} size='26' />
+                </Link>
               </div>
               <div>
                 <AiOutlineUser className={styles.iconSize} size='26' />

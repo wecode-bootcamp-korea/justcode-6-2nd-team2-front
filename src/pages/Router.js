@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -23,53 +23,65 @@ import Consent from './SignUp/Consent';
 import Info from './SignUp/Info';
 import Complete from './SignUp/Complete';
 import Footer from '../components/Footer/Footer';
+import TimeTable from './TimeTable/TimeTable';
+
+const Context10 = createContext({
+  scheduleId: '',
+  setScheduleId: () => {},
+});
 
 function Router() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/Booking/*' element={<Booking />} />
-          {/* 영화페이지 */}
-          <Route path='/movie' element={<Movie />}>
-            <Route index element={<MovieContent />} />
-            <Route path='domestic' element={<MovieContent />} />
-            <Route path='abroad' element={<MovieContent />} />
-            <Route path='special' element={<MovieContent />} />
-            <Route path='film' element={<MovieContent />} />
-          </Route>
-          {/* 영화 상세페이지 */}
-          <Route path='/moviedetail' end element={<MovieDetail />}>
-            <Route index element={<MovieInfo />} />
-            <Route path='comment' element={<MovieComment />} />
-            <Route path='moviepost' element={<MoviePost />} />
-            <Route path='trailer' element={<MovieTrailer />} />
-          </Route>
-          {/* 영화 상세페이지 */}
-          <Route path='/moviedetail' end element={<MovieDetail />}>
-            {/* <Route index element={<MovieInfo />} /> */}
-            <Route path='movieinfo' element={<MovieInfo />} />
-            <Route path='comment' element={<MovieComment />} />
-            <Route path='moviepost' element={<MoviePost />} />
-            <Route path='trailer' element={<MovieTrailer />} />
-          </Route>
+  const [scheduleId, setScheduleId] = useState();
 
-          <Route path='/user-find' element={<UserFind />} />
-          <Route path='/pass-find' element={<PassFind />} />
-          <Route path='/signup' element={<SignUp />}>
-            <Route path='consent' element={<Consent />} />
-            <Route path='info' element={<Info />} />
-            <Route path='complete' element={<Complete />} />
-          </Route>
-          <Route path='/cinema' element={<Cinema />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </ThemeProvider>
+  return (
+    <Context10.Provider value={{ scheduleId, setScheduleId }}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/Booking/*' element={<Booking />} />
+            <Route path='/TimeTable/*' element={<TimeTable />} />
+            {/* 영화페이지 */}
+            <Route path='/movie' element={<Movie />}>
+              <Route index element={<MovieContent />} />
+              <Route path='domestic' element={<MovieContent />} />
+              <Route path='abroad' element={<MovieContent />} />
+              <Route path='special' element={<MovieContent />} />
+              <Route path='film' element={<MovieContent />} />
+            </Route>
+            {/* 영화 상세페이지 */}
+            <Route path='/moviedetail' end element={<MovieDetail />}>
+              <Route index element={<MovieInfo />} />
+              <Route path='comment' element={<MovieComment />} />
+              <Route path='moviepost' element={<MoviePost />} />
+              <Route path='trailer' element={<MovieTrailer />} />
+            </Route>
+            {/* 영화 상세페이지 */}
+            <Route path='/moviedetail' end element={<MovieDetail />}>
+              {/* <Route index element={<MovieInfo />} /> */}
+              <Route path='movieinfo' element={<MovieInfo />} />
+              <Route path='comment' element={<MovieComment />} />
+              <Route path='moviepost' element={<MoviePost />} />
+              <Route path='trailer' element={<MovieTrailer />} />
+            </Route>
+
+            <Route path='/user-find' element={<UserFind />} />
+            <Route path='/pass-find' element={<PassFind />} />
+            <Route path='/signup' element={<SignUp />}>
+              <Route path='consent' element={<Consent />} />
+              <Route path='info' element={<Info />} />
+              <Route path='complete' element={<Complete />} />
+            </Route>
+            <Route path='/cinema' element={<Cinema />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Context10.Provider>
   );
 }
 
 export default Router;
+export const ScheduleContext = Context10;
