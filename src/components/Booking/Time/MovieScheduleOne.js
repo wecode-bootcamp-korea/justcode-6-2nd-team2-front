@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ScheduleContext } from '../../../pages/Router';
@@ -51,7 +51,7 @@ const Strong1 = styled.strong`
 `;
 const Em1 = styled.em`
   display: block;
-  padding: 3px 0 0 0;
+  padding: 3px 0 0 18px;
   font-size: 0.8667em;
   font-weight: 300;
   font-style: normal;
@@ -61,8 +61,9 @@ const Em1 = styled.em`
 const Title = styled.span`
   display: table-cell;
   width: 275px;
-  padding: 0;
   text-align: left;
+  padding-left: 17px;
+  padding-top: 5px;
 `;
 const Strong2 = styled.span`
   display: block;
@@ -134,6 +135,28 @@ const Em3 = styled.em`
   font-style: normal;
 `;
 
+const Icon = styled.p`
+  margin-left: 5px;
+  overflow: hidden;
+  display: inline-block;
+  margin: -1px 0 0 0;
+  padding-left: 19px;
+
+  height: 30px;
+  vertical-align: middle;
+  background-position: 0 7px;
+  background-repeat: no-repeat;
+  background-image: ${props => {
+    if (props.img === 'sun') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-greeting-option-sun.png)';
+    } else if (props.img === 'brunch') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-time-brunch.png)';
+    } else if (props.img === 'moon') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-greeting-option-moon.png)';
+    }
+  }};
+`;
+
 function MovieScheduleOne({
   title,
   theaterName,
@@ -146,14 +169,37 @@ function MovieScheduleOne({
 }) {
   const { scheduleId, setScheduleId } = useContext(ScheduleContext);
 
+  // const navigate = useNavigate();
+
+  // const nextHandler = () => {
+  //   if (!localStorage.getItem('token')) {
+  //     setModalup(!modalup);
+  //   } else {
+  //     setScheduleId(id);
+  //     navigate('seat');
+  //   }
+  // };
+
   return (
     <>
-      <Link to='Seat' style={{ textDecoration: 'none' }} onClick={() => setScheduleId(id)}>
+      <Link to='seat' style={{ textDecoration: 'none' }} onClick={() => setScheduleId(id)}>
         <Li>
           <Legend />
           <LiButton>
             <Time>
-              <Strong1>{startTime}</Strong1>
+              <Strong1>
+                <Icon
+                  title='조조'
+                  img={
+                    Number(startTime.slice(0, 2)) < 12
+                      ? 'sun'
+                      : Number(startTime.slice(0, 2)) > 21
+                      ? 'moon'
+                      : 'none'
+                  }
+                />
+                {startTime}
+              </Strong1>
               <Em1>~{endTime}</Em1>
             </Time>
             <Title>

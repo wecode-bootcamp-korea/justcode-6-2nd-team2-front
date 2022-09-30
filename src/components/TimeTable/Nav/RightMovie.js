@@ -172,14 +172,14 @@ function RightMovie() {
                     <ul>
                       {data.map(el => {
                         return (
-                          <Li key={el.id}>
+                          <Li key={el.movie_id}>
                             <button
                               type='button'
                               onClick={e => {
                                 setMovieName(el.title);
                                 setTheaterName(el.title);
                                 setImgUrl(el.poster_img);
-                                setMovieIdArray([el.id]);
+                                setMovieIdArray([el.movie_id]);
                               }}
                               style={{
                                 color: theaterName === el.title ? '#fff' : 'black',
@@ -201,7 +201,15 @@ function RightMovie() {
         <PosterWrapper>
           <Table>
             <a>
-              <img src={imgUrl} />
+              <img
+                src={imgUrl}
+                style={{
+                  height:
+                    imgUrl === '/static/media/starbox.63eba2ee644ba437ebdb.png' ? '50%' : '100%',
+                  marginTop:
+                    imgUrl === '/static/media/starbox.63eba2ee644ba437ebdb.png' ? '83px' : '0px',
+                }}
+              />
             </a>
           </Table>
         </PosterWrapper>

@@ -199,6 +199,18 @@ const Center = styled.p`
   background-repeat: no-repeat;
 `;
 
+const NoLocation = styled.div`
+  display: block;
+  padding: 100px 0 0 0;
+  text-align: center;
+  background: url(https://img.megabox.co.kr/static/pc/images/reserve/bg-re-img-film.png) top center
+    no-repeat;
+`;
+
+const NoLocationInner = styled.div`
+  text-align: center;
+`;
+
 function MovieList() {
   const [hover, setHover] = useState('');
 
@@ -214,12 +226,50 @@ function MovieList() {
 
   const [tab, setTab] = useState('서울');
 
+  const [movie, setMovie] = useState([]);
+
   useEffect(() => {
     let test = [];
+    let test2 = [];
     if (resultData) {
-      console.log(resultData);
       if (resultData.data.timeTables) {
         setTimeTableData(resultData.data.timeTables);
+
+        outer: for (let i = 0; i < resultData.data.timeTables.length; i++) {
+          inner: for (let j = 0; j < test2.length; j++) {
+            if (
+              test2[j].title === resultData.data.timeTables[i].title &&
+              test2[j].screen_name === resultData.data.timeTables[i].screen_name
+            ) {
+              continue outer;
+            }
+          }
+          let imsi = {
+            id: i,
+            title: resultData.data.timeTables[i].title,
+            screen_name: resultData.data.timeTables[i].screen_name,
+          };
+          test2.push(imsi);
+        }
+
+        const set = new Set(test2);
+        const arr = [...set];
+
+        outer2: for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i].title === arr[j].title) {
+              if (Number(arr[i].screen_name.slice(0, 1)) > Number(arr[j].screen_name.slice(0, 1))) {
+                let imsi2 = arr[i];
+                arr[i] = arr[j];
+                arr[j] = imsi2;
+              }
+              continue outer2;
+            }
+          }
+        }
+
+        console.log(arr);
+        setMovie(arr);
         for (let i = 0; i < resultData.data.movies.length; i++) {
           for (let j = 0; j < resultData.data.timeTables.length; j++) {
             if (resultData.data.movies[i].title === resultData.data.timeTables[j].title) {
@@ -228,6 +278,18 @@ function MovieList() {
             }
           }
         }
+
+        // console.log(resultData);
+        // if (resultData.data.timeTables) {
+        //   setTimeTableData(resultData.data.timeTables);
+        //   for (let i = 0; i < resultData.data.movies.length; i++) {
+        //     for (let j = 0; j < resultData.data.timeTables.length; j++) {
+        //       if (resultData.data.movies[i].title === resultData.data.timeTables[j].title) {
+        //         test.push(resultData.data.movies[i]);
+        //         break;
+        //       }
+        //     }
+        //   }
       } else {
         setTimeTableData([]);
       }
@@ -239,6 +301,12 @@ function MovieList() {
   return (
     <>
       <ContainerWrapper>
+        {timeTableData.length === 0 && (
+          <NoLocation>
+            <NoLocationInner />
+            해당 지역에 상영 시간표가 없습니다. 다른지역을 선택해 주세요.
+          </NoLocation>
+        )}
         {timeTableData.length !== 0 && (
           <>
             {movieData.map(ele => {
@@ -246,26 +314,36 @@ function MovieList() {
                 <Theater key={ele.movie_id}>
                   <AreaName>
                     <Center style={{ backgroundImage: `url(${ele.grade_image})` }} />
-                    <a>{ele.title}</a>
+                    <a href={`../moviedetail/${ele.movie_id}`}>{ele.title}</a>
                   </AreaName>
-                  <Box>
-                    <Type>
-                      <TheaterName>5관</TheaterName>
-                      <Chair>총 100석</Chair>
-                    </Type>
-                    <Time>
-                      <TypeArea>2D</TypeArea>
-                      <Timebox>
-                        <table>
-                          <tbody>
-                            <tr style={{ display: 'flex' }}>
-                              <MovieOne ele={ele.title} timeTableData={timeTableData} />
-                            </tr>
-                          </tbody>
-                        </table>
-                      </Timebox>
-                    </Time>
-                  </Box>
+                  {movie.map(el => {
+                    if (ele.title === el.title) {
+                      return (
+                        <Box key={el.id}>
+                          <Type>
+                            <TheaterName>{el.screen_name}</TheaterName>
+                            <Chair>총 100석</Chair>
+                          </Type>
+                          <Time>
+                            <TypeArea>2D</TypeArea>
+                            <Timebox>
+                              <table>
+                                <tbody>
+                                  <tr style={{ display: 'flex' }}>
+                                    <MovieOne
+                                      ele={ele.title}
+                                      timeTableData={timeTableData}
+                                      screenName={el.screen_name}
+                                    />
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </Timebox>
+                          </Time>
+                        </Box>
+                      );
+                    }
+                  })}
                 </Theater>
               );
             })}
