@@ -146,7 +146,7 @@ function ListOne({
       <Ll>
         <Movie
           onClick={() => {
-            if (select) {
+            if (movieIdArray.includes(id)) {
               if (count - 1 > 3) {
                 modalUpBtn();
                 return;
@@ -178,7 +178,7 @@ function ListOne({
             }
             setSelect(!select);
           }}
-          img={select}
+          img={movieIdArray.includes(id)}
         >
           {type === 'movie' && (
             <>

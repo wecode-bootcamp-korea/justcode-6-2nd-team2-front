@@ -74,6 +74,7 @@ function TabLeft() {
             <button
               title='영화별 선택'
               onClick={() => {
+                setAreaIdArray(1);
                 setTheaterNames('');
                 setTheaterIdArray([]);
                 setNavOn('movie');
@@ -94,6 +95,7 @@ function TabLeft() {
             <button
               title='극장별 선택'
               onClick={() => {
+                setAreaIdArray(1);
                 setMovieName('');
                 setMovieIdArray([]);
                 setNavOn('theater');
