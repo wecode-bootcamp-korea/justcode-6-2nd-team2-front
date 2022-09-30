@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 
-function ListViewMore({ onLoadMore }) {
+function ListViewMore({ onLoadMore, text }) {
   return (
     <ViewMore onClick={onLoadMore}>
-      더보기 <IoIosArrowDown />
+      {text && text} <IoIosArrowDown />
     </ViewMore>
   );
 }

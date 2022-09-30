@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import MovieDetailTabs from '../../components/moviedetail/MovieDetailTabs';
 import MovieDetailContent from './MovieDetailContent';
@@ -12,32 +12,20 @@ const Wrapper = styled.div`
 `;
 
 function MovieDetail() {
-  // const location = useLocation();
   const [movieList, setMovieList] = useState([]);
-  // const params = useParams();
-  // const { movieId } = useParams();
-  // console.log('index params:', movieId);
-  // useEffect(() => {
-  //   fetch(`http://localhost:10010/movie/detail/${movieId}`)
-  //     .then(res => res.json())
-  //     .then(res => setMovieList(res.data));
-  //   console.log(setMovieList.data);
-  // }, [movieId]);
+  const movieId = useParams();
+
   const movieGetLoader = () => {
-    fetch(`http://localhost:10010/movie/detail/1`)
+    // fetch(`http://localhost:10010/movie/detail/1`)
+    fetch(`http://localhost:10010/movie/detail/${movieId.id}`)
       .then(res => res.json())
       .then(res => setMovieList(res.data));
   };
   useEffect(() => {
     movieGetLoader();
     // console.log(setMovieList.data);
-  }, []);
+  }, [movieId.id]);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:10010/movie/detail/1`)
-  //     .then(res => res.json())
-  //     .then(res => setMovieList(res.data));
-  // }, []);
   return (
     <>
       <MovieDetailContent movieList={movieList} />

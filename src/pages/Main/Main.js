@@ -6,6 +6,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 import MainBoxOffice from '../../components/Main/MainBoxOffice';
 import MainSearchLink from '../../components/Main/MainSearchLink';
+import MainSection from '../../components/Main/MainSection';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);
@@ -19,32 +20,35 @@ function Main() {
   }, []);
 
   return (
-    <MainPage>
-      <div className='background' />
-      <div className='backgroundImg'>
-        <Div>
-          <Title>
-            <span>박스오피스</span>
-          </Title>
-          <More to='/movie'>
-            더 많은 영화 보기
-            <AiOutlinePlus className='icon' />
-          </More>
-          <section>
-            <MainBoxOffice movieList={movieList} />
-          </section>
-          <MainSearchLink
-            search={search}
-            onSearch={value => {
-              // console.log(value);
-              //   if (value !== '') {
-              navigate(`/movie?q=${value}`);
-              //   }
-            }}
-          />
-        </Div>
-      </div>
-    </MainPage>
+    <>
+      <MainPage>
+        <div className='background' />
+        <div className='backgroundImg'>
+          <Div>
+            <Title>
+              <span>박스오피스</span>
+            </Title>
+            <More to='/movie'>
+              더 많은 영화 보기
+              <AiOutlinePlus className='icon' />
+            </More>
+            <section>
+              <MainBoxOffice movieList={movieList} />
+            </section>
+            <MainSearchLink
+              search={search}
+              onSearch={value => {
+                // console.log(value);
+                //   if (value !== '') {
+                navigate(`/movie?q=${value}`);
+                //   }
+              }}
+            />
+          </Div>
+        </div>
+      </MainPage>
+      <MainSection />
+    </>
   );
 }
 

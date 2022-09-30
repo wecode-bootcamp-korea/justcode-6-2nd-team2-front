@@ -55,7 +55,8 @@ function Router() {
             </Route>
 
             {/* 영화 상세페이지 */}
-            <Route path='/moviedetail/1' end element={<MovieDetail />}>
+            {/* <Route path='/moviedetail/1' end element={<MovieDetail />}> */}
+            <Route path='/moviedetail/:id' end element={<MovieDetail />}>
               {/* <Route index element={<MovieInfo />} /> */}
               <Route path='movieinfo' index element={<MovieInfo />} />
               <Route path='comment' element={<MovieComment />} />

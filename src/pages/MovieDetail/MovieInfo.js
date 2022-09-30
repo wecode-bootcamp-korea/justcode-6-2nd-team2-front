@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 import MovieComment from './MovieComment';
 
+// 페이지 삭제 예정
 function MovieInfo() {
   const [movieList, setMovieList] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:10010/movie/detail/1`)
-      .then(res => res.json())
-      .then(res => setMovieList(res.data));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`http://localhost:10010/movie/detail/1`)
+  //     .then(res => res.json())
+  //     .then(res => setMovieList(res.data));
+  // }, []);
   return (
     <>
       {movieList.map((item, idx) => {
@@ -42,8 +43,13 @@ function MovieInfo() {
                 <div className={styles.graphColor}>배우 스토리</div>
               </div>
               <div className={styles.graphBox}>
-                <div className={styles.graphTitle}>실관람 평점</div>
-                <div className={styles.circle}>{item.reviews_rate}</div>
+                <div className={styles.graphTitle}>기대평 평점</div>
+                <div className={styles.graphColor}>
+                  00{item.reviews_rate ? item.reviews_rate : '0'}
+                </div>
+                {/* <div className={styles.circle}>
+                  <span>00{item.reviews_rate ? item.reviews_rate : '0'}</span>
+                </div> */}
                 <div className={styles.graphTitle}>예매율</div>
                 <div className={styles.graphColor}>{item.book_rate}</div>
               </div>

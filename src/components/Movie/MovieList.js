@@ -21,7 +21,7 @@ function MovieList({ movieList, onLoadMore, likeLoader, alertModal, setAlertModa
           );
         })}
       </CardList>
-      <ListViewMore onLoadMore={onLoadMore} />
+      <ListViewMore onLoadMore={onLoadMore} text='더보기' />
     </>
   );
 }
