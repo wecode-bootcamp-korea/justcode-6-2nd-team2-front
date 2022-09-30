@@ -26,11 +26,7 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   const activeLike = () => {
-<<<<<<< HEAD
-    const token = localStorage.getItem('token');
-=======
     const token = localStorage.getItem('login_token');
->>>>>>> main
     if (!token) {
       setAlertModal(true);
       return false;
@@ -41,21 +37,13 @@ function MovieLike({
   const onLike = async () => {
     if (!activeLike()) return;
     await axios.post(
-<<<<<<< HEAD
-      'http://localhost:10010/movie/like',
-=======
       `http://localhost:10010/movie/like`,
->>>>>>> main
       {
         movie_id: data.movie_id,
       },
       {
         headers: {
-<<<<<<< HEAD
-          Authorization: localStorage.getItem('token'),
-=======
           Authorization: localStorage.getItem('login_token'),
->>>>>>> main
         },
       },
     );
@@ -83,12 +71,9 @@ function MovieLike({
           setLike(!like);
         }}
       >
-<<<<<<< HEAD
         {/* 로그인 안했을 때 */}
         {/* <HiOutlineHeart className='offLogo' /> */}
         {/* 로그인 했을 때 */}
-=======
->>>>>>> main
         {like ? <HiHeart className='onLogo' /> : <HiOutlineHeart className='offLogo' />}
         &nbsp;&nbsp;{data.likes}
       </Like>
@@ -116,30 +101,24 @@ const Like = styled.button`
   height: ${props => props.height};
   min-width: 34%;
   min-height: 36px;
-
   background: ${props => props.background};
   border: 1px solid #ebebeb;
   border-radius: 4px;
-
   color: ${props => props.color};
   text-align: center;
   line-height: 36px;
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
-
   .offLogo {
     font-size: ${props => props.offLogoSize};
     color: ${props => props.offLogoColor};
   }
-
   .onLogo {
     font-size: ${props => props.onLogoSize};
     color: ${props => props.onLogoColor};
   }
-
   &:hover {
     cursor: pointer;
-
     background-color: ${props => props.hoverBackground};
     color: ${props => props.hoverColor};
   }
