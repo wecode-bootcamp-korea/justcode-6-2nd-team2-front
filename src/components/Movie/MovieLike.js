@@ -37,7 +37,7 @@ function MovieLike({
   const onLike = async () => {
     if (!activeLike()) return;
     await axios.post(
-      `http://localhost:10010/movie/like`,
+      'http://localhost:10010/movie/like',
       {
         movie_id: data.movie_id,
       },
@@ -71,6 +71,9 @@ function MovieLike({
           setLike(!like);
         }}
       >
+        {/* 로그인 안했을 때 */}
+        {/* <HiOutlineHeart className='offLogo' /> */}
+        {/* 로그인 했을 때 */}
         {like ? <HiHeart className='onLogo' /> : <HiOutlineHeart className='offLogo' />}
         &nbsp;&nbsp;{data.likes}
       </Like>
@@ -98,30 +101,24 @@ const Like = styled.button`
   height: ${props => props.height};
   min-width: 34%;
   min-height: 36px;
-
   background: ${props => props.background};
   border: 1px solid #ebebeb;
   border-radius: 4px;
-
   color: ${props => props.color};
   text-align: center;
   line-height: 36px;
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
-
   .offLogo {
     font-size: ${props => props.offLogoSize};
     color: ${props => props.offLogoColor};
   }
-
   .onLogo {
     font-size: ${props => props.onLogoSize};
     color: ${props => props.onLogoColor};
   }
-
   &:hover {
     cursor: pointer;
-
     background-color: ${props => props.hoverBackground};
     color: ${props => props.hoverColor};
   }

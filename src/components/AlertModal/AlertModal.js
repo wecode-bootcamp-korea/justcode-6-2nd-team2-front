@@ -37,7 +37,7 @@ const Modal = styled.div`
   transform: translate(-50%, -50%);
 
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 3;
 
   .modalWrap {
     display: flex;
@@ -50,7 +50,7 @@ const Modal = styled.div`
     width: 300px;
 
     background-color: white;
-    z-index: 2;
+    z-index: 4;
 
     .modalHeader {
       display: flex;

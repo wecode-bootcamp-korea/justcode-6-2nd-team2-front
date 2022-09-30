@@ -47,10 +47,7 @@ function Main() {
           <MainSearchLink
             search={search}
             onSearch={value => {
-              // console.log(value);
-              //   if (value !== '') {
               navigate(`/movie?q=${value}`);
-              //   }
             }}
             onChangeSearch={value => setSearch(value)}
           />
@@ -63,7 +60,8 @@ function Main() {
 const MainPage = styled.div`
   display: block;
   position: relative;
-  min-height: 880px;
+  /* min-height: 880px; */
+  height: 100vh;
   padding: 0 0 80px 0;
 
   .backgroundImg {

@@ -48,6 +48,8 @@ const MovieCount = styled.div`
   font-size: 15px;
 `;
 
-const Count = styled.strong``;
+const Count = styled.strong`
+  color: #006633;
+`;
 
 export default MovieContentBar;
