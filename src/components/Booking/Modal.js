@@ -9,7 +9,7 @@ function Modal({ modalMessage, modalUpBtn }) {
         <header className='layer-header'>
           <p className='tit'>알 림</p>
         </header>
-        <p style={{ textAlign: 'left', paddingTop: '35px' }}>{modalMessage}</p>
+        <p style={{ textAlign: 'left', paddingTop: '35px', color: 'black' }}>{modalMessage}</p>
 
         <button id='modalCloseBtn' onClick={modalUpBtn}>
           확인

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CountContext, AllContext } from '../../../pages/Booking/Booking';
 import { ScheduleContext } from '../../../pages/Router';
 
+import Modal from '../Modal';
 const Container = styled.div`
   position: relative;
   width: 100%;
@@ -225,10 +226,24 @@ function Result({ data }) {
 
   const [dummy, setDummy] = useState('');
 
+  const [modalup, setModalup] = useState(false);
+  const [modalMessage, setModalMessage] = useState('로그인을 먼저 해주세요');
+
+  const navigate = useNavigate();
+
   const clickHandler = event => {
     if (!(allSelectArray.length === adultNum + teenNum && allSelectArray.length !== 0)) {
       event.preventDefault();
     }
+    if (!localStorage.getItem('token')) {
+      setModalup(!modalup);
+    } else {
+      navigate('../Payment');
+    }
+  };
+
+  const modalUpBtn = () => {
+    setModalup(!modalup);
   };
 
   useEffect(() => {
@@ -271,7 +286,7 @@ function Result({ data }) {
             {dummy.start_time} ~ {dummy.end_time}
           </Time>
           <Poster>
-            <img src='https://www.megabox.co.kr/SharedImg/2022/08/29/oUQrNQTflUqvHUQG6kvlzF8SEhJSomfh_150.jpg' />
+            <img src={dummy.poster_img} />
           </Poster>
         </InfoArea>
         <SeatArea>
@@ -338,7 +353,7 @@ function Result({ data }) {
           <Link to='../' style={{ borderRadius: '0px 0px 0px 4px', textDecoration: 'none' }}>
             이전
           </Link>
-          <Link
+          <button
             style={{
               borderRadius: '0px 0px 4px 0px',
               backgroundColor:
@@ -360,12 +375,14 @@ function Result({ data }) {
                 ? false
                 : true
             }
-            to='../Payment'
-            onClick={clickHandler}
+            onClick={() => {
+              clickHandler();
+            }}
           >
             다음
-          </Link>
+          </button>
         </ButtonArea>
+        {modalup && <Modal modalMessage={modalMessage} modalUpBtn={modalUpBtn} />}
       </Container>
     </>
   );

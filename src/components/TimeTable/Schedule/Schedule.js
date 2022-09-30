@@ -202,12 +202,12 @@ function Schedule() {
                           {index === 0 && '오늘'}
                           {index === 1 && '내일'}
                           {day[index] === 0 && index > 1 && '일'}
-                          {day[index] === 1 && '월'}
-                          {day[index] === 2 && '화'}
-                          {day[index] === 3 && '수'}
-                          {day[index] === 4 && '목'}
-                          {day[index] === 5 && '금'}
-                          {day[index] === 6 && '토'}
+                          {day[index] === 1 && index > 1 && '월'}
+                          {day[index] === 2 && index > 1 && '화'}
+                          {day[index] === 3 && index > 1 && '수'}
+                          {day[index] === 4 && index > 1 && '목'}
+                          {day[index] === 5 && index > 1 && '금'}
+                          {day[index] === 6 && index > 1 && '토'}
                         </p>
                       </SwiperSlide>
                     );

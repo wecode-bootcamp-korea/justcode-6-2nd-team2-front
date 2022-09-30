@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ScheduleContext } from '../../../pages/Router';
@@ -169,9 +169,20 @@ function MovieScheduleOne({
 }) {
   const { scheduleId, setScheduleId } = useContext(ScheduleContext);
 
+  // const navigate = useNavigate();
+
+  // const nextHandler = () => {
+  //   if (!localStorage.getItem('token')) {
+  //     setModalup(!modalup);
+  //   } else {
+  //     setScheduleId(id);
+  //     navigate('seat');
+  //   }
+  // };
+
   return (
     <>
-      <Link to='Seat' style={{ textDecoration: 'none' }} onClick={() => setScheduleId(id)}>
+      <Link to='seat' style={{ textDecoration: 'none' }} onClick={() => setScheduleId(id)}>
         <Li>
           <Legend />
           <LiButton>

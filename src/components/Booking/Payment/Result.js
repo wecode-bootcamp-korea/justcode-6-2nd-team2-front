@@ -430,6 +430,7 @@ function Result() {
             결제
           </button>
         </ButtonArea>
+
         {modalup && (
           <Modal2
             modalMessage={modalMessage}
