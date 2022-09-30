@@ -170,6 +170,19 @@ const Timebox = styled.div`
   }
 `;
 
+const NoLocation = styled.div`
+  display: block;
+  padding: 100px 0 0 0;
+  margin-top: 68px;
+  text-align: center;
+  background: url(https://img.megabox.co.kr/static/pc/images/reserve/bg-re-img-film.png) top center
+    no-repeat;
+`;
+
+const NoLocationInner = styled.div`
+  text-align: center;
+`;
+
 function TheaterList() {
   const [hover, setHover] = useState('');
 
@@ -184,6 +197,8 @@ function TheaterList() {
 
   const [tab, setTab] = useState('서울');
 
+  const [screen, setScreen] = useState([]);
+
   useEffect(() => {
     let test = [];
     let test2 = [];
@@ -192,13 +207,41 @@ function TheaterList() {
       if (resultData.data.timeTables) {
         setTimeTableData(resultData.data.timeTables);
 
-        for (let i = 0; i < resultData.data.timeTables.length; i++) {
-          test2.push(resultData.data.timeTables[i].screen_name);
+        outer: for (let i = 0; i < resultData.data.timeTables.length; i++) {
+          inner: for (let j = 0; j < test2.length; j++) {
+            if (
+              test2[j].theater_name === resultData.data.timeTables[i].theater_name &&
+              test2[j].screen_name === resultData.data.timeTables[i].screen_name
+            ) {
+              continue outer;
+            }
+          }
+          let imsi = {
+            id: i,
+            theater_name: resultData.data.timeTables[i].theater_name,
+            screen_name: resultData.data.timeTables[i].screen_name,
+          };
+          test2.push(imsi);
         }
 
         const set = new Set(test2);
-        const newArr = [...set];
+        const arr = [...set];
 
+        outer2: for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i].theater_name === arr[j].theater_name) {
+              if (Number(arr[i].screen_name.slice(0, 1)) > Number(arr[j].screen_name.slice(0, 1))) {
+                let imsi2 = arr[i];
+                arr[i] = arr[j];
+                arr[j] = imsi2;
+              }
+              continue outer2;
+            }
+          }
+        }
+
+        console.log(arr);
+        setScreen(arr);
         for (let i = 0; i < resultData.data.theaters.length; i++) {
           for (let j = 0; j < resultData.data.timeTables.length; j++) {
             if (
@@ -245,6 +288,12 @@ function TheaterList() {
               })}
             </ul>
           </Container>
+          {timeTableData.length === 0 && (
+            <NoLocation>
+              <NoLocationInner />
+              해당 지역에 상영 시간표가 없습니다. 다른지역을 선택해 주세요.
+            </NoLocation>
+          )}
           {timeTableData.length !== 0 && (
             <>
               {theaterData.map(ele => {
@@ -253,24 +302,34 @@ function TheaterList() {
                     <AreaName>
                       <a>{ele.theater_name}</a>
                     </AreaName>
-                    <Box>
-                      <Type>
-                        <TheaterName>5관</TheaterName>
-                        <Chair>총 100석</Chair>
-                      </Type>
-                      <Time>
-                        <TypeArea>2D</TypeArea>
-                        <Timebox>
-                          <table>
-                            <tbody>
-                              <tr style={{ display: 'flex' }}>
-                                <TheaterOne ele={ele.theater_name} timeTableData={timeTableData} />
-                              </tr>
-                            </tbody>
-                          </table>
-                        </Timebox>
-                      </Time>
-                    </Box>
+                    {screen.map(el => {
+                      if (ele.theater_name === el.theater_name) {
+                        return (
+                          <Box key={el.id}>
+                            <Type>
+                              <TheaterName>{el.screen_name}</TheaterName>
+                              <Chair>총 100석</Chair>
+                            </Type>
+                            <Time>
+                              <TypeArea>2D</TypeArea>
+                              <Timebox>
+                                <table>
+                                  <tbody>
+                                    <tr style={{ display: 'flex' }}>
+                                      <TheaterOne
+                                        ele={ele.theater_name}
+                                        timeTableData={timeTableData}
+                                        screenName={el.screen_name}
+                                      />
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </Timebox>
+                            </Time>
+                          </Box>
+                        );
+                      }
+                    })}
                   </Theater>
                 );
               })}

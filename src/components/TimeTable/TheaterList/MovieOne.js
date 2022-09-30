@@ -45,7 +45,27 @@ const Center = styled.div`
   }
 `;
 
-function MovieOne({ ele, timeTableData }) {
+const Icon = styled.p`
+  position: absolute;
+  overflow: hidden;
+  display: inline-block;
+  padding-left: 33px;
+  height: 30px;
+  vertical-align: middle;
+  background-position: 14px 6px;
+  background-repeat: no-repeat;
+  background-image: ${props => {
+    if (props.img === 'sun') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-greeting-option-sun.png)';
+    } else if (props.img === 'brunch') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-time-brunch.png)';
+    } else if (props.img === 'moon') {
+      return 'url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-greeting-option-moon.png)';
+    }
+  }};
+`;
+
+function MovieOne({ ele, timeTableData, screenName }) {
   const [hover, setHover] = useState('');
 
   const { resultData, setResultData } = useContext(ResultContext);
@@ -64,11 +84,23 @@ function MovieOne({ ele, timeTableData }) {
       {timeTableData && (
         <>
           {timeTableData.map(el => {
-            if (ele === el.title) {
+            if (ele === el.title && screenName === el.screen_name) {
               return (
                 <td key={el.schedule_id}>
                   <TdAb>
                     <Center>
+                      <Icon
+                        title='조조'
+                        img={
+                          el.schedule_id === hover
+                            ? 'none'
+                            : Number(el.start_time.slice(0, 2)) < 12
+                            ? 'sun'
+                            : Number(el.start_time.slice(0, 2)) > 21
+                            ? 'moon'
+                            : 'none'
+                        }
+                      />
                       <Link
                         to='../Booking/Seat'
                         id={el.schedule_id}

@@ -173,45 +173,43 @@ function Schedule() {
                 {weekArr.map((element, index) => {
                   if (element === 1 && index !== 0) {
                     return (
-                      <>
-                        <SwiperSlide
-                          key={element}
-                          onClick={() => {
-                            setSelectDate(sendDay[index]);
-                            setSelect(element);
-                            for (let i = 1; i < 19; i++) {
-                              if (addDays(new window.Date(), i).getDate() === element) {
-                                setStartDate(addDays(new window.Date(), i));
-                                break;
-                              }
+                      <SwiperSlide
+                        key={element}
+                        onClick={() => {
+                          setSelectDate(sendDay[index]);
+                          setSelect(element);
+                          for (let i = 1; i < 19; i++) {
+                            if (addDays(new window.Date(), i).getDate() === element) {
+                              setStartDate(addDays(new window.Date(), i));
+                              break;
                             }
-                          }}
-                          id={element}
-                          className={element === select ? 'set-active' : 'set-all'}
-                          style={{
-                            height: '65px',
-                          }}
-                        >
-                          {activeIndex <= index && (
-                            <Year key={element} style={{ left: '-2px', overflow: 'visible' }}>
-                              {dateTime.getMonth() + 2 >= 10 && `2022.${dateTime.getMonth() + 2}`}
-                              {dateTime.getMonth() + 2 < 10 && `2022.0${dateTime.getMonth() + 2}`}
-                            </Year>
-                          )}
-                          <p>{element}</p>
-                          <p>
-                            {index === 0 && '오늘'}
-                            {index === 1 && '내일'}
-                            {day[index] === 0 && index > 1 && '일'}
-                            {day[index] === 1 && '월'}
-                            {day[index] === 2 && '화'}
-                            {day[index] === 3 && '수'}
-                            {day[index] === 4 && '목'}
-                            {day[index] === 5 && '금'}
-                            {day[index] === 6 && '토'}
-                          </p>
-                        </SwiperSlide>
-                      </>
+                          }
+                        }}
+                        id={element}
+                        className={element === select ? 'set-active' : 'set-all'}
+                        style={{
+                          height: '65px',
+                        }}
+                      >
+                        {activeIndex <= index && (
+                          <Year key={element} style={{ left: '-2px', overflow: 'visible' }}>
+                            {dateTime.getMonth() + 2 >= 10 && `2022.${dateTime.getMonth() + 2}`}
+                            {dateTime.getMonth() + 2 < 10 && `2022.0${dateTime.getMonth() + 2}`}
+                          </Year>
+                        )}
+                        <p>{element}</p>
+                        <p>
+                          {index === 0 && '오늘'}
+                          {index === 1 && '내일'}
+                          {day[index] === 0 && index > 1 && '일'}
+                          {day[index] === 1 && index > 1 && '월'}
+                          {day[index] === 2 && index > 1 && '화'}
+                          {day[index] === 3 && index > 1 && '수'}
+                          {day[index] === 4 && index > 1 && '목'}
+                          {day[index] === 5 && index > 1 && '금'}
+                          {day[index] === 6 && index > 1 && '토'}
+                        </p>
+                      </SwiperSlide>
                     );
                   } else {
                     return (

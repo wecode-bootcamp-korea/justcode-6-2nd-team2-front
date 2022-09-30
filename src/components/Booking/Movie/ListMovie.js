@@ -271,7 +271,17 @@ function ListMovie({ type }) {
                         }}
                       />
                     </Img>
-                    <But>삭제</But>
+                    <But
+                      onClick={() => {
+                        movieURL.splice(0, 1);
+                        movieIdArray.splice(0, 1);
+                        setMovieIdArray([...movieIdArray]);
+                        setMovieURL(movieURL);
+                        minus();
+                      }}
+                    >
+                      삭제
+                    </But>
                   </Wrap>
                 )}
               </Bg>
@@ -288,7 +298,17 @@ function ListMovie({ type }) {
                         }}
                       />
                     </Img>
-                    <But>삭제</But>
+                    <But
+                      onClick={() => {
+                        movieURL.splice(1, 1);
+                        movieIdArray.splice(1, 1);
+                        setMovieIdArray([...movieIdArray]);
+                        setMovieURL(movieURL);
+                        minus();
+                      }}
+                    >
+                      삭제
+                    </But>
                   </Wrap>
                 )}
               </Bg>
@@ -305,7 +325,17 @@ function ListMovie({ type }) {
                         }}
                       />
                     </Img>
-                    <But>삭제</But>
+                    <But
+                      onClick={() => {
+                        movieURL.splice(2, 1);
+                        movieIdArray.splice(2, 1);
+                        setMovieIdArray([...movieIdArray]);
+                        setMovieURL(movieURL);
+                        minus();
+                      }}
+                    >
+                      삭제
+                    </But>
                   </Wrap>
                 )}
               </Bg>

@@ -88,6 +88,7 @@ function TimeTable() {
   const [theaterNames, setTheaterNames] = useState('');
 
   useEffect(() => {
+    console.log(movieIdArray);
     let year = String(selectDate.getFullYear()).substring(2);
     let month =
       Number(selectDate.getMonth()) + 1 >= 10
@@ -119,7 +120,6 @@ function TimeTable() {
       .then(data => {
         console.log(url);
         console.log(data);
-        console.log(theaterIdArray);
         setResultData(data);
       });
   }, [movieIdArray, theaterIdArray, areaIdArray, selectDate]);
