@@ -24,7 +24,9 @@ function SelectBox({ items, setValue }) {
 const Select = styled.select`
   padding: 5px;
   height: 45px;
-  borderL 1px solid #d8d9db;
-  margin-right: 20px;
+  border: 1px solid #d8d9db;
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 15px;
 `;
 export default SelectBox;
