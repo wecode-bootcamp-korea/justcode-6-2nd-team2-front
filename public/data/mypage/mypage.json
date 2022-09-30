@@ -1,0 +1,19 @@
+{
+  "mypage": [
+    {
+      "name": "오인환",
+      "ticket": {
+        "booking_id": 3,
+        "poster_img": "https://img.megabox.co.kr/SharedImg/2022/08/29/nxQhoJtnfnmVqAG1QVCl2Hp5bRNrTtqL_420.jpg",
+        "title": "아바타 리마스터링",
+        "theater_detail": "강남 / 1관",
+        "schedule_detail": "2022.09.30 (금) 15:00",
+        "total_price": "70000",
+        "seats_name": ["A12", "A13", "A14", "A12", "A13", "A14"],
+        "phone": "01098751345",
+        "person": ["일반", "청소년", "유아", "일반", "청소년", "유아"],
+        "person_count": "총 6명"
+      }
+    }
+  ]
+}

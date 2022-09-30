@@ -40,8 +40,10 @@ function MovieDetailContent({ movieList }) {
                     <div className={styles.flex}>
                       <RiCheckboxMultipleLine size='22' />
                       <p className={styles.number}>
-                        <span className={styles.scorePoint}>{item.reviews_rate}</span>
-                        <span className={styles.unit}>점</span>
+                        <span className={styles.scorePoint}>
+                          {item.reviews_rate ? item.reviews_rate : 0}
+                        </span>
+                        <span className={styles.unit}> 점</span>
                       </p>
                     </div>
                   </div>
@@ -82,7 +84,7 @@ function MovieDetailContent({ movieList }) {
                     <img src={item.poster_img} alt={item.title} />
                   </PosterWrap>
                 </Poster>
-                <Link className={styles.ticketingBtn} to='/'>
+                <Link className={styles.ticketingBtn} to='/booking'>
                   예매
                 </Link>
               </div>

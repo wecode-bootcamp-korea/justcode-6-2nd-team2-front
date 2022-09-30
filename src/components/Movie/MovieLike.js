@@ -26,7 +26,11 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   const activeLike = () => {
+<<<<<<< HEAD
     const token = localStorage.getItem('token');
+=======
+    const token = localStorage.getItem('login_token');
+>>>>>>> main
     if (!token) {
       setAlertModal(true);
       return false;
@@ -37,13 +41,21 @@ function MovieLike({
   const onLike = async () => {
     if (!activeLike()) return;
     await axios.post(
+<<<<<<< HEAD
       'http://localhost:10010/movie/like',
+=======
+      `http://localhost:10010/movie/like`,
+>>>>>>> main
       {
         movie_id: data.movie_id,
       },
       {
         headers: {
+<<<<<<< HEAD
           Authorization: localStorage.getItem('token'),
+=======
+          Authorization: localStorage.getItem('login_token'),
+>>>>>>> main
         },
       },
     );
@@ -71,9 +83,12 @@ function MovieLike({
           setLike(!like);
         }}
       >
+<<<<<<< HEAD
         {/* 로그인 안했을 때 */}
         {/* <HiOutlineHeart className='offLogo' /> */}
         {/* 로그인 했을 때 */}
+=======
+>>>>>>> main
         {like ? <HiHeart className='onLogo' /> : <HiOutlineHeart className='offLogo' />}
         &nbsp;&nbsp;{data.likes}
       </Like>

@@ -6,6 +6,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 import MainBoxOffice from '../../components/Main/MainBoxOffice';
 import MainSearchLink from '../../components/Main/MainSearchLink';
+import MainSection from '../../components/Main/MainSection';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);

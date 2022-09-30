@@ -1,4 +1,6 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+
 import MovieComment from './MovieComment';
 import { useLocation } from 'react-router-dom';
 import MovieInfo from './MovieInfo';
@@ -7,6 +9,7 @@ import MoviePost from '../../../pages/MovieDetail/MoviePost';
 
 function MovieDetailTabContent({ movieList }) {
   const location = useLocation();
+  const movieId = useParams();
 
   //   const [movieList, setMovieList] = useState([]);
   //   const movieGetLoader = () => {
@@ -21,15 +24,15 @@ function MovieDetailTabContent({ movieList }) {
   // console.log(location.pathname);
   return (
     <>
-      {location.pathname === '/moviedetail/1/movieinfo' ||
-      location.pathname === '/moviedetail/1' ? (
+      {location.pathname === `/moviedetail/${movieId.id}/movieinfo` ||
+      location.pathname === `/moviedetail/${movieId.id}` ? (
         <MovieInfo movieList={movieList} />
       ) : null}
-      {location.pathname === '/moviedetail/1/comment' ? (
+      {location.pathname === `/moviedetail/${movieId.id}/comment` ? (
         <MovieComment movieList={movieList} />
       ) : null}
-      {location.pathname === '/moviedetail/1/moviepost' ? <MoviePost /> : null}
-      {location.pathname === '/moviedetail/1/trailers' ? <MovieTrailers /> : null}
+      {location.pathname === `/moviedetail/${movieId.id}/moviepost` ? <MoviePost /> : null}
+      {location.pathname === `/moviedetail/${movieId.id}/trailers` ? <MovieTrailers /> : null}
     </>
   );
 }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { TbTrash } from 'react-icons/tb';
 import SelectBox from '../SelectBox';
-const LOGIN_TOKEN = 'login-token';
+// const LOGIN_TOKEN = 'login_token';
 function MovieCommentList() {
+  const movieDetailId = useParams();
   const [movieList, setMovieList] = useState();
   const [view, setView] = useState(false);
   const [value, setValue] = useState();
@@ -13,15 +16,14 @@ function MovieCommentList() {
   const [input, setInput] = useState();
   const [movieId, setMovieId] = useState();
   console.log(movieList);
-
   useEffect(() => {
-    fetch(`http://localhost:10010/movie/detail/1`)
+    fetch(`http://localhost:10010/movie/detail/${movieDetailId.id}`)
       .then(res => res.json())
       .then(res => {
         setMovieList(res.data);
         setMovieId(res.data[0].movie_id);
       });
-  }, [view]);
+  }, [view, movieDetailId.id]);
 
   const rate = [
     { id: 1, label: '1점', value: '1' },
@@ -47,16 +49,16 @@ function MovieCommentList() {
   };
   // // 댓글 POST
   const addComment = () => {
-    const token = localStorage.getItem(LOGIN_TOKEN);
+    const token = JSON.parse(localStorage.getItem('token'));
 
-    // if (!token) {
-    //   alert('로그인 후 이용해주세요');
-    //   return;
-    // }
+    if (!token) {
+      alert('로그인 후 이용해주세요');
+      return;
+    }
 
     const body = {
       movie_id: movieId,
-      account_id: 'roy2',
+      // account_id: 'inhwanoh1234',
       rate: rates,
       content: input,
       option_id: option,
@@ -65,8 +67,8 @@ function MovieCommentList() {
     fetch(`http://localhost:10010/review/create`, {
       method: 'POST',
       headers: {
-        token: token,
         'Content-type': 'application/json',
+        Authorization: JSON.parse(localStorage.getItem('token')).accessToken,
       },
       body: JSON.stringify(body),
     })
@@ -76,18 +78,25 @@ function MovieCommentList() {
 
   // 댓글 DELETE
   const DeleteComment = () => {
-    alert('삭제하시겠습니까 ?');
     // const token = localStorage.getItem(LOGIN_TOKEN);
-    // fetch(`http://localhost:10010/review/delete`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     token: token,
-    //     'Content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(body),
-    // });
-    // .then(res => res.json())
-    // .then(res => res.data)
+
+    // if (token) {
+    //   alert('삭제하시겠습니까 ?');
+    // }
+    const body = {
+      movie_id: movieId,
+      account_id: 'inhwanoh1234',
+    };
+
+    fetch(`http://localhost:10010/review/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res.message));
   };
 
   return (
@@ -97,7 +106,9 @@ function MovieCommentList() {
           movieList.map((item, idx) => {
             return (
               <CommentTitle key={idx}>
-                {item.title}에 대한 <span> {item.reviews.length} </span>개의 이야기가 있어요!
+                {/* reviews_count 넣어줘도 되는건지? */}
+                {item.title}에 대한 <Point> {item.reviews ? item.reviews.length : '0'}</Point>개의
+                이야기가 있어요!
               </CommentTitle>
             );
           })}{' '}
@@ -116,8 +127,9 @@ function MovieCommentList() {
                 {view ? (
                   <>
                     <UserInput>
-                      <SelectBox placeholder='옵션' items={options} setValue={setOption} />
+                      <InputTitle>기대평</InputTitle>
                       <SelectBox placeholder='평점' items={rate} setValue={setRates} />
+                      <SelectBox placeholder='옵션' items={options} setValue={setOption} />
                       <InputBox
                         type='text'
                         placeholder='관람평을 입력해주세요'
@@ -132,11 +144,15 @@ function MovieCommentList() {
                   </>
                 ) : (
                   <>
-                    <div>재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</div>
+                    <div>
+                      {/* map ? */}
+                      <Point>{movieList[0].title}</Point> 재미있게 보셨나요? 영화의 어떤 점이
+                      좋았는지 이야기해주세요.
+                    </div>
                     <PostBtn onClick={viewComment}>
                       <>
                         <HiOutlinePencilAlt size='20' color='#666' />
-                        관람평쓰기
+                        기대평쓰기
                       </>
                     </PostBtn>
                   </>
@@ -148,7 +164,7 @@ function MovieCommentList() {
               {movieList[0].reviews &&
                 movieList[0].reviews.map(item => {
                   return (
-                    <li key={item.id}>
+                    <CommentList key={item.id}>
                       <CommentAnswer>
                         <UserImg>
                           <img
@@ -159,21 +175,22 @@ function MovieCommentList() {
                         </UserImg>
 
                         <CommentItem>
-                          <CommTit>관람평</CommTit>
+                          <CommTit>기대평</CommTit>
                           <CommContent>
                             <CommPoint>{item.rate}</CommPoint>
                             <CommRecommend>{item.options}</CommRecommend>
                             <CommTxt>{item.content}</CommTxt>
                             <CommUtil>
                               <DeleteBtn onClick={DeleteComment}>
-                                <TbTrash size='20' color='#666' />
+                                <TbTrash size='25' color='#666' />
                               </DeleteBtn>
                             </CommUtil>
                           </CommContent>
                         </CommentItem>
                       </CommentAnswer>
                       <CommTime>방금</CommTime>
-                    </li>
+                      {/* <CommTime>{item.created_at}</CommTime> */}
+                    </CommentList>
                   );
                 })}
             </ul>
@@ -207,9 +224,21 @@ const UserBox = styled.div`
 `;
 const UserInput = styled.div`
   display: flex;
+  align-items: center;
+`;
+const InputTitle = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  color: #006633;
+  margin-right: 25px;
 `;
 const InputBox = styled.input`
-  width: 300px;
+  width: 600px;
+  height: 45px;
+  border: 1px solid #d8d9db;
+  border-radius: 4px;
+  padding-left: 10px;
+  font-size: 15px;
 `;
 const PostBtn = styled.button`
   display: flex;
@@ -219,6 +248,14 @@ const PostBtn = styled.button`
   color: #666;
   font-size: 15px;
   cursor: pointer;
+`;
+const Point = styled.span`
+  color: #01738b;
+  font-weight: 600;
+`;
+
+const CommentList = styled.div`
+  margin-bottom: 20px;
 `;
 const CommentAnswer = styled.div`
   display: flex;
@@ -273,7 +310,7 @@ const CommTxt = styled.div`
 `;
 
 const CommUtil = styled.div`
-  width: 40px;
+  width: 80px;
 `;
 const DeleteBtn = styled.button`
   background-color: transparent;
@@ -289,7 +326,7 @@ const CommTime = styled.div`
 //공통
 const UserImg = styled.div`
   text-align: center;
-  width: 100px;
+  width: 130px;
 		img {
 			width: 50px;
 			height: 50px;
