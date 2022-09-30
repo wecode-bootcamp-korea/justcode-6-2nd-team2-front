@@ -92,11 +92,12 @@ function MovieCommentList() {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
+        Authorization: JSON.parse(localStorage.getItem('token')).accessToken,
       },
       body: JSON.stringify(body),
     })
       .then(res => res.json())
-      .then(res => console.log(res.message));
+      .then(res => setView(!view));
   };
 
   return (

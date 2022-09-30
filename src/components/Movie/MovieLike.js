@@ -26,7 +26,7 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   const activeLike = () => {
-    const token = localStorage.getItem('login_token');
+    const token = localStorage.getItem('token');
     if (!token) {
       setAlertModal(true);
       return false;
@@ -43,7 +43,7 @@ function MovieLike({
       },
       {
         headers: {
-          Authorization: localStorage.getItem('login_token'),
+          Authorization: JSON.parse(localStorage.getItem('token')).accessToken,
         },
       },
     );
