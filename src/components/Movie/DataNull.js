@@ -12,7 +12,6 @@ function DataNull() {
 
 const Null = styled.div`
   width: 100%;
-  /* height: 100vh; */
   padding: 50px 0;
 
   border: 1px solid #f5f5f5;
