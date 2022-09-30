@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MoviePoster({ data }) {
-  console.log(data.movie_id);
   return (
     <>
       <Div>
@@ -12,7 +11,7 @@ function MoviePoster({ data }) {
             <Poster alt='포스터 이미지' src={data.poster_img} className='lazyload blur-up' />
           </div>
           <div className='posterHover'>
-            <DetailLink to='/moviedetail'>
+            <DetailLink to={`/moviedetail/${data.movie_id}`}>
               <div className='content'>
                 <div className='summary'>{data.detail_content}</div>
                 {data.reviews_rate && (
