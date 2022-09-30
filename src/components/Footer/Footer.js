@@ -55,9 +55,7 @@ const Logo = styled.div`
   height: 100px;
   padding: 0;
   text-indent: -9999px;
-
-  background: url(http://localhost:3000/static/media/starbox.63eba2ee644ba437ebdb.png) no-repeat
-    center;
+  background: url(/static/media/starbox.63eba2ee644ba437ebdb.png) no-repeat center;
   background-size: contain;
 `;
 
