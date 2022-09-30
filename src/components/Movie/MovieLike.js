@@ -26,7 +26,7 @@ function MovieLike({
   const [alertModal, setAlertModal] = useState(false);
 
   const activeLike = () => {
-    const token = localStorage.getItem('login_token');
+    const token = localStorage.getItem('token');
     if (!token) {
       setAlertModal(true);
       return false;
@@ -37,13 +37,13 @@ function MovieLike({
   const onLike = async () => {
     if (!activeLike()) return;
     await axios.post(
-      `http://localhost:10010/movie/like`,
+      'http://localhost:10010/movie/like',
       {
         movie_id: data.movie_id,
       },
       {
         headers: {
-          Authorization: localStorage.getItem('login_token'),
+          Authorization: localStorage.getItem('token'),
         },
       },
     );
