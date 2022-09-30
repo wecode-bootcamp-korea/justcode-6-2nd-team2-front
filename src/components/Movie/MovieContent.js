@@ -165,6 +165,7 @@ function MovieContent() {
         totalCount={movieList.length}
         search={search}
         onSearch={onSearch}
+        onChangeSearch={value => setSearch(value)}
       />
       <MovieList
         movieList={movieList}

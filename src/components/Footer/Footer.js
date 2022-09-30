@@ -6,7 +6,7 @@ const Container = styled.footer`
   min-width: 1100px;
   width: 100%;
   height: 220px;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   bottom: 0;
   background-color: #f8f8fa;
@@ -17,6 +17,8 @@ const FooterTop = styled.div`
   width: 1100px;
   margin: 0 auto;
   padding: 30px 0;
+  display: flex;
+  justify-content: center;
   ul {
     float: left;
     list-style-type: none;
@@ -34,6 +36,7 @@ const FooterTop = styled.div`
 
 const FooterBottom = styled.div`
   display: flex;
+  justify-content: space-around;
   overflow: hidden;
   width: 1100px;
   margin: 0 auto;
@@ -42,19 +45,17 @@ const FooterBottom = styled.div`
 
 const Inner = styled.div`
   display: flex;
-
+  justify-content: center;
   width: 1100px;
-  margin: 0 auto;
 `;
 const Logo = styled.div`
   overflow: hidden;
   display: block;
-  float: left;
-  width: 123px;
+  width: 110px;
   height: 100px;
-  margin: 0 20px 0 0;
   padding: 0;
   text-indent: -9999px;
+
   background: url(http://localhost:3000/static/media/starbox.63eba2ee644ba437ebdb.png) no-repeat
     center;
   background-size: contain;
@@ -63,6 +64,7 @@ const Logo = styled.div`
 const Info = styled.div`
   float: left;
   font-size: 0.8667em;
+  padding-left: 104px;
   letter-spacing: 0;
   margin-top: 24px;
   p {
@@ -73,7 +75,7 @@ const Info = styled.div`
 
 const FooterSns = styled.div`
   float: right;
-  width: 185px;
+  width: 200px;
   margin-top: 34px;
   a {
     display: block;

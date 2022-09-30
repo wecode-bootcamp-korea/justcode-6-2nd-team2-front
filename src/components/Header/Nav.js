@@ -114,7 +114,7 @@ function Nav({
                 </NavLink>
               </div>
               <div onClick={mypageTab}>
-                <NavLink to='/mypage'>
+                <NavLink>
                   {mypage === true ? (
                     <AiFillCloseCircle
                       size='26'
