@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
+import axios from 'axios';
 import { HiHeart } from 'react-icons/hi';
 import { HiOutlineHeart } from 'react-icons/hi';
 
@@ -22,17 +22,34 @@ function MovieLike({
   onLogoColor,
   onLogoSize,
 }) {
-  // const [like, setLike] = useState(false);
+  const [like, setLike] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
 
-  // const activeLike = () => {
-  //   const token = localStorage.getItem('login_token');
-  //   if (!token) {
-  //     setAlertModal(true);
-  //     return false;
-  //   }
-  //   //   return true;
-  // };
+  const activeLike = () => {
+    const token = localStorage.getItem('login_token');
+    if (!token) {
+      setAlertModal(true);
+      return false;
+    }
+    return true;
+  };
+
+  const onLike = async () => {
+    if (!activeLike()) return;
+    await axios.post(
+      `http://localhost:10010/movie/like`,
+      {
+        movie_id: data.movie_id,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('login_token'),
+        },
+      },
+    );
+
+    likeLoader();
+  };
 
   return (
     <>
@@ -49,15 +66,12 @@ function MovieLike({
         offLogoSize={offLogoSize}
         onLogoColor={onLogoColor}
         onLogoSize={onLogoSize}
-        // onClick={() => {
-        //   if (data.liked) {
-        //     onUnLike();
-        //   } else {
-        //     onLike();
-        //   }
-        // }}
+        onClick={() => {
+          onLike();
+          setLike(!like);
+        }}
       >
-        <HiOutlineHeart className='offLogo' />
+        {like ? <HiHeart className='onLogo' /> : <HiOutlineHeart className='offLogo' />}
         &nbsp;&nbsp;{data.likes}
       </Like>
       <AlertModal

@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import { CgSearch } from 'react-icons/cg';
 
-function MovieSearch({ search, onSearch, border, borderRadius, borderBottom, color, caretColor }) {
+function MovieSearch({
+  search,
+  onChangeSearch,
+  onSearch,
+  border,
+  borderRadius,
+  borderBottom,
+  color,
+  caretColor,
+}) {
   return (
     <Search border={border} borderBottom={borderBottom} borderRadius={borderRadius}>
       <Input
@@ -15,7 +24,7 @@ function MovieSearch({ search, onSearch, border, borderRadius, borderBottom, col
             onSearch(e.target.value);
           }
         }}
-        // onChange={e => onSearch(e.target.value)}
+        onChange={e => onChangeSearch(e.target.value)}
       />
       <Button
         type='button'

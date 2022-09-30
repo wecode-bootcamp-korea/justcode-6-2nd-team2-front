@@ -8,7 +8,7 @@ import { HiOutlineTicket } from 'react-icons/hi';
 
 import MovieSearch from '../Movie/MovieSearch';
 
-function MainSearchLink({ search, onSearch }) {
+function MainSearchLink({ search, onSearch, onChangeSearch }) {
   const [link] = useState([
     {
       id: 1,
@@ -39,6 +39,7 @@ function MainSearchLink({ search, onSearch }) {
         caretColor='#fff'
         search={search}
         onSearch={onSearch}
+        onChangeSearch={onChangeSearch}
       />
       {link.map(el => {
         return (
