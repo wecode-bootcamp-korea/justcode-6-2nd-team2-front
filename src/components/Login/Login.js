@@ -1,7 +1,7 @@
 import styles from './Login.module.scss';
 import Kakao from './Kakao';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function Login({ setModal, modal }) {
@@ -34,8 +34,8 @@ function Login({ setModal, modal }) {
 
   //login Btn
   const body = {
-    account_id: id, //roy_oh0910 , mark_kim0106
-    password: password, // qwerty12! , markzzang1!
+    account_id: id, //roy_oh0910 , mark_kim0106 , inhwanoh1234
+    password: password, // roy_oh0910qwerty12! , markzzang1! ,7Zc#7Cz@
   };
   const loginSuccess = e => {
     // POST 'http://localhost:10010/user/login'
@@ -125,9 +125,15 @@ function Login({ setModal, modal }) {
                 <ul className={styles.link}>
                   <li>
                     <span onClick={() => setModal(false)}>
-                      <Link to='/user-find'>ID/PW 찾기</Link>
+                      <Link to='/user-find' style={{ textDecoration: 'none', color: '#666' }}>
+                        ID/PW 찾기
+                      </Link>
                     </span>
-                    <span className={styles.centerLine}>회원가입</span>
+                    <span className={styles.centerLine}>
+                      <NavLink to='/signup' style={{ textDecoration: 'none', color: '#666' }}>
+                        회원가입
+                      </NavLink>
+                    </span>
                     <span>비회원 예매확인</span>
                   </li>
                   <li>

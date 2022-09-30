@@ -5,7 +5,7 @@ import MoviePoster from '../Movie/MoviePoster';
 import MovieLike from '../Movie/MovieLike';
 import MovieBook from '../Movie/MovieBook';
 
-function MainBoxOffice({ movieList }) {
+function MainBoxOffice({ movieList, getLoader }) {
   return (
     <BoxOffice>
       {movieList.map(card => {
@@ -19,6 +19,7 @@ function MainBoxOffice({ movieList }) {
                 color='#ebebeb'
                 fontSize='15px'
                 fontWeight='400'
+                likeLoader={getLoader}
                 hoverBackground='transparent'
                 offLogoColor='#ebebeb'
                 offLogoSize='20px'

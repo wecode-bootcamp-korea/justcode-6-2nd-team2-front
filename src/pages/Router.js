@@ -15,7 +15,6 @@ import PassFind from './Find/PassFind';
 import SignUp from './SignUp/SignUp';
 import Cinema from './Cinema/Cinema';
 import MovieDetail from './MovieDetail';
-import MovieInfo from '../components/moviedetail/MovieDetailTabContent/MovieInfo';
 // import MovieComment from './MovieDetail/MovieComment';
 import MoviePost from './MovieDetail/MoviePost';
 import MovieTrailers from './MovieDetail/MovieTrailers';
@@ -26,6 +25,7 @@ import Footer from '../components/Footer/Footer';
 import TimeTable from './TimeTable/TimeTable';
 import ListTheater from '../components/Booking/Theater/ListTheater';
 import MovieComment from '../components/moviedetail/MovieDetailTabContent/MovieComment';
+import MovieInfo from '../components/moviedetail/MovieDetailTabContent/MovieInfo';
 
 const Context10 = createContext({
   scheduleId: '',

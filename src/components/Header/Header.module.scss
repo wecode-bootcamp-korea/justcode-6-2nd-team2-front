@@ -41,12 +41,16 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 91000;
+    z-index: 99999;
   }
 }
 
 .mainHeaderContainer {
-  background-color: #001a27;
+  background: linear-gradient(rgba($color: #00080c, $alpha: 1), rgba($color: #00080c, $alpha: 0.9)),
+    url('https://img.megabox.co.kr/SharedImg/2022/09/21/sUaMgi8aqcQ7PVmoi2Mie0qHrm8XpkKp_420.jpg')
+      no-repeat;
+  background-size: cover;
+  background-position: bottom;
   color: #fff;
   position: relative;
   width: 100%;
@@ -77,5 +81,8 @@
     top: 0;
     left: 0;
     z-index: 91000;
+  }
+  .mypageTabContainer {
+    width: 100%;
   }
 }

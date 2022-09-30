@@ -1,0 +1,173 @@
+.mypageWrap {
+  position: absolute;
+  top: 128px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  background-color: #036635;
+  z-index: 91000;
+  .mypageContent {
+    width: 1100px;
+    padding: 30px 0 30px 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .userInfoBox {
+      .infoList {
+        border-right: 1px solid #fff;
+        padding-right: 30px;
+        .mypageTitle {
+          font-size: 1.1em;
+          color: #fff;
+          margin-bottom: 10px;
+        }
+        .userName {
+          color: #fff;
+          font-size: 1.5em;
+          margin-bottom: 10px;
+          .smallText {
+            font-size: 0.988rem;
+            padding-left: 10px;
+          }
+        }
+        .dateFont {
+          font-size: 0.8rem;
+          color: #fff;
+          margin-bottom: 120px;
+        }
+        .mypageBtn {
+          width: 120px;
+          height: 40px;
+          font-size: 0.9888em;
+          border: 1px solid #fff;
+          background-color: #036635;
+          color: #fff;
+          border-radius: 5px;
+        }
+      }
+    }
+    .userInfoListBox {
+      text-align: center;
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .infoList {
+        justify-content: center;
+        .mypageTitle {
+          font-size: 1.1em;
+          color: #fff;
+          margin-bottom: 20px;
+        }
+        .infoContent {
+          font-size: 2rem;
+          color: #fff;
+          height: 180px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .infoTicket {
+          position: relative;
+          text-align: center;
+          font-size: 2rem;
+          margin-bottom: 80px;
+          height: 100px;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          .posterBox {
+            padding-top: 80px;
+            .ticketBg {
+              width: 440px;
+              height: 240px;
+            }
+            .mypagePoster {
+              width: 100px;
+              position: absolute;
+              top: 10px;
+              left: 32px;
+            }
+          }
+          .ticketsInfo {
+            position: absolute;
+            top: 15px;
+            right: 100px;
+            font-size: 20px;
+            color: #222;
+          }
+          .ticketsDetail {
+            position: absolute;
+            top: 54px;
+            right: 90px;
+            font-size: 16px;
+            color: #333;
+          }
+          .ticketCount {
+            position: absolute;
+            top: 80px;
+            right: 125px;
+            font-size: 15px;
+            color: #333;
+            span {
+              margin-right: 10px;
+            }
+          }
+          .ticketPrice {
+            position: absolute;
+            top: 120px;
+            right: 140px;
+            font-size: 16px;
+            color: #222;
+            span {
+              margin-right: 10px;
+            }
+          }
+        }
+        .posterTitle {
+          font-size: 1.8rem;
+          padding-left: 20px;
+          display: flex;
+          align-items: center;
+        }
+        .ticketLogo {
+          position: absolute;
+          top: 50px;
+          right: -10px;
+          opacity: 0.9;
+
+          .ticketStamp {
+            width: 200px;
+            transform: rotate(40deg);
+          }
+        }
+      }
+      .dateFont {
+        font-size: 0.8rem;
+        color: #fff;
+        padding-top: 30px;
+        margin-bottom: 30px;
+      }
+      .mypageBtn {
+        width: 120px;
+        height: 40px;
+        font-size: 0.9888em;
+        border: 1px solid #fff;
+        background-color: #036635;
+        color: #fff;
+        border-radius: 5px;
+      }
+      .mypageBtnSmall {
+        width: 60px;
+        height: 40px;
+        margin: 0 5px;
+        font-size: 0.9888em;
+        border: 1px solid #fff;
+        background-color: #036635;
+        color: #fff;
+        border-radius: 5px;
+      }
+    }
+  }
+}

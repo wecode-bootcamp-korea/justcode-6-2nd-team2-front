@@ -5,6 +5,7 @@ import MovieDetailTabs from '../../components/moviedetail/MovieDetailTabs';
 import MovieDetailContent from './MovieDetailContent';
 import styled from 'styled-components';
 import MovieDetailTabContent from '../../components/moviedetail/MovieDetailTabContent/MovieDetailTabContent';
+// import MovieDetailTabContent from '../../components/moviedetail/MovieDetailTabContent/MovieDetailTabContent';
 
 const Wrapper = styled.div`
   width: 1100px;
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
 `;
 
 function MovieDetail() {
+  // const location = useLocation();
   const [movieList, setMovieList] = useState([]);
   const movieId = useParams();
 

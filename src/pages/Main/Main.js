@@ -10,45 +10,53 @@ import MainSection from '../../components/Main/MainSection';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);
-  const [search] = useState('');
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
+  const getLoader = () => {
+    axios
+      .get('http://localhost:10010/movie', {
+        headers: {
+          Authorization: localStorage.getItem('login_token'),
+        },
+      })
+      .then(response => {
+        setMovieList(response.data.data);
+      });
+  };
+
   useEffect(() => {
-    axios.get('http://localhost:10010/movie').then(response => {
-      setMovieList(response.data.data);
-    });
+    getLoader();
   }, []);
 
   return (
-    <>
-      <MainPage>
-        <div className='background' />
-        <div className='backgroundImg'>
-          <Div>
-            <Title>
-              <span>박스오피스</span>
-            </Title>
-            <More to='/movie'>
-              더 많은 영화 보기
-              <AiOutlinePlus className='icon' />
-            </More>
-            <section>
-              <MainBoxOffice movieList={movieList} />
-            </section>
-            <MainSearchLink
-              search={search}
-              onSearch={value => {
-                // console.log(value);
-                //   if (value !== '') {
-                navigate(`/movie?q=${value}`);
-                //   }
-              }}
-            />
-          </Div>
-        </div>
-      </MainPage>
-      <MainSection />
-    </>
+    <MainPage>
+      <div className='background' />
+      <div className='backgroundImg'>
+        <Div>
+          <Title>
+            <span>박스오피스</span>
+          </Title>
+          <More to='/movie'>
+            더 많은 영화 보기
+            <AiOutlinePlus className='icon' />
+          </More>
+          <section>
+            <MainBoxOffice movieList={movieList} getLoader={getLoader} />
+          </section>
+          <MainSearchLink
+            search={search}
+            onSearch={value => {
+              // console.log(value);
+              //   if (value !== '') {
+              navigate(`/movie?q=${value}`);
+              //   }
+            }}
+            onChangeSearch={value => setSearch(value)}
+          />
+        </Div>
+      </div>
+    </MainPage>
   );
 }
 
