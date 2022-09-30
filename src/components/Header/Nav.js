@@ -4,6 +4,7 @@ import { BsCalendar4Week } from 'react-icons/bs';
 import { Link, NavLink } from 'react-router-dom';
 import CategoryL from './CategoryL';
 import CategoryR from './CategoryR';
+import Mypage from './Mypage';
 
 function Nav({
   Logo,

@@ -1,17 +1,18 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function MoviePoster({ data }) {
+  console.log(data.movie_id);
   return (
     <>
       <Div>
         <div className='wrap'>
           <div className='poster'>
-            <Rank>{data.id}</Rank>
-            <Poster alt='포스터 이미지' src={data.poster_img} />
+            <Rank>{data.movie_id}</Rank>
+            <Poster alt='포스터 이미지' src={data.poster_img} className='lazyload blur-up' />
           </div>
           <div className='posterHover'>
-            <DetailLink to='moviedetail'>
+            <DetailLink to='/moviedetail'>
               <div className='content'>
                 <div className='summary'>{data.detail_content}</div>
                 {data.reviews_rate && (
@@ -54,6 +55,7 @@ const Div = styled.div`
     height: 331px;
     top: 0;
     left: 0;
+    z-index: 2;
 
     background: rgba(0, 0, 0, 0.7);
 
@@ -97,6 +99,9 @@ const Div = styled.div`
 
 const Rank = styled.p`
   position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 
   width: 240px;
   height: 150px;

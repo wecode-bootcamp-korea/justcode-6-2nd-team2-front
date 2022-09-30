@@ -9,13 +9,23 @@ import MainSearchLink from '../../components/Main/MainSearchLink';
 
 function Main() {
   const [movieList, setMovieList] = useState([]);
-  const [search] = useState('');
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
+  const getLoader = () => {
+    axios
+      .get('http://localhost:10010/movie', {
+        headers: {
+          Authorization: localStorage.getItem('login_token'),
+        },
+      })
+      .then(response => {
+        setMovieList(response.data.data);
+      });
+  };
+
   useEffect(() => {
-    axios.get('http://localhost:10010/movie').then(response => {
-      setMovieList(response.data.data);
-    });
+    getLoader();
   }, []);
 
   return (
@@ -31,7 +41,7 @@ function Main() {
             <AiOutlinePlus className='icon' />
           </More>
           <section>
-            <MainBoxOffice movieList={movieList} />
+            <MainBoxOffice movieList={movieList} getLoader={getLoader} />
           </section>
           <MainSearchLink
             search={search}
@@ -41,6 +51,7 @@ function Main() {
               navigate(`/movie?q=${value}`);
               //   }
             }}
+            onChangeSearch={value => setSearch(value)}
           />
         </Div>
       </div>
