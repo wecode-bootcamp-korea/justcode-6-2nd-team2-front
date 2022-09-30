@@ -30,30 +30,36 @@ function Main() {
   }, []);
 
   return (
-    <MainPage>
-      <div className='background' />
-      <div className='backgroundImg'>
-        <Div>
-          <Title>
-            <span>박스오피스</span>
-          </Title>
-          <More to='/movie'>
-            더 많은 영화 보기
-            <AiOutlinePlus className='icon' />
-          </More>
-          <section>
-            <MainBoxOffice movieList={movieList} getLoader={getLoader} />
-          </section>
-          <MainSearchLink
-            search={search}
-            onSearch={value => {
-              navigate(`/movie?q=${value}`);
-            }}
-            onChangeSearch={value => setSearch(value)}
-          />
-        </Div>
-      </div>
-    </MainPage>
+    <>
+      <MainPage>
+        <div className='background' />
+        <div className='backgroundImg'>
+          <Div>
+            <Title>
+              <span>박스오피스</span>
+            </Title>
+            <More to='/movie'>
+              더 많은 영화 보기
+              <AiOutlinePlus className='icon' />
+            </More>
+            <section>
+              <MainBoxOffice movieList={movieList} getLoader={getLoader} />
+            </section>
+            <MainSearchLink
+              search={search}
+              onSearch={value => {
+                // console.log(value);
+                //   if (value !== '') {
+                navigate(`/movie?q=${value}`);
+                //   }
+              }}
+              onChangeSearch={value => setSearch(value)}
+            />
+          </Div>
+        </div>
+      </MainPage>
+      <MainSection />
+    </>
   );
 }
 
