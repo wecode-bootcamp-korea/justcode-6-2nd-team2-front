@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "distribute": "npm i && npm run build && pm2 serve build 3000 --name justcode-6-2nd-team2-front --spa"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +54,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
+    "pm2": "^5.2.0",
     "prettier": "^2.7.1"
   }
 }
